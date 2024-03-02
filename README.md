@@ -47,3 +47,26 @@ class UICounter : ReactiveComponent {
 
 This is what the above code could look like:\
 ![ui](readme/ui-example.png)
+
+### Structure
+The UI components in Void are seperated into three categories:
+
+- **Elements**\
+  Elements are the core components of Void, which are sometimes reactive,
+  like a dropdown menu or a checkbox, and sometimes static, like a heading
+  or an image. They can not be created by the user of the library.
+- **Static Components**\
+  Components are small trees of other components and elements, which can be useful
+  if the user needs to reuse parts of the ui multiple times. Static components
+  can not have state and can't chane on certain events.
+- **Reactive Components**\
+  Reactive components are like static components, but they can change their state
+  and display something else based on an event. Reactive components are similar
+  to how components work in JavaScript frameworks like React.
+
+**Screens**\
+There are also screens in Void which are like static components but wrap their
+children with a centered layout which covers the whole display. Screens can also
+be displayed to the user.\
+The way Void is structured with separating components and screens is part of what
+makes it easy to integrate into Minecraft.
