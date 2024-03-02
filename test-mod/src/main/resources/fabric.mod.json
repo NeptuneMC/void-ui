@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "void-test",
+  "version": "${version}",
+  "name": "VoidUI Test Mod",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.neptuneclient.voidui.testmod.ModEntry"
+    ]
+  },
+  "mixins": [
+    "void.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.4",
+    "java": ">=17"
+  }
+}

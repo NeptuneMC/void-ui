@@ -40,3 +40,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Minecraft ###
+test-mod/run/
+test-mod/.gradle/
+test-mod/build/
