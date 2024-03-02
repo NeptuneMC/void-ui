@@ -1,4 +1,4 @@
-![banner](banner.png)
+![banner](readme/banner.png)
 
 # VoidUI
 ⚠️ Work In Progress ⚠️
@@ -46,4 +46,4 @@ class UICounter : ReactiveComponent {
 ```
 
 This is what the above code could look like:\
-![ui](ui-example.png)
+![ui](readme/ui-example.png)
