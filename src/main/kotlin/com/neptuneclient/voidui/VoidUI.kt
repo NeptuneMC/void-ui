@@ -7,5 +7,4 @@ class VoidUI {
     var currentScreen: Screen? = null
 
     fun complexFunction(x: Int, y: Int) = x + y
-
 }
