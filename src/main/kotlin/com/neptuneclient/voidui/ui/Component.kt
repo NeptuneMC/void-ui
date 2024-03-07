@@ -6,7 +6,6 @@ sealed class Component(
     width: Int? = null,
     height: Int? = null
 ) {
-
     var width = width ?: 0
     var height = height ?: 0
 
