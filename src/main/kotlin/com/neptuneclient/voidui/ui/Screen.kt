@@ -1,6 +1,8 @@
 package com.neptuneclient.voidui.ui
 
-abstract class Screen {
+import com.neptuneclient.voidui.VoidUI
+
+abstract class Screen(private val void: VoidUI) {
 
     var width = 0
     var height = 0

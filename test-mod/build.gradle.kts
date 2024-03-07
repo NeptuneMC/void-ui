@@ -18,10 +18,13 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_version"]}")
 
     implementation(project(":"))
+
+    implementation("org.lwjgl:lwjgl-nanovg:3.3.1")
+    implementation("org.lwjgl:lwjgl-nanovg:3.3.1:natives-windows")
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 
 tasks.processResources {
