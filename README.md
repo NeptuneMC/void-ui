@@ -12,7 +12,8 @@ The code snipped below shows how an implementation of VoidUI could look like:
 ```kotlin
 class UICounter : ReactiveComponent {
 
-  var count = 0
+  // define a variable which rebuild the component on change
+  var count by state(0)
 
   override fun build(): Component {
     return Column(
