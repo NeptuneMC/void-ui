@@ -7,4 +7,4 @@ pluginManagement {
 
 rootProject.name = "void-ui"
 
-//include("test-mod")
+include("test-mod")

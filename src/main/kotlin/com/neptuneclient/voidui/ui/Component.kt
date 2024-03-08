@@ -14,7 +14,5 @@ sealed class Component(
     var width: Int? = null,
     var height: Int? = null
 ) : Drawable {
-
     abstract fun build(): Drawable
-
 }
