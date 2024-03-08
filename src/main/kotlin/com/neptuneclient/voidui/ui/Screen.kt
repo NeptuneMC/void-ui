@@ -4,6 +4,6 @@ import com.neptuneclient.voidui.VoidUI
 
 abstract class Screen(private val void: VoidUI) {
 
-    abstract fun build(): Component
+    abstract fun build(): Drawable
 
 }
