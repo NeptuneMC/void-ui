@@ -13,8 +13,7 @@ class VoidScreenTest(void: VoidUI) : Screen(void) {
 }
 
 class TestComponent : ReactiveComponent() {
-    @State
-    public var testState = 5
+    public var testState by state(3)
 
     override fun build(): Component {
         println("Building TestComponent")
