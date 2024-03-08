@@ -59,7 +59,7 @@ The UI components in Void are seperated into three categories:
 - **Static Components**\
   Components are small trees of other components and elements, which can be useful
   if the user needs to reuse parts of the ui multiple times. Static components
-  can not have state and can't chane on certain events.
+  can not have state and can't change on certain events.
 - **Reactive Components**\
   Reactive components are like static components, but they can change their state
   and display something else based on an event. Reactive components are similar
