@@ -18,24 +18,3 @@ class VoidUI
 constructor(val renderer: Renderer) {
 
 }
-
-class TestComponent : ReactiveComponent() {
-    @State
-    public var testState = 5
-
-    override fun build(): Component {
-        println("Building TestComponent")
-        return this
-    }
-}
-
-fun main(args: Array<String>) {
-
-    val component = TestComponent().build()
-    if (component is TestComponent) {
-        println("TestComponent.testState: ${component.testState}")
-        component.testState = 1
-        println("TestComponent.testState: ${component.testState}")
-    }
-
-}
