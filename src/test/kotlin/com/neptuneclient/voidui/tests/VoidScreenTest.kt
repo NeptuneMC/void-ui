@@ -4,7 +4,6 @@ import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.ui.Component
 import com.neptuneclient.voidui.ui.ReactiveComponent
 import com.neptuneclient.voidui.ui.Screen
-import com.neptuneclient.voidui.ui.State
 import org.junit.jupiter.api.Test
 
 class VoidScreenTest(void: VoidUI) : Screen(void) {

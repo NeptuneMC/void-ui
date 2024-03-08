@@ -1,9 +1,13 @@
 package com.neptuneclient.voidui.ui
 
 import kotlin.properties.Delegates
+import kotlin.properties.ObservableProperty
+import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KProperty
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.getExtensionDelegate
 import kotlin.reflect.jvm.javaField
 
 /**
@@ -11,22 +15,17 @@ import kotlin.reflect.jvm.javaField
  */
 abstract class ReactiveComponent : Component() {
 
-    init {
-        for (member in this::class.declaredMemberProperties) {
-            println("Member $member")
-            println("Member annotations size: ${member.annotations.size}")
-            if (member.findAnnotation<State>() == null) continue
-            println("Member $member is a state")
-            val memberObserver = Delegates.observable(member.getter.call(this)) { _, _, new ->
-                println("Member $member changed to $new")
-                this.build()
-                // TODO do proper rebuilding in the component tree
-            }
-
-            if (member is KMutableProperty<*>) {
-                member.setter.call(this, memberObserver)
-            }
-        }
+    /**
+     * Used to initialize a stateful variable. Whenever a stateful variable changes, the component gets rebuild.
+     *
+     * @param initialValue The initial value of the variable
+     *
+     * @sample ``var testState by state(2)`` - Defines a stateful variable with an initial value of 2.
+     */
+    fun <T> state(initialValue: T) = Delegates.observable(initialValue) { _, _, new ->
+        println("gndfjldsfs: $new")
+        this.build()
+        // TODO handle component rebuilding properly
     }
 
 }
