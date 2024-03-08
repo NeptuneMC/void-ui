@@ -4,7 +4,7 @@
 ⚠️ Work In Progress ⚠️
 
 A declarative and themable UI library with easy integration into Minecraft.
-It is used in Neptune client and will be to create extensions for Neptune in the future.
+It is used in Neptune client and will be used to create extensions for Neptune in the future.
 The way we are designing VoidUI is that we want a developer experience similar to [Flutter](https://flutter.dev/) but
 with pure Kotlin so the UI can be integrated easily with a Minecraft Java mod.\
 The code snipped below shows how an implementation of VoidUI could look like:
