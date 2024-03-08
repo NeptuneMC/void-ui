@@ -1,6 +1,9 @@
 package com.neptuneclient.voidui
 
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.ui.Component
+import com.neptuneclient.voidui.ui.ReactiveComponent
+import com.neptuneclient.voidui.ui.State
 
 /**
  * The main class of VoidUI. It is mostly used to contain settings and singleton instances of other classes
@@ -13,5 +16,26 @@ class VoidUI
  * out of the box so the user has to create his own implementation.
  */
 constructor(val renderer: Renderer) {
+
+}
+
+class TestComponent : ReactiveComponent() {
+    @State
+    public var testState = 5
+
+    override fun build(): Component {
+        println("Building TestComponent")
+        return this
+    }
+}
+
+fun main(args: Array<String>) {
+
+    val component = TestComponent().build()
+    if (component is TestComponent) {
+        println("TestComponent.testState: ${component.testState}")
+        component.testState = 1
+        println("TestComponent.testState: ${component.testState}")
+    }
 
 }
