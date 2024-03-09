@@ -16,4 +16,8 @@ interface Renderer {
 
     fun rectangle(x: Float, y: Float, width: Float, height: Float, color: Color)
 
+    fun rectangle(x: Int, y: Int, width: Int, height: Int, color: Color) {
+        rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
+    }
+
 }

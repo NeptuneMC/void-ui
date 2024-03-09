@@ -13,7 +13,7 @@ sealed class Component(
     var y: Int? = null,
     var width: Int? = null,
     var height: Int? = null
-) : Drawable {
+) : Drawable() {
 
     abstract fun build(): Drawable
 
