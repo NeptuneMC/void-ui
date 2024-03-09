@@ -19,6 +19,12 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
+}
+
 kotlin {
     jvmToolchain(17)
 }
