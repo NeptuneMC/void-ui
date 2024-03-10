@@ -68,8 +68,6 @@ interface Renderer {
         rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
     }
 
-<<<<<<< Updated upstream
-=======
     fun rectangle(x: Float, y: Float, width: Float, height: Float, color: Int) {
         rectangle(x, y, width, height, Color(color))
     }
@@ -84,6 +82,4 @@ interface Renderer {
      * @param color color of the rectangle
      */
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color)
-
->>>>>>> Stashed changes
 }
