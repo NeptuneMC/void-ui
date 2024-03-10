@@ -15,7 +15,7 @@ class Font(void: VoidUI, val identifier: String, filePath: Path, val size: Int) 
     }
 
     init {
-        void.renderer.register(this)
+        void.renderer.registerFont(this)
     }
 
 }

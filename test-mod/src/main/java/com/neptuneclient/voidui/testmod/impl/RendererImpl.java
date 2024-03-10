@@ -11,7 +11,7 @@ import java.awt.Color;
 
 import static org.lwjgl.nanovg.NanoVG.*;
 
-public class IRenderer implements Renderer {
+public class RendererImpl implements Renderer {
 
     private long vg = NanoVGGL3.nvgCreate(NanoVGGL3.NVG_ANTIALIAS | NanoVGGL3.NVG_STENCIL_STROKES);
 
@@ -60,16 +60,8 @@ public class IRenderer implements Renderer {
     }
 
     @Override
-    public @NotNull IRenderer register(@NotNull Object o) {
-        switch (o.getClass().getSimpleName()) {
-            default:
-                throw new IllegalArgumentException("Unknown object type: " + o.getClass().getSimpleName());
-            case "Font":
-                Font font = (Font) o;
-                nvgCreateFontMem(vg, font.getIdentifier(), font.getData(), 1);
-                break;
-        }
-        return this;
+    public void registerFont(@NotNull Font font) {
+        nvgCreateFontMem(vg, font.getIdentifier(), font.getData(), 1);
     }
 
 }

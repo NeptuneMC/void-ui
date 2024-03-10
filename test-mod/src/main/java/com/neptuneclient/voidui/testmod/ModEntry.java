@@ -1,7 +1,7 @@
 package com.neptuneclient.voidui.testmod;
 
 import com.neptuneclient.voidui.VoidUI;
-import com.neptuneclient.voidui.testmod.impl.IRenderer;
+import com.neptuneclient.voidui.testmod.impl.RendererImpl;
 import com.neptuneclient.voidui.utils.Font;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
@@ -19,7 +19,7 @@ public class ModEntry implements ClientModInitializer {
         LOGGER.info("VoidUI is best!");
 
         ClientLifecycleEvents.CLIENT_STARTED.register((client) -> {
-            VoidUI vui = new VoidUI(new IRenderer());
+            VoidUI vui = new VoidUI(new RendererImpl());
 
             // testing if nanovg will handle the font buffer
             new Font(vui, "testFont", Path.of("fonts/WorkSans-Regular.ttf"), 28);

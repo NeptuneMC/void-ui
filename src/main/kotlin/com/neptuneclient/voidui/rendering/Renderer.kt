@@ -1,9 +1,7 @@
 package com.neptuneclient.voidui.rendering
 
 import com.neptuneclient.voidui.utils.Font
-import org.jetbrains.annotations.NotNull
 import java.awt.Color
-import java.awt.Rectangle
 
 /**
  * This interface is the structure of the renderer in VoidUI.
@@ -27,31 +25,12 @@ interface Renderer {
     fun endFrame()
 
     /**
-     * Clears all resources used by the renderer.
-     */
-    fun clearResources() {
-        // TODO: remove everything from an arraylist of resources
-    }
-
-    /**
-     * Helper method to render a frame.
-     * @param l The lambda to execute in the frame.
-     */
-    fun frame(l : () -> Unit) {
-        beginFrame()
-        l.invoke()
-        clearResources()
-        endFrame()
-    }
-
-    /**
-     * Registers a font/image/etc. to the render backend.
-     * The [Font] class provides the render backend with all necessary resources
-     * to create a font.
+     * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources
+     * to create the font.
      *
-     * @param o The object to register.
+     * @param font The font object to register.
      */
-    fun register(o: Any): Renderer
+    fun registerFont(font: Font)
 
     /**
      * Renders a rectangle with the given dimensions, size, radius and color.
@@ -68,10 +47,6 @@ interface Renderer {
         rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
     }
 
-    fun rectangle(rect: Rectangle, color: Color) {
-        rectangle(rect.x, rect.y, rect.width, rect.height, color)
-    }
-
     /**
      * Renders a rounded rectangle with the given dimensions, size, radius and color.
      *
@@ -83,5 +58,9 @@ interface Renderer {
      * @param color color of the rectangle
      */
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color)
+
+    fun roundRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
+        roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), color)
+    }
 
 }
