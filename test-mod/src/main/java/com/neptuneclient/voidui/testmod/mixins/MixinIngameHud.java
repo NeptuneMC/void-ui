@@ -2,7 +2,7 @@ package com.neptuneclient.voidui.testmod.mixins;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.neptuneclient.voidui.VoidUI;
-import com.neptuneclient.voidui.testmod.impl.RendererImpl;
+import com.neptuneclient.voidui.testmod.impl.IRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,7 @@ import java.awt.Color;
 @Mixin(InGameHud.class)
 public class MixinIngameHud {
 
-    private VoidUI v = new VoidUI(new RendererImpl());
+    private VoidUI v = new VoidUI(new IRenderer());
 
     @Inject(method = "render", at = @At("RETURN"))
     public void renderIngameHud(DrawContext context, float tickDelta, CallbackInfo ci) {

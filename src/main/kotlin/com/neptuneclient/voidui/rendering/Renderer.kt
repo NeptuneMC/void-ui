@@ -1,6 +1,7 @@
 package com.neptuneclient.voidui.rendering
 
 import com.neptuneclient.voidui.utils.Font
+import org.jetbrains.annotations.NotNull
 import java.awt.Color
 
 /**
@@ -43,12 +44,13 @@ interface Renderer {
     }
 
     /**
-     * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources
-     * to create the font.
+     * Registers a font/image/etc. to the render backend.
+     * The [Font] class provides the render backend with all necessary resources
+     * to create a font.
      *
-     * @param font The font object to register.
+     * @param o The object to register.
      */
-    fun registerFont(font: Font)
+    fun register(o: Any): Renderer
 
     /**
      * Renders a rectangle with the given dimensions, size, radius and color.
