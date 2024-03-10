@@ -1,8 +1,8 @@
 package com.neptuneclient.voidui
 
 import com.neptuneclient.voidui.rendering.Renderer
-import com.neptuneclient.voidui.ui.Component
-import com.neptuneclient.voidui.ui.ReactiveComponent
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * The main class of VoidUI. It is mostly used to contain settings and singleton instances of other classes
@@ -15,5 +15,9 @@ class VoidUI
  * out of the box so the user has to create his own implementation.
  */
 constructor(val renderer: Renderer) {
+
+    companion object {
+        val LOGGER: Logger = LoggerFactory.getLogger("VoidUI")
+    }
 
 }

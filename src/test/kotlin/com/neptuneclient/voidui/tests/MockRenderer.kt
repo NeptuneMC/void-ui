@@ -1,6 +1,7 @@
 package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.utils.Font
 import java.awt.Color
 
 class MockRenderer : Renderer {
@@ -10,6 +11,10 @@ class MockRenderer : Renderer {
 
     override fun endFrame() {
         println("endFrame")
+    }
+
+    override fun registerFont(font: Font) {
+        println("registerFont id=${font.identifier}")
     }
 
     override fun rectangle(x: Float, y: Float, width: Float, height: Float, color: Color) {

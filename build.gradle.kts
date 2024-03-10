@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.slf4j:slf4j-simple:2.0.12")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

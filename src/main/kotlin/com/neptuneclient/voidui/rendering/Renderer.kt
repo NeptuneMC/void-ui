@@ -1,5 +1,6 @@
 package com.neptuneclient.voidui.rendering
 
+import com.neptuneclient.voidui.utils.Font
 import java.awt.Color
 
 /**
@@ -24,7 +25,16 @@ interface Renderer {
     fun endFrame()
 
     /**
-     * Renders a rectangle with the given dimensions, size and color.
+     * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources
+     * to create the font.
+     *
+     * @param font The font object to register.
+     */
+    fun registerFont(font: Font)
+
+    /**
+     * Renders a rectangle with the given dimensions, size, radius and color.
+     *
      * @param x x coordinate of the rectangle
      * @param y y coordinate of the rectangle
      * @param width width of the rectangle
@@ -37,12 +47,9 @@ interface Renderer {
         rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
     }
 
-    fun rectangle(x: Float, y: Float, width: Float, height: Float, color: Int) {
-        rectangle(x, y, width, height, Color(color))
-    }
-
     /**
      * Renders a rounded rectangle with the given dimensions, size, radius and color.
+     *
      * @param x x coordinate of the rectangle
      * @param y y coordinate of the rectangle
      * @param width width of the rectangle
