@@ -19,8 +19,8 @@ dependencies {
 
     implementation(project(":"))
 
-    implementation("org.lwjgl:lwjgl-nanovg:3.3.2")
-    implementation("org.lwjgl:lwjgl-nanovg:3.3.2:natives-windows")
+    implementation("org.lwjgl:lwjgl-nanovg:3.3.1")
+    implementation("org.lwjgl:lwjgl-nanovg:3.3.1:natives-windows")
 }
 
 kotlin {

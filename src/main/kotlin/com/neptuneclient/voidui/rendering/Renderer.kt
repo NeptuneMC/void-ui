@@ -1,8 +1,6 @@
 package com.neptuneclient.voidui.rendering
 
 import java.awt.Color
-import java.awt.Rectangle
-import java.awt.geom.Dimension2D
 
 /**
  * This interface is the structure of the renderer in VoidUI.
@@ -11,48 +9,19 @@ import java.awt.geom.Dimension2D
  * and an [Int] version.
  */
 interface Renderer {
-    /**
-     * Creates the renderer and initializes all necessary resources.
-     * This method should be called BEFORE any rendering operations.
-     */
-    fun create()
 
-    /**
-     * Destroys the renderer and frees all resources.
-     * This method should be called when the renderer is no longer needed.
-     */
-    fun destroy()
     /**
      * Begins a new frame. This method should be called before any rendering operations.
-     * @param width width of the frame
-     * @param height height of the frame
+     *
+     * The width and height of the frame should be the same as the window's width and height.
      */
-    fun beginFrame(width: Float, height: Float)
+    fun beginFrame()
 
-    /**
+    /*
      * Ends the current frame.
      * This method should be called after all rendering operations, but before freeing resources.
      */
     fun endFrame()
-
-    /**
-     * Frees all resources used by the renderer.
-     * This method should be called when the renderer is no longer needed.
-     */
-    fun freeResources()
-
-    /**
-     * Renders a frame with the given width and height and executes the given [frame] lambda.
-     * @param width width of the frame
-     * @param height height of the frame
-     * @param frame lambda to execute
-     */
-    fun frame(width: Float, height: Float, frame: Runnable) {
-        beginFrame(width, height)
-        frame.run()
-        freeResources()
-        endFrame()
-    }
 
     /**
      * Renders a rectangle with the given dimensions, size and color.
@@ -82,4 +51,5 @@ interface Renderer {
      * @param color color of the rectangle
      */
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color)
+
 }
