@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.awt.Color;
 
 @Mixin(InGameHud.class)
-public class MixinIngameHud {
+public class MixinInGameHud {
 
     private VoidUI v = new VoidUI(new IRenderer());
 
     @Inject(method = "render", at = @At("RETURN"))
-    public void renderIngameHud(DrawContext context, float tickDelta, CallbackInfo ci) {
+    public void mixin$render(DrawContext context, float tickDelta, CallbackInfo ci) {
         // i have looked at oneconfig to see how they render with nanovg
         // but it didnt make me smarter
 

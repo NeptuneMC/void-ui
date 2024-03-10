@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.rendering
 import com.neptuneclient.voidui.utils.Font
 import org.jetbrains.annotations.NotNull
 import java.awt.Color
+import java.awt.Rectangle
 
 /**
  * This interface is the structure of the renderer in VoidUI.
@@ -65,6 +66,10 @@ interface Renderer {
 
     fun rectangle(x: Int, y: Int, width: Int, height: Int, color: Color) {
         rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
+    }
+
+    fun rectangle(rect: Rectangle, color: Color) {
+        rectangle(rect.x, rect.y, rect.width, rect.height, color)
     }
 
     /**
