@@ -18,11 +18,29 @@ interface Renderer {
      */
     fun beginFrame()
 
-    /*
+    /**
      * Ends the current frame.
      * This method should be called after all rendering operations, but before freeing resources.
      */
     fun endFrame()
+
+    /**
+     * Clears all resources used by the renderer.
+     */
+    fun clearResources() {
+        // TODO: remove everything from an arraylist of resources
+    }
+
+    /**
+     * Helper method to render a frame.
+     * @param l The lambda to execute in the frame.
+     */
+    fun frame(l : () -> Unit) {
+        beginFrame()
+        l.invoke()
+        clearResources()
+        endFrame()
+    }
 
     /**
      * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources

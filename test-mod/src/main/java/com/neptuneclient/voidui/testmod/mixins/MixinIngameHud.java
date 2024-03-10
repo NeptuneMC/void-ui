@@ -15,7 +15,7 @@ import java.awt.Color;
 @Mixin(InGameHud.class)
 public class MixinIngameHud {
 
-    private VoidUI voidUI = new VoidUI(new RendererImpl());
+    private VoidUI v = new VoidUI(new RendererImpl());
 
     @Inject(method = "render", at = @At("RETURN"))
     public void renderIngameHud(DrawContext context, float tickDelta, CallbackInfo ci) {
@@ -23,9 +23,12 @@ public class MixinIngameHud {
         // but it didnt make me smarter
 
         RenderSystem.disableDepthTest();
-        voidUI.getRenderer().beginFrame();
-        voidUI.getRenderer().rectangle(100, 100, 200, 120, new Color(255, 99, 99));
-        voidUI.getRenderer().endFrame();
+        v.getRenderer().frame(
+                () -> {
+                    v.getRenderer().rectangle(10, 10, 100, 100, Color.RED);
+                    return null;
+                }
+        );
         RenderSystem.enableDepthTest();
     }
 
