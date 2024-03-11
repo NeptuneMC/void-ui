@@ -135,7 +135,7 @@ class TestRenderer : Renderer {
         }
     }
 
-    fun text(x: Float, y: Float, text: String, font: Font, color: Color) {
+    override fun text(x: Float, y: Float, text: String, font: Font, color: Color) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)

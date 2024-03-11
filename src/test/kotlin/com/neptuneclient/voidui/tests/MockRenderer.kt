@@ -22,6 +22,10 @@ class MockRenderer: Renderer {
     }
 
     override fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
-        TODO("Not yet implemented")
+        println("roundedRectangle")
+    }
+
+    override fun text(x: Float, y: Float, text: String, font: Font, color: Color) {
+        println("text")
     }
 }

@@ -63,4 +63,15 @@ interface Renderer {
         roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), color)
     }
 
+    /**
+     * Renders a text with the given dimensions, size, font and color.
+     *
+     * @param x x coordinate of the text
+     * @param y y coordinate of the text
+     * @param text text to render
+     * @param font font of the text
+     * @param color color of the text
+     */
+    fun text(x: Float, y: Float, text: String, font: Font, color: Color)
+
 }
