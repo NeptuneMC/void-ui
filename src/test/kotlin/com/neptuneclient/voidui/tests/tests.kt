@@ -19,7 +19,13 @@ class FontTest() {
         val font = Font(void, "test", Path.of("fonts/WorkSans-Regular.ttf"), 30)
         println(font.data.toString())
 
-        val text = Text("Hello, World!", font, Color.WHITE, 100f, 100f)
+        val text = Text(
+            x = 100,
+            y = 100,
+            text = "Hello World!",
+            font = font,
+            color = Color.WHITE
+        )
         text.void = void
 
         val renderer = void.renderer as TestRenderer
