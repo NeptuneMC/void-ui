@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.ui.elements
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.ui.Drawable
+import com.neptuneclient.voidui.ui.objects.EdgeInsets
 
 /**
  * Elements are the core building blocks of the library. They can not be created by the user and do not have children.
@@ -13,8 +14,8 @@ sealed class Element(
     width: Int? = null,
     height: Int? = null,
 
-    margin: Int? = null,
-    padding: Int? = null
+    margin: EdgeInsets = EdgeInsets.zero,
+    padding: EdgeInsets = EdgeInsets.zero
 ) : Drawable(x, y, width, height, margin, padding) {
 
     abstract fun render()

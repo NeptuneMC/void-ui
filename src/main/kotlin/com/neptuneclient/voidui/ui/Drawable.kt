@@ -1,6 +1,7 @@
 package com.neptuneclient.voidui.ui
 
 import com.neptuneclient.voidui.VoidUI
+import com.neptuneclient.voidui.ui.objects.EdgeInsets
 
 /**
  * The base class for anything which represents an object in the UI.
@@ -11,8 +12,8 @@ abstract class Drawable(
     var width: Int? = null,
     var height: Int? = null,
 
-    var margin: Int? = null,
-    var padding: Int? = null
+    var margin: EdgeInsets = EdgeInsets.zero,
+    var padding: EdgeInsets = EdgeInsets.zero
 ) {
 
     /**

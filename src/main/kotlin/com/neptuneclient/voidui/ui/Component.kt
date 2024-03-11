@@ -1,5 +1,7 @@
 package com.neptuneclient.voidui.ui
 
+import com.neptuneclient.voidui.ui.objects.EdgeInsets
+
 /**
  * Components are a small reusable chunk of drawables. Syntactically they are very similar to screens, but instead of being
  * displayed on the screen, you can use them just like elements within other parts of your UI.
@@ -14,8 +16,8 @@ sealed class Component(
     width: Int? = null,
     height: Int? = null,
 
-    margin: Int? = null,
-    padding: Int? = null,
+    margin: EdgeInsets = EdgeInsets.zero,
+    padding: EdgeInsets = EdgeInsets.zero,
 
     val children: MutableList<Drawable>? = null
 ) : Drawable(x, y, width, height, margin, padding) {

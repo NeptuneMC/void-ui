@@ -1,5 +1,6 @@
 package com.neptuneclient.voidui.ui
 
+import com.neptuneclient.voidui.ui.objects.EdgeInsets
 import kotlin.properties.Delegates
 
 /**
@@ -11,8 +12,8 @@ abstract class ReactiveComponent(
     width: Int? = null,
     height: Int? = null,
 
-    margin: Int? = null,
-    padding: Int? = null,
+    margin: EdgeInsets = EdgeInsets.zero,
+    padding: EdgeInsets = EdgeInsets.zero,
 
     children: MutableList<Drawable>? = null
 ) : Component(x, y, width, height, margin, padding, children) {

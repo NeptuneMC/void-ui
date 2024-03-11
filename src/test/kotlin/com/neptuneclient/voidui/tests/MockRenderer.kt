@@ -28,4 +28,9 @@ class MockRenderer: Renderer {
     override fun text(x: Float, y: Float, text: String, font: Font, color: Color) {
         println("text")
     }
+
+    override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
+        println("getTextBounds")
+        return Pair(0f, 0f)
+    }
 }

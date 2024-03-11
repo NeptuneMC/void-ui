@@ -78,4 +78,13 @@ interface Renderer {
         text(x.toFloat(), y.toFloat(), text, font, color)
     }
 
+    /**
+     * Returns the bounds of the given text with the given font.
+     *
+     * @param text text to measure
+     * @param font font of the text
+     * @return the width and height of the text
+     */
+    fun getTextBounds(text: String, font: Font): Pair<Float, Float>
+
 }

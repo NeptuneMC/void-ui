@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
+import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor
 import org.lwjgl.nanovg.NanoVG
@@ -10,6 +11,7 @@ import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL11
 import org.lwjgl.system.MemoryStack
 import java.awt.Color
+import java.nio.FloatBuffer
 import kotlin.math.max
 
 class TestRenderer : Renderer {
@@ -145,5 +147,9 @@ class TestRenderer : Renderer {
             NanoVG.nvgText(vg, x, y, text)
             NanoVG.nvgClosePath(vg)
         }
+    }
+
+    override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
+        TODO("Not yet implemented")
     }
 }

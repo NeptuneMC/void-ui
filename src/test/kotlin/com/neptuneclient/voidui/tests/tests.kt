@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.ui.elements.Text
+import com.neptuneclient.voidui.ui.objects.EdgeInsets
 import com.neptuneclient.voidui.utils.Font
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
@@ -24,14 +25,16 @@ class FontTest() {
             y = 100,
             text = "Hello World!",
             font = font,
-            color = Color.WHITE
+            color = Color.WHITE,
+            padding = EdgeInsets.all(50f),
+            backgroundColor = Color.BLUE,
         )
         text.void = void
 
         val renderer = void.renderer as TestRenderer
         while (!GLFW.glfwWindowShouldClose(renderer.window)) {
             renderer.beginFrame()
-            renderer.roundedRectangle(0f, 0f, 100f, 100f, 20f, Color.RED)
+//            renderer.roundedRectangle(0f, 0f, 100f, 100f, 20f, Color.RED)
             text.render()
             renderer.endFrame()
         }
