@@ -9,7 +9,7 @@ import org.lwjgl.glfw.GLFW
 import java.awt.Color
 import java.nio.file.Path
 
-@DisabledIfEnvironmentVariable(named = "CI", matches = "\\w+")
+@DisabledIfEnvironmentVariable(named = "CI", matches = "\\w+")  // dang simon how do u know shit line this
 class FontTest() {
 
     val void = VoidUI(TestRenderer())

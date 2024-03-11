@@ -5,7 +5,17 @@ import kotlin.properties.Delegates
 /**
  * @see Component
  */
-abstract class ReactiveComponent : Component() {
+abstract class ReactiveComponent(
+    x: Int? = null,
+    y: Int? = null,
+    width: Int? = null,
+    height: Int? = null,
+
+    margin: Int? = null,
+    padding: Int? = null,
+
+    children: MutableList<Drawable>? = null
+) : Component(x, y, width, height, margin, padding, children) {
 
     /**
      * Used to initialize a stateful variable. Whenever a stateful variable changes, the component gets rebuild.

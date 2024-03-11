@@ -9,11 +9,16 @@ package com.neptuneclient.voidui.ui
  * * [ReactiveComponent]: It can hold variables which will, when changed, will rebuild the component.
  */
 sealed class Component(
-    var x: Int? = null,
-    var y: Int? = null,
-    var width: Int? = null,
-    var height: Int? = null
-) : Drawable() {
+    x: Int? = null,
+    y: Int? = null,
+    width: Int? = null,
+    height: Int? = null,
+
+    margin: Int? = null,
+    padding: Int? = null,
+
+    val children: MutableList<Drawable>? = null
+) : Drawable(x, y, width, height, margin, padding) {
 
     abstract fun build(): Drawable
 

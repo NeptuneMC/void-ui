@@ -74,4 +74,8 @@ interface Renderer {
      */
     fun text(x: Float, y: Float, text: String, font: Font, color: Color)
 
+    fun text(x: Int, y: Int, text: String, font: Font, color: Color) {
+        text(x.toFloat(), y.toFloat(), text, font, color)
+    }
+
 }
