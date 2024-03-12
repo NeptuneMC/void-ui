@@ -18,8 +18,6 @@ sealed class Element(
     padding: EdgeInsets = EdgeInsets.zero
 ) : Drawable(x, y, width, height, margin, padding) {
 
-    abstract fun render()
-
     /**
      * A dsl function which adds syntactical sugar when rendering.
      *

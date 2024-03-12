@@ -31,12 +31,12 @@ class FontTest() {
         )
         text.void = void
 
+        val screen = TestScreen(void)
+        screen.assemble()
+
         val renderer = void.renderer as TestRenderer
         while (!GLFW.glfwWindowShouldClose(renderer.window)) {
-            renderer.beginFrame()
-//            renderer.roundedRectangle(0f, 0f, 100f, 100f, 20f, Color.RED)
-            text.render()
-            renderer.endFrame()
+            screen.render()
         }
 
         renderer.destroy()

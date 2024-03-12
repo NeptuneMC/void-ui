@@ -22,6 +22,13 @@ sealed class Component(
     val children: MutableList<Drawable>? = null
 ) : Drawable(x, y, width, height, margin, padding) {
 
+    // TODO i think this needs to be fixed
+    private val body = build()
+
     abstract fun build(): Drawable
+
+    final override fun render() {
+        body.render()
+    }
 
 }

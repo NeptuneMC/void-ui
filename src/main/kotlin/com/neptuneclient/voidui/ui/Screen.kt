@@ -9,7 +9,20 @@ abstract class Screen(private val void: VoidUI) {
     var width = void.renderer.windowWidth()
     var height = void.renderer.windowHeight()
 
+    private lateinit var body: Drawable
+
     abstract fun build(): Drawable
+
+    fun assemble() {
+        body = build()
+        body.void = void
+    }
+
+    fun render() {
+        void.renderer.beginFrame()
+        body.render()
+        void.renderer.endFrame()
+    }
 
     /**
      * A dsl feature which adds the view-width unit from HTML to screens.

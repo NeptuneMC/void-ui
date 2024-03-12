@@ -7,7 +7,7 @@ import java.awt.Color
 class Text(
     val text: String,
     val font: Font,
-    val color: Color,
+    val color: Color = Color.WHITE,
     val backgroundColor: Color = Color(0, 0, 0, 0),
 
     x: Int? = null,
