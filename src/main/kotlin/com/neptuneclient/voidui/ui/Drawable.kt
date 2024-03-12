@@ -22,4 +22,12 @@ abstract class Drawable(
      */
     lateinit var void: VoidUI
 
+    abstract fun render()
+
+    /*companion object {
+        operator fun get(vararg children: Drawable): MutableList<Drawable> {
+            return children.toMutableList()
+        }
+    }*/
+
 }

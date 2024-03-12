@@ -5,6 +5,9 @@ import com.neptuneclient.voidui.utils.Font
 import java.awt.Color
 
 class MockRenderer: Renderer {
+    override fun windowWidth() = 0
+    override fun windowHeight() = 0
+
     override fun beginFrame() {
         println("beginFrame")
     }

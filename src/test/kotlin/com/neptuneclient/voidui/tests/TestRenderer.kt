@@ -89,6 +89,18 @@ class TestRenderer : Renderer {
         GLFW.glfwTerminate()
     }
 
+    override fun windowWidth(): Int {
+        val width = IntArray(1)
+        GLFW.glfwGetWindowSize(window, width, null)
+        return width[0]
+    }
+
+    override fun windowHeight(): Int {
+        val height = IntArray(1)
+        GLFW.glfwGetWindowSize(window, null, height)
+        return height[0]
+    }
+
     override fun beginFrame() {
         val width = framebufferWidth / contentScaleX
         val height = framebufferHeight / contentScaleY
@@ -150,7 +162,7 @@ class TestRenderer : Renderer {
     }
 
     override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
-val buffer: FloatBuffer = BufferUtils.createFloatBuffer(4)
+        val buffer: FloatBuffer = BufferUtils.createFloatBuffer(4)
         NanoVG.nvgFontSize(vg, font.size.toFloat())
         NanoVG.nvgFontFace(vg, font.identifier)
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)

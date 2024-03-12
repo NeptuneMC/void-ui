@@ -12,6 +12,16 @@ import java.awt.Color
 interface Renderer {
 
     /**
+     * The width of the application window.
+     */
+    fun windowWidth(): Int
+
+    /**
+     * The height of the application window.
+     */
+    fun windowHeight(): Int
+
+    /**
      * Begins a new frame. This method should be called before any rendering operations.
      *
      * The width and height of the frame should be the same as the window's width and height.
