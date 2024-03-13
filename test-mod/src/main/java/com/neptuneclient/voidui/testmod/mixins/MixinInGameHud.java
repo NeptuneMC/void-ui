@@ -1,6 +1,5 @@
 package com.neptuneclient.voidui.testmod.mixins;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.neptuneclient.voidui.VoidUI;
 import com.neptuneclient.voidui.testmod.impl.RendererImpl;
 import net.minecraft.client.gui.DrawContext;
@@ -23,7 +22,7 @@ public class MixinInGameHud {
         // but it didnt make me smarter
 
         v.getRenderer().beginFrame();
-        v.getRenderer().rectangle(100, 100, 200, 120, new Color(255, 99, 99));
+        v.getRenderer().roundedRectangle(100, 100, 200, 120, 15, Color.RED);
         v.getRenderer().endFrame();
     }
 

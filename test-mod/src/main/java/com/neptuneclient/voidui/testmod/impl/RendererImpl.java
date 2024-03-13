@@ -15,15 +15,18 @@ import static org.lwjgl.nanovg.NanoVG.*;
 public class RendererImpl implements Renderer {
 
     private long vg = NanoVGGL3.nvgCreate(NanoVGGL3.NVG_ANTIALIAS | NanoVGGL3.NVG_STENCIL_STROKES);
+    private GLState glState = new GLState();
 
     @Override
     public void beginFrame() {
+        glState.backupGlState();
         nvgBeginFrame(vg, MinecraftClient.getInstance().getWindow().getWidth(), MinecraftClient.getInstance().getWindow().getHeight(), 1);
     }
 
     @Override
     public void endFrame() {
         nvgEndFrame(vg);
+        glState.restoreGlState();
     }
 
     @Override
