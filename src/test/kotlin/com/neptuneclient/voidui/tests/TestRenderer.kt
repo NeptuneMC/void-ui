@@ -163,9 +163,10 @@ class TestRenderer : Renderer {
 
     override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
         val buffer: FloatBuffer = BufferUtils.createFloatBuffer(4)
+
         NanoVG.nvgFontSize(vg, font.size.toFloat())
         NanoVG.nvgFontFace(vg, font.identifier)
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)
-        return Pair(buffer.get(2), buffer.get(3))
+        return Pair(buffer[2] - buffer[0], buffer[3] - buffer[1])
     }
 }
