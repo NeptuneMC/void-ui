@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.testmod.impl;
 
 import com.neptuneclient.voidui.rendering.Renderer;
 import com.neptuneclient.voidui.utils.Font;
+import kotlin.Pair;
 import net.minecraft.client.MinecraftClient;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.nanovg.NVGColor;
@@ -64,4 +65,24 @@ public class RendererImpl implements Renderer {
         nvgCreateFontMem(vg, font.getIdentifier(), font.getData(), 1);
     }
 
+    @Override
+    public int windowWidth() {
+        return MinecraftClient.getInstance().getWindow().getWidth();
+    }
+
+    @Override
+    public int windowHeight() {
+        return MinecraftClient.getInstance().getWindow().getHeight();
+    }
+
+    @Override
+    public void text(float x, float y, @NotNull String text, @NotNull Font font, @NotNull Color color) {
+
+    }
+
+    @NotNull
+    @Override
+    public Pair<Float, Float> getTextBounds(@NotNull String text, @NotNull Font font) {
+        return null;
+    }
 }
