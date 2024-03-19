@@ -1,4 +1,4 @@
-package com.neptuneclient.voidui.ui
+package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.rendering.Renderer
 import java.awt.Color

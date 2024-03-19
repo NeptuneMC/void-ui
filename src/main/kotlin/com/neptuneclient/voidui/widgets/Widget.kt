@@ -1,4 +1,4 @@
-package com.neptuneclient.voidui.ui
+package com.neptuneclient.voidui.widgets
 
 import java.awt.Rectangle
 import kotlin.math.round

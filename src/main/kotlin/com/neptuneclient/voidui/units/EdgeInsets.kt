@@ -1,4 +1,4 @@
-package com.neptuneclient.voidui.ui.objects
+package com.neptuneclient.voidui.units
 
 data class EdgeInsets(
     val left: Float,
