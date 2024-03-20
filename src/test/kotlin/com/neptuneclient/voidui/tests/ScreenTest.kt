@@ -10,20 +10,12 @@ import org.lwjgl.glfw.GLFW
 class TestScreen(void: VoidUI) : Screen(void) {
 
     override fun build(): Widget {
-        return Row(
-            gap = 10,
-            children = arrayOf(
-                Panel(),
-                Panel(),
-                Panel(),
-                Panel(),
-            ),
-        )
+        return Panel()
     }
 
 }
 
-val voidUI = VoidUI(TestRenderer())
+val voidUI = VoidUI(TestRenderer(), TestTheme())
 
 fun main() {
     val screen = TestScreen(voidUI)

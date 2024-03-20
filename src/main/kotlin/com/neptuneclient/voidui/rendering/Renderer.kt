@@ -69,7 +69,7 @@ interface Renderer {
      */
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color)
 
-    fun roundRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
+    fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
         roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), color)
     }
 
