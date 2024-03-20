@@ -10,7 +10,12 @@ import org.lwjgl.glfw.GLFW
 class TestScreen(void: VoidUI) : Screen(void) {
 
     override fun build(): Widget {
-        return Panel()
+        return Row(
+            children = arrayOf(
+                Panel(),
+                Text(label = "Hello World!")
+            )
+        )
     }
 
 }

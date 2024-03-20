@@ -8,4 +8,4 @@ import java.awt.Color
  * @param width The width of the border.
  * @param color The color of the border.
  */
-data class Border(val width: Float = 1F, val color: Color)
+data class Border(val width: Float, val color: Color)

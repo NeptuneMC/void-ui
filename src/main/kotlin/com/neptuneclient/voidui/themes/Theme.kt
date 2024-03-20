@@ -1,10 +1,10 @@
 package com.neptuneclient.voidui.themes
 
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
-import com.neptuneclient.voidui.themes.styles.TestStyleSheet
+import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.widgets.Element
 import com.neptuneclient.voidui.widgets.Panel
-import com.neptuneclient.voidui.widgets.TestElement
+import com.neptuneclient.voidui.widgets.Text
 import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
 
@@ -13,7 +13,7 @@ import kotlin.reflect.KClass
  */
 open class Theme(
     panel: Styles<PanelStyleSheet>,
-    test: Styles<TestStyleSheet>
+    text: Styles<TextStyleSheet>
 ) {
 
     /**
@@ -21,7 +21,7 @@ open class Theme(
      */
     private val styles = mapOf(
         Panel::class to panel,
-        TestElement::class to test
+        Text::class to text
     )
 
     /**
