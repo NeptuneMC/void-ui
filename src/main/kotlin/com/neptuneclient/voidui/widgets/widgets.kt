@@ -8,6 +8,9 @@ package com.neptuneclient.voidui.widgets
 internal class Group(protected val children: Array<Widget>) : Widget() {
 
     override fun init(screen: Screen, parent: Widget?) {
+        this.screen = screen
+        this.parent = parent
+
         val size = sizeSelf(screen, parent)
         x = size.x
         y = size.y

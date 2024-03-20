@@ -18,11 +18,6 @@ import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 sealed class Element<S : StyleSheet> : Widget() {
 
     /**
-     * Holds the screen in which the element is rendered.
-     */
-    private lateinit var screen: Screen
-
-    /**
      * The style sheet for this element.
      */
     protected lateinit var styles: S
@@ -35,6 +30,7 @@ sealed class Element<S : StyleSheet> : Widget() {
      */
     override fun init(screen: Screen, parent: Widget?) {
         this.screen = screen
+        this.parent = parent
         this.styles = screen.void.theme.getStyleSheet(this::class, Styles.Type.NORMAL)
 
         val size = sizeSelf(screen, parent)
