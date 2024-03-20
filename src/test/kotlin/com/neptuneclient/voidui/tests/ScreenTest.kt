@@ -11,12 +11,13 @@ class TestScreen(void: VoidUI) : Screen(void) {
 
     override fun build(): Widget {
         return Row(
+            gap = 10,
             children = arrayOf(
                 Panel(),
                 Panel(),
                 Panel(),
-                Panel()
-            )
+                Panel(),
+            ),
         )
     }
 
