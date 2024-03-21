@@ -58,6 +58,22 @@ interface Renderer {
     }
 
     /**
+     * Renders a hollow rectangle with the given dimensions, size, radius and color.
+     *
+     * @param x x coordinate of the rectangle
+     * @param y y coordinate of the rectangle
+     * @param width width of the rectangle
+     * @param height height of the rectangle
+     * @param thickness thickness of the frame
+     * @param color color of the rectangle
+     */
+    fun rectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: Float, color: Color)
+
+    fun rectangleFrame(x: Int, y: Int, width: Int, height: Int, thickness: Int, color: Color) {
+        rectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness.toFloat(), color)
+    }
+
+    /**
      * Renders a rounded rectangle with the given dimensions, size, radius and color.
      *
      * @param x x coordinate of the rectangle
@@ -71,6 +87,23 @@ interface Renderer {
 
     fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
         roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), color)
+    }
+
+    /**
+     * Renders a hollow rounded rectangle with the given dimensions, size, radius and color.
+     *
+     * @param x x coordinate of the rectangle
+     * @param y y coordinate of the rectangle
+     * @param width width of the rectangle
+     * @param height height of the rectangle
+     * @param thickness thickness of the frame
+     * @param radius radius of the rectangle
+     * @param color color of the rectangle
+     */
+    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: Float, radius: Float, color: Color)
+
+    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, thickness: Int, radius: Int, color: Color) {
+        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness.toFloat(), radius.toFloat(), color)
     }
 
     /**

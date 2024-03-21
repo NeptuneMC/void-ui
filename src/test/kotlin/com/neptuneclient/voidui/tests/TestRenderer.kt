@@ -138,6 +138,18 @@ class TestRenderer : Renderer {
         }
     }
 
+    override fun rectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: Float, color: Color) {
+        color.use {
+            NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
+            NanoVG.nvgBeginPath(vg)
+            NanoVG.nvgRect(vg, x, y, width, height)
+            NanoVG.nvgStrokeColor(vg, it)
+            NanoVG.nvgStrokeWidth(vg, thickness)
+            NanoVG.nvgStroke(vg)
+            NanoVG.nvgClosePath(vg)
+        }
+    }
+
     override fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
@@ -145,6 +157,26 @@ class TestRenderer : Renderer {
             NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
             NanoVG.nvgFillColor(vg, it)
             NanoVG.nvgFill(vg)
+            NanoVG.nvgClosePath(vg)
+        }
+    }
+
+    override fun roundedRectangleFrame(
+        x: Float,
+        y: Float,
+        width: Float,
+        height: Float,
+        thickness: Float,
+        radius: Float,
+        color: Color
+    ) {
+        color.use {
+            NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
+            NanoVG.nvgBeginPath(vg)
+            NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
+            NanoVG.nvgStrokeColor(vg, it)
+            NanoVG.nvgStrokeWidth(vg, thickness)
+            NanoVG.nvgStroke(vg)
             NanoVG.nvgClosePath(vg)
         }
     }

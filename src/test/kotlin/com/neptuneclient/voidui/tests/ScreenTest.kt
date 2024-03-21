@@ -9,6 +9,8 @@ import org.lwjgl.glfw.GLFW
 
 class TestScreen(void: VoidUI) : Screen(void) {
 
+    private var counter by state(5)
+
     override fun build(): Widget {
         return Row(
             children = arrayOf(
@@ -25,7 +27,7 @@ val voidUI = VoidUI(TestRenderer(), TestTheme())
 fun main() {
     val screen = TestScreen(voidUI)
     screen.init()
-    
+
     val renderer = voidUI.renderer as TestRenderer
     while (!GLFW.glfwWindowShouldClose(renderer.window)) {
         screen.render()

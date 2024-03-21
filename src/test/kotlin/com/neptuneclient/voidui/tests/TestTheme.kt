@@ -11,23 +11,19 @@ import java.nio.file.Path
 class TestTheme : Theme(
     panel = Styles(
         normal = PanelStyleSheet(
-            color = Color.BLUE,
-            radius = 10
-        ),
-        hovered = PanelStyleSheet(
-            color = Color(200, 200, 200),
-            radius = 5,
+            color = Color(0x272935),
+            radius = 10,
             border = Border(
-                width = 1.5F,
-                color = Color.WHITE
+                width = 1F,
+                color = Color(255, 255, 255, 40)
             )
         )
     ),
     text = Styles(
         normal = TextStyleSheet(
-            color = Color.YELLOW,
+            color = Color.WHITE,
             font = Path.of("fonts/WorkSans-Regular.ttf"),
-            size = 20
+            size = 16
         )
     )
 )

@@ -11,6 +11,8 @@ class Panel : Element<PanelStyleSheet>() {
     
     override fun render(renderer: Renderer) {
         renderer.roundedRectangle(x, y, width, height, styles.radius, styles.color)
+        if (styles.border!= null)
+            renderer.roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), styles.border!!.width, styles.radius.toFloat(), styles.border!!.color)
     }
 
 }

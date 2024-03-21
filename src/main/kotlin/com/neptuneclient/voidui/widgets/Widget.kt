@@ -48,7 +48,7 @@ abstract class Widget {
      */
     open fun sizeSelf(screen: Screen, parent: Widget?): Rectangle {
         // TODO implement this properly
-        return Rectangle(10, 20, 30, 40)
+        return Rectangle(50, 50, 100, 100)
     }
 
     /**
