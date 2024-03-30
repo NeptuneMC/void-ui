@@ -5,7 +5,7 @@ package com.neptuneclient.voidui.widgets
  *
  * @param children An array with all chidren widgets.
  */
-internal class Group(protected val children: Array<Widget>) : Widget() {
+internal class Group(private val children: Array<Widget>) : Widget() {
 
     override fun init(screen: Screen, parent: Widget?) {
         this.screen = screen
@@ -30,6 +30,14 @@ internal class Group(protected val children: Array<Widget>) : Widget() {
 }
 
 class Row(private val children: Array<Widget> = arrayOf(), private val gap: Int = 0) : Widget() {
+
+    override fun build(): Widget {
+        return Group(children)
+    }
+
+}
+
+class Column(private val children: Array<Widget> = arrayOf(), private val gap: Int = 0) : Widget() {
 
     override fun build(): Widget {
         return Group(children)

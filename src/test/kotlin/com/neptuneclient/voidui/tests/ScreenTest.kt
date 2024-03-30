@@ -13,7 +13,13 @@ class TestScreen(void: VoidUI) : Screen(void) {
 
     override fun build(): Widget {
         return Panel(
-            child = Text("Hello World!")
+            child = Column(
+                gap = 10,   // 10 pixels
+                children = arrayOf(
+                    Text("Hello"),
+                    Text("World")
+                )
+            )
         )
     }
 
