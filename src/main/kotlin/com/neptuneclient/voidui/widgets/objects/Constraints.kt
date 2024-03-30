@@ -48,8 +48,8 @@ data class BoxConstraints(
     val smallest get() = Size(minWidth, minHeight)
 
     fun constrain(size: Size) = Size(
-        max(minWidth, min(maxWidth, size.width)),
-        max(minHeight, min(maxHeight, size.height))
+        size.width.coerceIn(minWidth, maxWidth),
+        size.height.coerceIn(minHeight, maxHeight)
     )
 
     fun deflate(padding: EdgeInsets) = BoxConstraints(
