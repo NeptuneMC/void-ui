@@ -1,5 +1,7 @@
 package com.neptuneclient.voidui.widgets
 
+import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+
 /**
  * An internal widget which is used to bundle other widgets.
  *
@@ -41,6 +43,14 @@ class Column(private val children: Array<Widget> = arrayOf(), private val gap: I
 
     override fun build(): Widget {
         return Group(children)
+    }
+
+}
+
+class Padding(private val child: Widget, private val padding: EdgeInsets = EdgeInsets.zero) : Widget() {
+
+    override fun build(): Widget {
+        return child
     }
 
 }
