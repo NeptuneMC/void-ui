@@ -9,9 +9,31 @@ import java.awt.Color
 import java.nio.file.Path
 
 class TestTheme : Theme(
+    backgroundPanel = Styles(
+        normal = PanelStyleSheet(
+            color = Color(0x101216),
+            radius = 10
+        )
+    ),
+    accentBackgroundPanel = Styles(
+        normal = PanelStyleSheet(
+            color = Color(26, 31, 41, 220),
+            radius = 10
+        )
+    ),
     panel = Styles(
         normal = PanelStyleSheet(
             color = Color(0x272935),
+            radius = 10,
+            border = Border(
+                width = 1F,
+                color = Color(255, 255, 255, 40)
+            )
+        )
+    ),
+    accentPanel = Styles(
+        normal = PanelStyleSheet(
+            color = Color(0),
             radius = 10,
             border = Border(
                 width = 1F,

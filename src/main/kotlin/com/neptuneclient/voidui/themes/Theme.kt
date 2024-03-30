@@ -2,9 +2,7 @@ package com.neptuneclient.voidui.themes
 
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
-import com.neptuneclient.voidui.widgets.Element
-import com.neptuneclient.voidui.widgets.Panel
-import com.neptuneclient.voidui.widgets.Text
+import com.neptuneclient.voidui.widgets.*
 import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
 
@@ -12,7 +10,10 @@ import kotlin.reflect.KClass
  * This class has parameters for the style sheets of every element.
  */
 open class Theme(
+    backgroundPanel: Styles<PanelStyleSheet>,
+    accentBackgroundPanel: Styles<PanelStyleSheet>,
     panel: Styles<PanelStyleSheet>,
+    accentPanel: Styles<PanelStyleSheet>,
     text: Styles<TextStyleSheet>
 ) {
 
@@ -20,7 +21,10 @@ open class Theme(
      * A map which holds every element type and its adjacent styles.
      */
     private val styles = mapOf(
+        BackgroundPanel::class to backgroundPanel,
+        AccentBackgroundPanel::class to accentBackgroundPanel,
         Panel::class to panel,
+        AccentPanel::class to accentPanel,
         Text::class to text
     )
 

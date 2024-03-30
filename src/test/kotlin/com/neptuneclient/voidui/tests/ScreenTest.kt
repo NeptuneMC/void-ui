@@ -13,7 +13,7 @@ class TestScreen(void: VoidUI) : Screen(void) {
     private var counter by state(5)
 
     override fun build(): Widget {
-        return Panel(
+        return BackgroundPanel(
             child = Padding(
                 padding = EdgeInsets.all(10F),
                 child = Column(
