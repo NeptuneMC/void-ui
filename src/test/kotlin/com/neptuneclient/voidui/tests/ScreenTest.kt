@@ -34,6 +34,8 @@ val voidUI = VoidUI(TestRenderer(), TestTheme())
 fun main() {
     val screen = TestScreen(voidUI)
     screen.init()
+    screen.layout()
+    screen.recalcOffsets()
 
     val renderer = voidUI.renderer as TestRenderer
     while (!GLFW.glfwWindowShouldClose(renderer.window)) {

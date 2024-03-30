@@ -2,6 +2,10 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.rendering.ElementStack
+import com.neptuneclient.voidui.widgets.objects.BoxConstraints
+import com.neptuneclient.voidui.widgets.objects.Constraints
+import com.neptuneclient.voidui.widgets.objects.Offset
+import com.neptuneclient.voidui.widgets.objects.Size
 import kotlin.math.round
 import kotlin.properties.Delegates
 
@@ -28,6 +32,8 @@ constructor(val void: VoidUI) {
      */
     val elementStack = ElementStack(void.renderer)
 
+    val root: Widget by lazy { build() }
+
     /**
      * Build the widget tree of the screen.
      *
@@ -40,7 +46,22 @@ constructor(val void: VoidUI) {
      */
     fun init() {
         elementStack.clear()
-        build().init(this, null)
+        root.init(this, null)
+    }
+
+    fun layout(): Size {
+        root.layout(BoxConstraints.loose(width.toFloat(), height.toFloat()))
+        val offsetY = (height - root.size.height) / 2
+        val offsetX = (width - root.size.width) / 2
+        root.offset = Offset(offsetX, offsetY)
+        return root.size
+    }
+
+    /**
+     * VERY TEMP, UNTIL SOMETHING BETTER IS IMPLEMENTED
+     */
+    fun recalcOffsets() {
+        root.recalcOffsets()
     }
 
     /**

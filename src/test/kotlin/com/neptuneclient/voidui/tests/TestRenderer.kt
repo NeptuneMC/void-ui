@@ -2,6 +2,8 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Size
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor
@@ -166,7 +168,7 @@ class TestRenderer : Renderer {
         y: Float,
         width: Float,
         height: Float,
-        thickness: Float,
+        thickness: EdgeInsets,
         radius: Float,
         color: Color
     ) {
@@ -175,7 +177,8 @@ class TestRenderer : Renderer {
             NanoVG.nvgBeginPath(vg)
             NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
             NanoVG.nvgStrokeColor(vg, it)
-            NanoVG.nvgStrokeWidth(vg, thickness)
+            // TODO: Implement individual thickness for each side
+            NanoVG.nvgStrokeWidth(vg, thickness.top)
             NanoVG.nvgStroke(vg)
             NanoVG.nvgClosePath(vg)
         }
@@ -193,12 +196,12 @@ class TestRenderer : Renderer {
         }
     }
 
-    override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
+    override fun getTextBounds(text: String, font: Font): Size {
         val buffer: FloatBuffer = BufferUtils.createFloatBuffer(4)
 
         NanoVG.nvgFontSize(vg, font.size.toFloat())
         NanoVG.nvgFontFace(vg, font.identifier)
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)
-        return Pair(buffer[2] - buffer[0], buffer[3] - buffer[1])
+        return Size(buffer[2] - buffer[0], buffer[3] - buffer[1])
     }
 }

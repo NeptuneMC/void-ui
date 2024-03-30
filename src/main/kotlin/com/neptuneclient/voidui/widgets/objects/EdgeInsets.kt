@@ -27,6 +27,11 @@ data class EdgeInsets(
     val horizontal get() = left + right
     val vertical get() = top + bottom
 
+    val topLeft get() = Offset(left, top)
+    val topRight get() = Offset(right, top)
+    val bottomLeft get() = Offset(left, bottom)
+    val bottomRight get() = Offset(right, bottom)
+
     operator fun plus(other: EdgeInsets) = EdgeInsets(
         left + other.left,
         top + other.top,

@@ -1,5 +1,8 @@
 package com.neptuneclient.voidui.widgets
 
+import com.neptuneclient.voidui.widgets.objects.BoxConstraints
+import com.neptuneclient.voidui.widgets.objects.Offset
+import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Rectangle
 import kotlin.math.round
 import kotlin.properties.Delegates
@@ -9,10 +12,8 @@ import kotlin.properties.Delegates
  */
 abstract class Widget {
     
-    var x: Int = 0
-    var y: Int = 0
-    var width: Int = 0
-    var height: Int = 0
+    var offset: Offset = Offset.zero
+    var size: Size = Size.zero
 
     /**
      * Holds the screen in which this widget lives.
@@ -34,11 +35,11 @@ abstract class Widget {
         this.screen = screen
         this.parent = parent
 
-        val size = sizeSelf(screen, parent)
-        x = size.x
-        y = size.y
-        width = size.width
-        height = size.height
+//        val size = layout(screen, parent)
+//        x = size.x
+//        y = size.y
+//        width = size.width
+//        height = size.height
 
         build().init(screen, this)
     }
@@ -46,9 +47,16 @@ abstract class Widget {
     /**
      * This method is responsible for setting [x], [y], [width] and [height] of the widet.
      */
-    open fun sizeSelf(screen: Screen, parent: Widget?): Rectangle {
+    open fun layout(constraints: BoxConstraints) {
         // TODO implement this properly
-        return Rectangle(50, 50, 100, 100)
+        TODO()
+    }
+
+    /**
+     * SEE SAME METHOD IN SCREEN CLASS
+     */
+    open fun recalcOffsets() {
+
     }
 
     /**
@@ -73,12 +81,12 @@ abstract class Widget {
      * A dsl feature which adds the view-width unit from HTML to components.
      */
     inline val Number.vw
-        get() = round(width / 100 * this.toFloat()).toInt()
+        get() = round(size.width / 100 * this.toFloat()).toInt()
 
     /**
      * A dsl feature which adds the view-height unit from HTML to components.
      */
     inline val Number.vh
-        get() = round(height / 100 * this.toFloat()).toInt()
+        get() = round(size.height / 100 * this.toFloat()).toInt()
 
 }

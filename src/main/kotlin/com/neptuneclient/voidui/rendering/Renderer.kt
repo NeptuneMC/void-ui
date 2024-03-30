@@ -1,6 +1,8 @@
 package com.neptuneclient.voidui.rendering
 
 import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Color
 
 /**
@@ -100,10 +102,10 @@ interface Renderer {
      * @param radius radius of the rectangle
      * @param color color of the rectangle
      */
-    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: Float, radius: Float, color: Color)
+    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: EdgeInsets, radius: Float, color: Color)
 
-    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, thickness: Int, radius: Int, color: Color) {
-        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness.toFloat(), radius.toFloat(), color)
+    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, thickness: EdgeInsets, radius: Int, color: Color) {
+        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness, radius.toFloat(), color)
     }
 
     /**
@@ -128,6 +130,6 @@ interface Renderer {
      * @param font font of the text
      * @return the width and height of the text
      */
-    fun getTextBounds(text: String, font: Font): Pair<Float, Float>
+    fun getTextBounds(text: String, font: Font): Size
 
 }

@@ -2,6 +2,8 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Color
 
 class MockRenderer: Renderer {
@@ -37,7 +39,7 @@ class MockRenderer: Renderer {
         y: Float,
         width: Float,
         height: Float,
-        thickness: Float,
+        thickness: EdgeInsets,
         radius: Float,
         color: Color
     ) {
@@ -48,8 +50,8 @@ class MockRenderer: Renderer {
         println("text")
     }
 
-    override fun getTextBounds(text: String, font: Font): Pair<Float, Float> {
+    override fun getTextBounds(text: String, font: Font): Size {
         println("getTextBounds")
-        return Pair(0f, 0f)
+        return Size(0f, 0f)
     }
 }
