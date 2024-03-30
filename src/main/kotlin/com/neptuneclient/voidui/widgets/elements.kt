@@ -7,11 +7,22 @@ import com.neptuneclient.voidui.utils.Font
 
 // TODO add docs to this file
 
-class Panel : Element<PanelStyleSheet>() {
+class Panel(private val child: Widget? = null) : Element<PanelStyleSheet>() {
+
+    override fun init(screen: Screen, parent: Widget?) {
+        super.init(screen, parent)
+
+        if (child != null)
+            build().init(screen, this)
+    }
+
+    override fun build(): Widget {
+        return child!!
+    }
     
     override fun render(renderer: Renderer) {
         renderer.roundedRectangle(x, y, width, height, styles.radius, styles.color)
-        if (styles.border!= null)
+        if (styles.border != null)
             renderer.roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), styles.border!!.width, styles.radius.toFloat(), styles.border!!.color)
     }
 

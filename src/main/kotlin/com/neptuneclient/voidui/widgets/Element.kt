@@ -7,8 +7,8 @@ import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 
 /**
- * A custom type of widget which represents a leaf node in the tree. This means that nodes of type [Element] will never have children, with the exception of the [Group] element.
- * Elements can also not be created by the user of the library.
+ * A custom type of widget which can not created by the user. Elements can have a [StyleSheet] attached to them, which
+ * makes them able to change through themes. Elements can also be rendered to the screen.
  *
  * When initialized, elements will be pushed onto the element stack. The element stack is rendered each frame. This is to prevent the tree from being iterated for every
  * single frame.
@@ -43,14 +43,15 @@ sealed class Element<S : StyleSheet> : Widget() {
     }
     
     /**
-     * The build method is never called on elements. Thats why the return value doesn't actually matter here.
+     * The build method is never called on elements, as long as it isn't done manually when overriding the [init] method.
+     * That's why the return value doesn't actually matter here.
      */
-    final override fun build(): Widget {
+    override fun build(): Widget {
         return this
     }
     
     /**
-     * Called on the element stack and renders the element after its been initialized and sized.
+     * Called on the element stack and renders the element after it's been initialized and sized.
      *
      * @param renderer The renderer defined in [VoidUI.renderer].
      */

@@ -21,7 +21,7 @@ internal class Group(protected val children: Array<Widget>) : Widget() {
     }
 
     /**
-     * A group doesn't build it's own widget, so this return type can be ignored.
+     * A group doesn't build its own widget, so this return type can be ignored.
      */
     override fun build(): Widget {
         return this

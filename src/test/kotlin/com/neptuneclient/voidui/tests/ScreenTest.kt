@@ -12,11 +12,8 @@ class TestScreen(void: VoidUI) : Screen(void) {
     private var counter by state(5)
 
     override fun build(): Widget {
-        return Row(
-            children = arrayOf(
-                Panel(),
-                Text(label = "Hello World!")
-            )
+        return Panel(
+            child = Text("Hello World!")
         )
     }
 
