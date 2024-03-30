@@ -47,9 +47,12 @@ constructor(val void: VoidUI) {
     fun init() {
         elementStack.clear()
         root.init(this, null)
+
+        layout()
+        recalcOffsets()
     }
 
-    fun layout(): Size {
+    private fun layout(): Size {
         root.layout(BoxConstraints.loose(width.toFloat(), height.toFloat()))
         val offsetY = (height - root.size.height) / 2
         val offsetX = (width - root.size.width) / 2
@@ -60,7 +63,7 @@ constructor(val void: VoidUI) {
     /**
      * VERY TEMP, UNTIL SOMETHING BETTER IS IMPLEMENTED
      */
-    fun recalcOffsets() {
+    private fun recalcOffsets() {
         root.recalcOffsets()
     }
 

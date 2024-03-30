@@ -41,9 +41,10 @@ class BackgroundPanel(private val child: Widget? = null) : Element<PanelStyleShe
 
     override fun recalcOffsets() {
         println("Recalculating offsets")
-        if (child != null)
+        if (child != null) {
             child.offset += offset
-            child!!.recalcOffsets()
+            child.recalcOffsets()
+        }
     }
 
     override fun build(): Widget {

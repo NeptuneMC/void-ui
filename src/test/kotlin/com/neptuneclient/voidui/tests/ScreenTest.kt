@@ -15,12 +15,12 @@ class TestScreen(void: VoidUI) : Screen(void) {
     override fun build(): Widget {
         return BackgroundPanel(
             child = Padding(
-                padding = EdgeInsets.all(10F),
+                padding = EdgeInsets.all(20F),
                 child = Column(
-                    gap = 10,   // 10 pixels
+                    gap = 10,
                     children = arrayOf(
-                        Text("Hello"),
-                        Text("World")
+                        Text("Title"),
+                        Text("Bitte fick mich äöü"),
                     )
                 )
             )
@@ -34,8 +34,6 @@ val voidUI = VoidUI(TestRenderer(), TestTheme())
 fun main() {
     val screen = TestScreen(voidUI)
     screen.init()
-    screen.layout()
-    screen.recalcOffsets()
 
     val renderer = voidUI.renderer as TestRenderer
     while (!GLFW.glfwWindowShouldClose(renderer.window)) {

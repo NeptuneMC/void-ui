@@ -191,7 +191,10 @@ class TestRenderer : Renderer {
             NanoVG.nvgFillColor(vg, it)
             NanoVG.nvgFontFace(vg, font.identifier)
             NanoVG.nvgFontSize(vg, font.size.toFloat())
-            NanoVG.nvgText(vg, x, y, text)
+
+            val bounds = BufferUtils.createFloatBuffer(4)
+            NanoVG.nvgTextBounds(vg, x, y, text, bounds)
+            NanoVG.nvgText(vg, x, y + (y - bounds[1]), text)
             NanoVG.nvgClosePath(vg)
         }
     }
