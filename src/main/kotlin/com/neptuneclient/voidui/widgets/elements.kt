@@ -138,7 +138,6 @@ class Text(private val label: String) : Element<TextStyleSheet>() {
     }
 
     override fun render(renderer: Renderer) {
-//        println("Rendering at $offset")
         renderer.text(offset.x, offset.y, label, font, styles.color)
     }
 

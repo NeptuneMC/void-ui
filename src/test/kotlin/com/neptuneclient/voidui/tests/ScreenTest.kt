@@ -20,7 +20,7 @@ class TestScreen(void: VoidUI) : Screen(void) {
                     gap = 10,
                     children = arrayOf(
                         Text("Title"),
-                        Text("Bitte fick mich äöü"),
+                        Text("Hello World!")
                     )
                 )
             )
