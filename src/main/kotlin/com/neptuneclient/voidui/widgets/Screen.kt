@@ -19,19 +19,18 @@ abstract class Screen
 constructor(val void: VoidUI) {
 
     /**
-     * The width of the render frame.
+     * The size of the screen.
      */
-    val width = void.renderer.windowWidth()
-    /**
-     * The height of the render frame.
-     */
-    val height = void.renderer.windowHeight()
+    val size = Size(void.renderer.windowWidth().toFloat(), void.renderer.windowHeight().toFloat())
 
     /**
      * The element stack of the screen.
      */
     val elementStack = ElementStack(void.renderer)
 
+    /**
+     * The first widget in the tree.
+     */
     val root: Widget by lazy { build() }
 
     /**
@@ -49,22 +48,10 @@ constructor(val void: VoidUI) {
         root.init(this, null)
 
         layout()
-        recalcOffsets()
     }
 
-    private fun layout(): Size {
-        root.layout(BoxConstraints.loose(width.toFloat(), height.toFloat()))
-        val offsetY = (height - root.size.height) / 2
-        val offsetX = (width - root.size.width) / 2
-        root.offset = Offset(offsetX, offsetY)
-        return root.size
-    }
-
-    /**
-     * VERY TEMP, UNTIL SOMETHING BETTER IS IMPLEMENTED
-     */
-    private fun recalcOffsets() {
-        root.recalcOffsets()
+    private fun layout() {
+        root.layout(Offset(0F, 0F), BoxConstraints.loose(size))
     }
 
     /**
@@ -87,12 +74,12 @@ constructor(val void: VoidUI) {
      * A dsl feature which adds the view-width unit from HTML to screens.
      */
     inline val Number.vw
-        get() = round(width / 100 * this.toFloat()).toInt()
+        get() = round(size.width / 100 * this.toFloat()).toInt()
 
     /**
      * A dsl feature which adds the view-height unit from HTML to screens.
      */
     inline val Number.vh
-        get() = round(height / 100 * this.toFloat()).toInt()
+        get() = round(size.height / 100 * this.toFloat()).toInt()
 
 }

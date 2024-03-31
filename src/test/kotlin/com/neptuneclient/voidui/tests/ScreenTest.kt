@@ -15,12 +15,34 @@ class TestScreen(void: VoidUI) : Screen(void) {
     override fun build(): Widget {
         return BackgroundPanel(
             child = Padding(
-                padding = EdgeInsets.all(20F),
+                padding = EdgeInsets.all(40F),
                 child = Column(
-                    gap = 10,
+                    gap = 20,
                     children = arrayOf(
                         Text("Title"),
-                        Text("Hello World!")
+                        Column(
+                            gap = 10,
+                            children = arrayOf(
+                                Panel(
+                                    child = Padding(
+                                        padding = EdgeInsets.all(20F),
+                                        child = Text("Body Text Woooo")
+                                    )
+                                ),
+                                Panel(
+                                    child = Padding(
+                                        padding = EdgeInsets.all(20F),
+                                        child = Row(
+                                            gap = 20,
+                                            children = arrayOf(
+                                                Text("Hello"),
+                                                Text("World")
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
                     )
                 )
             )

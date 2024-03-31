@@ -16,12 +16,6 @@ internal class Group(private val children: Array<Widget>) : Widget() {
         this.screen = screen
         this.parent = parent
 
-//        val size = layout(screen, parent)
-//        x = size.x
-//        y = size.y
-//        width = size.width
-//        height = size.height
-
         children.forEach { it.init(screen, this) }
     }
 
@@ -40,28 +34,31 @@ class Row(private val children: Array<Widget> = arrayOf(), private val gap: Int 
         return Group(children)
     }
 
-    override fun layout(constraints: BoxConstraints) {
-        var width = 0f
-        var height = 0f
+    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         val gap = gap.toFloat()
+        var width = gap * (children.size - 1).coerceAtLeast(0)
+        var height = 0f
         val maxPerChild = constraints.maxWidth / children.size
         val childConstraints = constraints.copy(maxWidth = maxPerChild, minWidth = 0f)
 
+        var x = 0F
         children.forEach {
-            it.layout(childConstraints)
-            val size = it.size
-            width += size.width
-            height = maxOf(height, size.height)
+            it.layout(parentOffset + Offset(x, 0F), childConstraints)
+            width += it.size.width
+            height = maxOf(height, it.size.height)
+            x += it.size.width + gap
         }
 
+        /*var x = 0F
+        children.forEach {
+            it.offset = Offset(x, 0F)
+            x += it.size.width + gap
+        }*/
+
+        offset = parentOffset
         size = constraints.constrain(Size(width, height))
     }
 
-    override fun recalcOffsets() {
-        children.forEach {
-            it.offset += offset
-        }
-    }
 }
 
 class Column(private val children: Array<Widget> = arrayOf(), private val gap: Int = 0) : Widget() {
@@ -70,36 +67,31 @@ class Column(private val children: Array<Widget> = arrayOf(), private val gap: I
         return Group(children)
     }
 
-    override fun layout(constraints: BoxConstraints) {
+    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         val gap = gap.toFloat()
         var width = 0f
         var height = gap * (children.size - 1).coerceAtLeast(0)
         val maxPerChild = constraints.maxHeight / children.size
         val childConstraints = constraints.copy(maxHeight = maxPerChild, minHeight = 0f)
 
+        var y = 0F
         children.forEach {
-            it.layout(childConstraints)
-            val size = it.size
-            width = maxOf(width, size.width)
-            height += size.height
-        }
-
-        var y = 0f
-        children.forEach {
-            it.offset = Offset(0f, y)
+            it.layout(parentOffset + Offset(0F, y), childConstraints)
+            width = maxOf(width, it.size.width)
+            height += it.size.height
             y += it.size.height + gap
         }
 
+        /*var y = 0f
+        children.forEach {
+            it.offset = Offset(0f, y)
+            y += it.size.height + gap
+        }*/
+
+        offset = parentOffset
         size = constraints.constrain(Size(width, height))
     }
 
-    override fun recalcOffsets() {
-        children.forEach {
-            it.offset += offset
-            it.recalcOffsets()
-            println(it.offset)
-        }
-    }
 }
 
 class Padding(private val child: Widget, private val padding: EdgeInsets = EdgeInsets.zero) : Widget() {
@@ -108,16 +100,13 @@ class Padding(private val child: Widget, private val padding: EdgeInsets = EdgeI
         return child
     }
 
-    override fun layout(constraints: BoxConstraints) {
+    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         val innerConstraints = constraints.deflate(padding)
-        child.layout(innerConstraints)
-        child.offset = padding.topLeft
+        child.layout(parentOffset + padding.topLeft, innerConstraints)
+        //child.offset = padding.topLeft
+
+        offset = parentOffset
         size = constraints.constrain(Size(child.size.width + padding.horizontal, child.size.height + padding.vertical))
     }
 
-    override fun recalcOffsets() {
-        child.offset += offset
-        child.recalcOffsets()
-        println(child.offset)
-    }
 }

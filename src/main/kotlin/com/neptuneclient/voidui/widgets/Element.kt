@@ -32,13 +32,6 @@ sealed class Element<S : StyleSheet> : Widget() {
         this.screen = screen
         this.parent = parent
         this.styles = screen.void.theme.getStyleSheet(this::class, Styles.Type.NORMAL)
-
-//        val size = layout(screen, parent)
-//        x = size.x
-//        y = size.y
-//        width = size.width
-//        height = size.height
-        
         screen.elementStack.push(this)
     }
     

@@ -11,8 +11,15 @@ import kotlin.properties.Delegates
  * The base for every node in the widget tree.
  */
 abstract class Widget {
-    
+
+    /**
+     * The widget offset from screen's origin position.
+     */
     var offset: Offset = Offset.zero
+
+    /**
+     * The size of the widget.
+     */
     var size: Size = Size.zero
 
     /**
@@ -35,21 +42,18 @@ abstract class Widget {
         this.screen = screen
         this.parent = parent
 
-//        val size = layout(screen, parent)
-//        x = size.x
-//        y = size.y
-//        width = size.width
-//        height = size.height
-
         build().init(screen, this)
     }
     
     /**
-     * This method is responsible for setting [x], [y], [width] and [height] of the widet.
+     * This method is responsible for setting the [size] and the [offset] of the widget.
+     * By default, this sets the components size to zero and its offset the same as its parent.
+     *
+     * @param parentOffset The offset from the origin of the screen from the parent widget.
+     * @param constraints The available space in which the widget can be sized.
      */
-    open fun layout(constraints: BoxConstraints) {
-        // TODO implement this properly
-        TODO()
+    open fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+        offset = parentOffset
     }
 
     /**
