@@ -19,6 +19,11 @@ abstract class Screen
 constructor(val void: VoidUI) {
 
     /**
+     * A shortcut to [VoidUI.eventHandler].
+     */
+    protected val eventHandler = void.eventHandler
+
+    /**
      * The size of the screen.
      */
     val size = Size(void.renderer.windowWidth().toFloat(), void.renderer.windowHeight().toFloat())
