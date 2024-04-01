@@ -31,6 +31,8 @@ abstract class Widget {
      */
     protected var parent: Widget? = null
 
+    private val root by lazy { build() }
+
     /**
      * Called by [Screen.init] and initializes the widget. This includes setting position and size as well as initializing the child widget.
      *
@@ -41,7 +43,7 @@ abstract class Widget {
         this.screen = screen
         this.parent = parent
 
-        build().init(screen, this)
+        root.init(screen, this)
     }
     
     /**
@@ -52,14 +54,9 @@ abstract class Widget {
      * @param constraints The available space in which the widget can be sized.
      */
     open fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+        root.layout(parentOffset, constraints)
         offset = parentOffset
-    }
-
-    /**
-     * SEE SAME METHOD IN SCREEN CLASS
-     */
-    open fun recalcOffsets() {
-
+        size = root.size
     }
 
     /**

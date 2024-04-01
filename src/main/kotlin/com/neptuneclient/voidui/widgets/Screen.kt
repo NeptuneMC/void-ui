@@ -36,7 +36,7 @@ constructor(val void: VoidUI) {
     /**
      * The first widget in the tree.
      */
-    val root: Widget by lazy { build() }
+    private val root by lazy { build() }
 
     /**
      * Build the widget tree of the screen.

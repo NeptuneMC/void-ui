@@ -49,12 +49,6 @@ class Row(private val children: Array<Widget> = arrayOf(), private val gap: Int 
             x += it.size.width + gap
         }
 
-        /*var x = 0F
-        children.forEach {
-            it.offset = Offset(x, 0F)
-            x += it.size.width + gap
-        }*/
-
         offset = parentOffset
         size = constraints.constrain(Size(width, height))
     }
@@ -81,12 +75,6 @@ class Column(private val children: Array<Widget> = arrayOf(), private val gap: I
             height += it.size.height
             y += it.size.height + gap
         }
-
-        /*var y = 0f
-        children.forEach {
-            it.offset = Offset(0f, y)
-            y += it.size.height + gap
-        }*/
 
         offset = parentOffset
         size = constraints.constrain(Size(width, height))
