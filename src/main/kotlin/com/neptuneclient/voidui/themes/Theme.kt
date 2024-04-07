@@ -14,7 +14,13 @@ open class Theme(
     accentBackgroundPanel: Styles<PanelStyleSheet>,
     panel: Styles<PanelStyleSheet>,
     accentPanel: Styles<PanelStyleSheet>,
-    text: Styles<TextStyleSheet>
+
+    title: Styles<TextStyleSheet>,
+    smallTitle: Styles<TextStyleSheet>,
+    heading: Styles<TextStyleSheet>,
+    smallHeading: Styles<TextStyleSheet>,
+    text: Styles<TextStyleSheet>,
+    smallText: Styles<TextStyleSheet>
 ) {
 
     /**
@@ -25,7 +31,13 @@ open class Theme(
         AccentBackgroundPanel::class to accentBackgroundPanel,
         Panel::class to panel,
         AccentPanel::class to accentPanel,
-        Text::class to text
+
+        Title::class to title,
+        SmallTitle::class to smallTitle,
+        Heading::class to heading,
+        SmallHeading::class to smallHeading,
+        Text::class to text,
+        SmallText::class to smallText
     )
 
     /**

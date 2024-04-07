@@ -58,7 +58,7 @@ class AccentBackgroundPanel(child: Widget? = null) : AbstractPanel(child)
 class Panel(child: Widget? = null) : AbstractPanel(child)
 class AccentPanel(child: Widget? = null) : AbstractPanel(child)
 
-class Text(private val label: String) : Element<TextStyleSheet>() {
+abstract class AbstractText(private val label: String) : Element<TextStyleSheet>() {
 
     private lateinit var font: Font
 
@@ -80,3 +80,12 @@ class Text(private val label: String) : Element<TextStyleSheet>() {
     }
 
 }
+
+class Title(label: String) : AbstractText(label)
+class SmallTitle(label: String) : AbstractText(label)
+
+class Heading(label: String) : AbstractText(label)
+class SmallHeading(label: String) : AbstractText(label)
+
+class Text(label: String) : AbstractText(label)
+class SmallText(label: String) : AbstractText(label)

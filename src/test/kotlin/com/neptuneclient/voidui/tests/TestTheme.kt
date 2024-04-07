@@ -42,11 +42,46 @@ class TestTheme : Theme(
             )
         )
     ),
+    title = Styles(
+        normal = TextStyleSheet(
+            color = Color.WHITE,
+            font = Path.of("fonts/Jost-SemiBold.ttf"),
+            size = 32
+        )
+    ),
+    smallTitle = Styles(
+        normal = TextStyleSheet(
+            color = Color.WHITE,
+            font = Path.of("fonts/Jost-SemiBold.ttf"),
+            size = 22
+        )
+    ),
+    heading = Styles(
+        normal = TextStyleSheet(
+            color = Color.WHITE,
+            font = Path.of("fonts/WorkSans-SemiBold.ttf"),
+            size = 32
+        )
+    ),
+    smallHeading = Styles(
+        normal = TextStyleSheet(
+            color = Color.WHITE,
+            font = Path.of("fonts/WorkSans-SemiBold.ttf"),
+            size = 22
+        )
+    ),
     text = Styles(
         normal = TextStyleSheet(
             color = Color.WHITE,
             font = Path.of("fonts/WorkSans-Regular.ttf"),
             size = 16
+        )
+    ),
+    smallText = Styles(
+        normal = TextStyleSheet(
+            color = Color(255, 255, 255, 150),
+            font = Path.of("fonts/WorkSans-Regular.ttf"),
+            size = 13
         )
     )
 )

@@ -32,7 +32,19 @@ class TestScreen(void: VoidUI) : Screen(void) {
                 padding = EdgeInsets.all(20F),
                 child = PaddingPanel(
                     padding = EdgeInsets.symmetric(20F, 40F),
-                    child = Text("Hello")
+                    child = Column(
+                        gap = 20,
+                        children = arrayOf(
+                            Title("NEPTUNE"),
+                            SmallTitle("NEPTUNE"),
+
+                            Heading("Normal Sized Heading"),
+                            SmallHeading("Average Sized Heading"),
+
+                            Text("Some normal text yes yes"),
+                            SmallText("Random tooltip...")
+                        )
+                    )
                 )
             )
         )
