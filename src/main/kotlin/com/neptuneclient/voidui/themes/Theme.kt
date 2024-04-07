@@ -1,7 +1,6 @@
 package com.neptuneclient.voidui.themes
 
-import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
-import com.neptuneclient.voidui.themes.styles.TextStyleSheet
+import com.neptuneclient.voidui.themes.styles.*
 import com.neptuneclient.voidui.widgets.*
 import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
@@ -20,7 +19,9 @@ open class Theme(
     heading: Styles<TextStyleSheet>,
     smallHeading: Styles<TextStyleSheet>,
     text: Styles<TextStyleSheet>,
-    smallText: Styles<TextStyleSheet>
+    smallText: Styles<TextStyleSheet>,
+
+    image: Styles<ImageStyleSheet>
 ) {
 
     /**
@@ -37,7 +38,9 @@ open class Theme(
         Heading::class to heading,
         SmallHeading::class to smallHeading,
         Text::class to text,
-        SmallText::class to smallText
+        SmallText::class to smallText,
+
+        Image::class to image
     )
 
     /**

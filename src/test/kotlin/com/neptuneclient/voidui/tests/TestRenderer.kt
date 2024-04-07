@@ -2,18 +2,22 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
 import com.neptuneclient.voidui.widgets.objects.Size
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor
+import org.lwjgl.nanovg.NVGPaint
 import org.lwjgl.nanovg.NanoVG
 import org.lwjgl.nanovg.NanoVGGL3
 import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL11
 import org.lwjgl.system.MemoryStack
 import java.awt.Color
+import java.nio.ByteBuffer
 import java.nio.FloatBuffer
+import java.nio.file.Path
 import kotlin.math.max
 
 class TestRenderer : Renderer {
@@ -122,6 +126,14 @@ class TestRenderer : Renderer {
         NanoVG.nvgCreateFontMem(vg, font.identifier, font.data, false)
     }
 
+    override fun registerImage(path: Path, data: ByteBuffer): Int {
+        return NanoVG.nvgCreateImageMem(vg, NanoVG.NVG_IMAGE_GENERATE_MIPMAPS, data)
+    }
+
+    override fun unregisterImage(image: Image) {
+        NanoVG.nvgDeleteImage(vg, image.identifier)
+    }
+
     private fun Color.use(block: (NVGColor) -> Unit) {
         val nvgColor = NVGColor.calloc().use {
             NanoVG.nvgRGBAf(red / 255f, green / 255f, blue / 255f, alpha / 255f, it)
@@ -194,6 +206,26 @@ class TestRenderer : Renderer {
             NanoVG.nvgStroke(vg)
             NanoVG.nvgClosePath(vg)
         }
+    }
+
+    override fun image(x: Float, y: Float, width: Float, height: Float, image: Image) {
+        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.identifier, 1.0F, NVGPaint.calloc())
+        NanoVG.nvgBeginPath(vg)
+        NanoVG.nvgRect(vg, x, y, width, height)
+        NanoVG.nvgFillPaint(vg, paint)
+        NanoVG.nvgFill(vg)
+        NanoVG.nvgClosePath(vg)
+        paint.free()
+    }
+
+    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image) {
+        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.identifier, 1.0F, NVGPaint.calloc())
+        NanoVG.nvgBeginPath(vg)
+        NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
+        NanoVG.nvgFillPaint(vg, paint)
+        NanoVG.nvgFill(vg)
+        NanoVG.nvgClosePath(vg)
+        paint.free()
     }
 
     override fun text(x: Float, y: Float, text: String, font: Font, color: Color) {

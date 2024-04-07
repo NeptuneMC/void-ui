@@ -1,9 +1,12 @@
 package com.neptuneclient.voidui.rendering
 
 import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
 import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Color
+import java.nio.ByteBuffer
+import java.nio.file.Path
 
 /**
  * This interface is the structure of the renderer in VoidUI.
@@ -43,6 +46,23 @@ interface Renderer {
      * @param font The font object to register.
      */
     fun registerFont(font: Font)
+
+    /**
+     * Registers an image to the renderer.
+     *
+     * @param path The path to the image, in case the render backend needs it.
+     * @param data The image data in a byte buffer.
+     *
+     * @return An image id which the renderer uses to identify the image.
+     */
+    fun registerImage(path: Path, data: ByteBuffer): Int
+
+    /**
+     * Deletes an image from the render backend.
+     *
+     * @param image The image to be deleted.
+     */
+    fun unregisterImage(image: Image)
 
     /**
      * Renders a rectangle with the given dimensions, size, radius and color.
@@ -120,6 +140,18 @@ interface Renderer {
 
     fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, radius: Int, thickness: Int, color: Color) {
         roundedRectangleFrame(x, y, width, height, radius, radius, radius, radius, thickness, color)
+    }
+
+    fun image(x: Float, y: Float, width: Float, height: Float, image: Image)
+
+    fun image(x: Int, y: Int, width: Int, height: Int, image: Image) {
+        image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
+    }
+
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image)
+
+    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: Int, image: Image) {
+        roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), image)
     }
 
     /**

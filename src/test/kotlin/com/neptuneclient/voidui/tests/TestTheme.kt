@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.tests
 import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.Theme
 import com.neptuneclient.voidui.themes.objects.Border
+import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
@@ -54,7 +55,7 @@ class TestTheme : Theme(
         normal = TextStyleSheet(
             color = Color.WHITE,
             font = Path.of("fonts/Jost-SemiBold.ttf"),
-            size = 22,
+            size = 20,
             letterSpacing = 8
         )
     ),
@@ -69,7 +70,7 @@ class TestTheme : Theme(
         normal = TextStyleSheet(
             color = Color.WHITE,
             font = Path.of("fonts/WorkSans-SemiBold.ttf"),
-            size = 22
+            size = 20
         )
     ),
     text = Styles(
@@ -84,6 +85,11 @@ class TestTheme : Theme(
             color = Color(255, 255, 255, 150),
             font = Path.of("fonts/WorkSans-Regular.ttf"),
             size = 13
+        )
+    ),
+    image = Styles(
+        normal = ImageStyleSheet(
+            borderRadius = 0
         )
     )
 )
