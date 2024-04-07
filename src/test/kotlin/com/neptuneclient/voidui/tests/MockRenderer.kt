@@ -30,7 +30,17 @@ class MockRenderer: Renderer {
         println("rectangleFrame")
     }
 
-    override fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
+    override fun roundedRectangle(
+        x: Float,
+        y: Float,
+        width: Float,
+        height: Float,
+        r0: Float,
+        r1: Float,
+        r2: Float,
+        r3: Float,
+        color: Color
+    ) {
         println("roundedRectangle")
     }
 
@@ -39,8 +49,11 @@ class MockRenderer: Renderer {
         y: Float,
         width: Float,
         height: Float,
-        thickness: EdgeInsets,
-        radius: Float,
+        r0: Float,
+        r1: Float,
+        r2: Float,
+        r3: Float,
+        thickness: Float,
         color: Color
     ) {
         println("roundedRectangleFrame")

@@ -1,5 +1,6 @@
 package com.neptuneclient.voidui.widgets
 
+import com.neptuneclient.voidui.event.EventHandler
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
@@ -10,6 +11,11 @@ import kotlin.properties.Delegates
  * The base for every node in the widget tree.
  */
 abstract class Widget {
+
+    /**
+     * A shortcut to [VoidUI.eventHandler].
+     */
+    protected lateinit var eventHandler: EventHandler
 
     /**
      * The widget offset from screen's origin position.
@@ -42,6 +48,7 @@ abstract class Widget {
     internal open fun init(screen: Screen, parent: Widget?) {
         this.screen = screen
         this.parent = parent
+        this.eventHandler = screen.void.eventHandler
 
         root.init(screen, this)
     }

@@ -3,7 +3,6 @@ package com.neptuneclient.voidui.widgets
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.rendering.ElementStack
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
-import com.neptuneclient.voidui.widgets.objects.Constraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
 import kotlin.math.round

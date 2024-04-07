@@ -152,11 +152,21 @@ class TestRenderer : Renderer {
         }
     }
 
-    override fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
+    override fun roundedRectangle(
+        x: Float,
+        y: Float,
+        width: Float,
+        height: Float,
+        r0: Float,
+        r1: Float,
+        r2: Float,
+        r3: Float,
+        color: Color
+    ) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)
-            NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
+            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, r0, r1, r2, r3)
             NanoVG.nvgFillColor(vg, it)
             NanoVG.nvgFill(vg)
             NanoVG.nvgClosePath(vg)
@@ -168,17 +178,19 @@ class TestRenderer : Renderer {
         y: Float,
         width: Float,
         height: Float,
-        thickness: EdgeInsets,
-        radius: Float,
+        thickness: Float,
+        r0: Float,
+        r1: Float,
+        r2: Float,
+        r3: Float,
         color: Color
     ) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)
-            NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
+            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, r0, r1, r2, r3)
             NanoVG.nvgStrokeColor(vg, it)
-            // TODO: Implement individual thickness for each side
-            NanoVG.nvgStrokeWidth(vg, thickness.top)
+            NanoVG.nvgStrokeWidth(vg, thickness)
             NanoVG.nvgStroke(vg)
             NanoVG.nvgClosePath(vg)
         }

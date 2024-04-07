@@ -44,8 +44,7 @@ class TestScreen(void: VoidUI) : Screen(void) {
 val voidUI = VoidUI(TestRenderer(), TestTheme())
 
 fun main() {
-    val handler = EventHandler()
-    handler.register(TestEvent::class, "ok") {  // normally you would use `this` as a proper key
+    voidUI.eventHandler.register(TestEvent::class, "ok") {  // normally you would use `this` as a proper key
         println(it.test)
     }
 
@@ -58,7 +57,7 @@ fun main() {
         TestEvent("lululu").call(voidUI)
     }
 
-    handler.unregister("ok")
+    voidUI.eventHandler.unregister("ok")
     
     renderer.destroy()
 }

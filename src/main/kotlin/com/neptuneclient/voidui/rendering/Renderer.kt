@@ -82,13 +82,20 @@ interface Renderer {
      * @param y y coordinate of the rectangle
      * @param width width of the rectangle
      * @param height height of the rectangle
-     * @param radius radius of the rectangle
      * @param color color of the rectangle
      */
-    fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color)
+    fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, r0: Float, r1: Float, r2: Float, r3: Float, color: Color)
+
+    fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, r0: Int, r1: Int, r2: Int, r3: Int, color: Color) {
+        roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), r0.toFloat(), r1.toFloat(), r2.toFloat(), r3.toFloat(), color)
+    }
+
+    fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
+        roundedRectangle(x, y, width, height, radius, radius, radius, radius, color)
+    }
 
     fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
-        roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), color)
+        roundedRectangle(x, y, width, height, radius, radius, radius, radius, color)
     }
 
     /**
@@ -99,13 +106,20 @@ interface Renderer {
      * @param width width of the rectangle
      * @param height height of the rectangle
      * @param thickness thickness of the frame
-     * @param radius radius of the rectangle
      * @param color color of the rectangle
      */
-    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, thickness: EdgeInsets, radius: Float, color: Color)
+    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, r0: Float, r1: Float, r2: Float, r3: Float, thickness: Float, color: Color)
 
-    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, thickness: EdgeInsets, radius: Int, color: Color) {
-        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness, radius.toFloat(), color)
+    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, r0: Int, r1: Int, r2: Int, r3: Int, thickness: Int, color: Color) {
+        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), r0.toFloat(), r1.toFloat(), r2.toFloat(), r3.toFloat(), thickness.toFloat(), color)
+    }
+
+    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, radius: Float, thickness: Float, color: Color) {
+        roundedRectangleFrame(x, y, width, height, radius, radius, radius, radius, thickness, color)
+    }
+
+    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, radius: Int, thickness: Int, color: Color) {
+        roundedRectangleFrame(x, y, width, height, radius, radius, radius, radius, thickness, color)
     }
 
     /**
