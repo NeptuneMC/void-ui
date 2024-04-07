@@ -178,11 +178,11 @@ class TestRenderer : Renderer {
         y: Float,
         width: Float,
         height: Float,
-        thickness: Float,
         r0: Float,
         r1: Float,
         r2: Float,
         r3: Float,
+        thickness: Float,
         color: Color
     ) {
         color.use {

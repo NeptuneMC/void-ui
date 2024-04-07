@@ -48,7 +48,7 @@ abstract class AbstractPanel(private val child: Widget? = null) : Element<PanelS
     override fun render(renderer: Renderer) {
         renderer.roundedRectangle(offset.x, offset.y, size.width, size.height, styles.radius.toFloat(), styles.color)
         if (styles.border != null)
-            renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, styles.border!!.sides.top, styles.radius.toFloat(), styles.border!!.color)
+            renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, styles.radius.toFloat(), styles.border!!.sides.top, styles.border!!.color)
     }
 
 }
