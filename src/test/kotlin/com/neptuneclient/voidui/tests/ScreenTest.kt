@@ -3,7 +3,6 @@
 package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.VoidUI
-import com.neptuneclient.voidui.event.EventHandler
 import com.neptuneclient.voidui.event.TestEvent
 import com.neptuneclient.voidui.widgets.*
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
