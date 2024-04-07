@@ -5,7 +5,7 @@ import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.file.Path
 
-class Font(void: VoidUI, val identifier: String, filePath: Path, val size: Int) {
+class Font(void: VoidUI, val identifier: String, filePath: Path, val size: Int, val letterSpacing: Int) {
 
     val data: ByteBuffer = try {
         getBufferData(filePath)

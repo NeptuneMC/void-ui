@@ -203,6 +203,7 @@ class TestRenderer : Renderer {
             NanoVG.nvgFillColor(vg, it)
             NanoVG.nvgFontFace(vg, font.identifier)
             NanoVG.nvgFontSize(vg, font.size.toFloat())
+            NanoVG.nvgTextLetterSpacing(vg, font.letterSpacing.toFloat())
 
             val bounds = BufferUtils.createFloatBuffer(4)
             NanoVG.nvgTextBounds(vg, x, y, text, bounds)
@@ -216,6 +217,7 @@ class TestRenderer : Renderer {
 
         NanoVG.nvgFontSize(vg, font.size.toFloat())
         NanoVG.nvgFontFace(vg, font.identifier)
+        NanoVG.nvgTextLetterSpacing(vg, font.letterSpacing.toFloat())
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)
         return Size(buffer[2] - buffer[0], buffer[3] - buffer[1])
     }

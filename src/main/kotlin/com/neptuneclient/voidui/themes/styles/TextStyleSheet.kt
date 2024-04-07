@@ -7,5 +7,6 @@ import java.nio.file.Path
 class TextStyleSheet(
     color: Color,
     val font: Path,
-    val size: Int
+    val size: Int,
+    val letterSpacing: Int = 0
 ) : StyleSheet(color)

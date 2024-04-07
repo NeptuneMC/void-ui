@@ -64,7 +64,7 @@ abstract class AbstractText(private val label: String) : Element<TextStyleSheet>
 
     override fun init(screen: Screen, parent: Widget?) {
         super.init(screen, parent)
-        font = Font(screen.void, this.toString(), styles.font, styles.size)
+        font = Font(screen.void, this.toString(), styles.font, styles.size, styles.letterSpacing)
         screen.void.renderer.registerFont(font)
     }
 

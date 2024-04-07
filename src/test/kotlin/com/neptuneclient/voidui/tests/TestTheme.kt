@@ -46,14 +46,16 @@ class TestTheme : Theme(
         normal = TextStyleSheet(
             color = Color.WHITE,
             font = Path.of("fonts/Jost-SemiBold.ttf"),
-            size = 32
+            size = 32,
+            letterSpacing = 12
         )
     ),
     smallTitle = Styles(
         normal = TextStyleSheet(
             color = Color.WHITE,
             font = Path.of("fonts/Jost-SemiBold.ttf"),
-            size = 22
+            size = 22,
+            letterSpacing = 8
         )
     ),
     heading = Styles(
