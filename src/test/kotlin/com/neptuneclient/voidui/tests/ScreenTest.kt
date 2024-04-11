@@ -4,7 +4,6 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.TestEvent
-import com.neptuneclient.voidui.utils.toPath
 import com.neptuneclient.voidui.widgets.*
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
@@ -28,32 +27,13 @@ class TestScreen(void: VoidUI) : Screen(void) {
     private var counter by state(5)
 
     override fun build(): Widget {
-        return AccentPanel(
-            Padding(
-                padding = EdgeInsets.all(200F),
-                child = Column(
-                    gap = 10,
-                    children = arrayOf(
-                        SmallHeading("Important Article"),
-                        Column(
-                            gap = 2,
-                            children = arrayOf(
-                                Text("This is a text which stretches over"),
-                                Text("multiple lines.")
-                            )
-                        ),
-                        Panel(
-                            Padding(
-                                padding = EdgeInsets.all(20F),
-                                child = Image(
-                                    width = 100,
-                                    height = 100,
-                                    path = "images/hampter.png".toPath(),
-                                )
-                            )
-                        )
-                    )
-                )
+        return Panel(
+            width = 50.percent,
+            height = 200.px,
+            child = BackgroundPanel(
+                    width = 400.px,
+                    height = 100.percent,
+                    child = Text("Hello World!")
             )
         )
     }

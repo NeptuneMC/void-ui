@@ -2,6 +2,8 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.rendering.ElementStack
+import com.neptuneclient.voidui.units.PercentUnit
+import com.neptuneclient.voidui.units.PixelsUnit
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
@@ -45,7 +47,7 @@ constructor(val void: VoidUI) {
     abstract fun build(): Widget
 
     /**
-     * Call this meothod to initialize the screen and build the widget tree.
+     * Call this method to initialize the screen and build the widget tree.
      */
     fun init() {
         elementStack.clear()
@@ -74,16 +76,10 @@ constructor(val void: VoidUI) {
         init()
     }
 
-    /**
-     * A dsl feature which adds the view-width unit from HTML to screens.
-     */
-    inline val Number.vw
-        get() = round(size.width / 100 * this.toFloat()).toInt()
+    inline val Int.px
+        get() = PixelsUnit(this)
 
-    /**
-     * A dsl feature which adds the view-height unit from HTML to screens.
-     */
-    inline val Number.vh
-        get() = round(size.height / 100 * this.toFloat()).toInt()
+    inline val Number.percent
+        get() = PercentUnit(this.toDouble())
 
 }

@@ -1,16 +1,19 @@
 package com.neptuneclient.voidui.widgets
 
+import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.EventHandler
+import com.neptuneclient.voidui.units.PercentUnit
+import com.neptuneclient.voidui.units.PixelsUnit
+import com.neptuneclient.voidui.units.LengthUnit
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
-import kotlin.math.round
 import kotlin.properties.Delegates
 
 /**
  * The base for every node in the widget tree.
  */
-abstract class Widget {
+abstract class Widget(protected val width: LengthUnit? = null, protected val height: LengthUnit? = null) {
 
     /**
      * A shortcut to [VoidUI.eventHandler].
@@ -63,7 +66,18 @@ abstract class Widget {
     open fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         root.layout(parentOffset, constraints)
         offset = parentOffset
-        size = root.size
+
+        val width = if (width != null)
+            this.width.value
+        else
+            constraints.maxWidth
+
+        val height = if (height != null)
+            this.height.value
+        else
+            constraints.maxHeight
+
+        size = constraints.constrain(Size(width, height))
     }
 
     /**
@@ -83,17 +97,11 @@ abstract class Widget {
     protected fun <T> state(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->
         screen.init()
     }
-    
-    /**
-     * A dsl feature which adds the view-width unit from HTML to components.
-     */
-    inline val Number.vw
-        get() = round(size.width / 100 * this.toFloat()).toInt()
 
-    /**
-     * A dsl feature which adds the view-height unit from HTML to components.
-     */
-    inline val Number.vh
-        get() = round(size.height / 100 * this.toFloat()).toInt()
+    inline val Int.px
+        get() = PixelsUnit(this)
+
+    inline val Number.percent
+        get() = PercentUnit(this.toDouble())
 
 }

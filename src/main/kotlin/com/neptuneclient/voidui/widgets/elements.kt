@@ -4,17 +4,17 @@ import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
+import com.neptuneclient.voidui.units.LengthUnit
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
-import java.nio.ByteBuffer
 import java.nio.file.Path
 
 // TODO add docs to this file
 
-sealed class AbstractPanel(private val child: Widget? = null) : Element<PanelStyleSheet>() {
+sealed class AbstractPanel(private val child: Widget? = null, width: LengthUnit? = null, height: LengthUnit? = null) : Element<PanelStyleSheet>(width, height) {
 
     override fun init(screen: Screen, parent: Widget?) {
         super.init(screen, parent)
@@ -23,6 +23,14 @@ sealed class AbstractPanel(private val child: Widget? = null) : Element<PanelSty
     }
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+        if (width != null && height != null) {
+            offset = parentOffset
+            size = constraints.constrain(Size(width.getPixels(screen, constraints.maxWidth), height.getPixels(screen, constraints.maxHeight)))
+
+            child?.run { layout(offset, constraints) }
+            return
+        }
+
         if (child == null) {
             size = if (styles.border != null)
                 constraints.constrain(Size(styles.border!!.sides.horizontal, styles.border!!.sides.vertical))
@@ -35,7 +43,6 @@ sealed class AbstractPanel(private val child: Widget? = null) : Element<PanelSty
             val border = styles.border!!
             val innerConstraints = constraints.deflate(border.sides)
             child.layout(parentOffset + border.sides.topLeft, innerConstraints)
-            //child.offset = border.sides.topLeft
             val size = child.size + Size(border.sides.horizontal, border.sides.vertical)
             this.size = constraints.constrain(size)
         }
@@ -57,9 +64,9 @@ sealed class AbstractPanel(private val child: Widget? = null) : Element<PanelSty
 
 }
 
-class BackgroundPanel(child: Widget? = null) : AbstractPanel(child)
+class BackgroundPanel(child: Widget? = null, width: LengthUnit? = null, height: LengthUnit? = null) : AbstractPanel(child, width, height)
 class AccentBackgroundPanel(child: Widget? = null) : AbstractPanel(child)
-class Panel(child: Widget? = null) : AbstractPanel(child)
+class Panel(child: Widget? = null, width: LengthUnit? = null, height: LengthUnit? = null) : AbstractPanel(child, width, height)
 class AccentPanel(child: Widget? = null) : AbstractPanel(child)
 
 sealed class AbstractText(private val label: String) : Element<TextStyleSheet>() {
@@ -93,7 +100,7 @@ class SmallHeading(label: String) : AbstractText(label)
 class Text(label: String) : AbstractText(label)
 class SmallText(label: String) : AbstractText(label)
 
-class Image(private val path: Path, private val width: Int, private val height: Int) : Element<ImageStyleSheet>() {
+class Image(private val path: Path, width: LengthUnit, height: LengthUnit) : Element<ImageStyleSheet>(width, height) {
 
     private lateinit var image: Image
 
@@ -104,7 +111,7 @@ class Image(private val path: Path, private val width: Int, private val height: 
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         this.offset = parentOffset
-        this.size = Size(width.toFloat(), height.toFloat())
+        this.size = constraints.constrain(Size(width!!.value, height!!.value))
     }
 
     override fun render(renderer: Renderer) {

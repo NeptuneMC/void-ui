@@ -5,6 +5,7 @@ import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.themes.StyleSheet
 import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
+import com.neptuneclient.voidui.units.LengthUnit
 
 /**
  * A custom type of widget which can not created by the user. Elements can have a [StyleSheet] attached to them, which
@@ -15,7 +16,7 @@ import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
  *
  * @param S The class which holds the style sheet for that element, e.g. [PanelStyleSheet].
  */
-sealed class Element<S : StyleSheet> : Widget() {
+sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUnit? = null) : Widget(width, height) {
 
     /**
      * The style sheet for this element.
