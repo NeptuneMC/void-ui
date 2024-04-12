@@ -4,6 +4,7 @@ import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Color
 import java.nio.ByteBuffer
@@ -19,6 +20,11 @@ class MockRenderer: Renderer {
 
     override fun endFrame() {
         println("endFrame")
+    }
+
+    override fun mousePosition(): Offset {
+        println("mousePosition")
+        return Offset(0F, 0F)
     }
 
     override fun registerFont(font: Font) {

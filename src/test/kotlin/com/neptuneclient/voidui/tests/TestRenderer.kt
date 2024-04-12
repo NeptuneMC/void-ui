@@ -3,7 +3,7 @@ package com.neptuneclient.voidui.tests
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
-import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
@@ -120,6 +120,13 @@ class TestRenderer : Renderer {
         NanoVG.nvgEndFrame(vg)
         GLFW.glfwSwapBuffers(window)
         GLFW.glfwPollEvents()
+    }
+
+    override fun mousePosition(): Offset {
+        val x = DoubleArray(1)
+        val y = DoubleArray(1)
+        GLFW.glfwGetCursorPos(window, x, y)
+        return Offset(x[0].toFloat(), y[0].toFloat())
     }
 
     override fun registerFont(font: Font) {

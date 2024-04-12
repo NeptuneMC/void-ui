@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.rendering
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
 import java.awt.Color
 import java.nio.ByteBuffer
@@ -38,6 +39,11 @@ interface Renderer {
      * This method should be called after all rendering operations, but before freeing resources.
      */
     fun endFrame()
+
+    /**
+     * Returns the current position of the mouse.
+     */
+    fun mousePosition(): Offset
 
     /**
      * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources

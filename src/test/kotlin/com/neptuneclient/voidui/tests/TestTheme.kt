@@ -4,6 +4,7 @@ import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.Theme
 import com.neptuneclient.voidui.themes.objects.Border
 import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
+import com.neptuneclient.voidui.themes.styles.LinkStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
@@ -85,6 +86,13 @@ class TestTheme : Theme(
             color = Color(255, 255, 255, 150),
             font = Path.of("fonts/WorkSans-Regular.ttf"),
             size = 13
+        )
+    ),
+    link = Styles(
+        normal = LinkStyleSheet(
+            color = Color(0x3C6DFC),
+            font = Path.of("fonts/WorkSans-Regular.ttf"),
+            size = 16
         )
     ),
     image = Styles(

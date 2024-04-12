@@ -8,6 +8,7 @@ import com.neptuneclient.voidui.widgets.*
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
+import java.net.URI
 
 class PaddingPanel(private val padding: EdgeInsets = EdgeInsets.zero, private val child: Widget) : Widget() {
 
@@ -30,10 +31,23 @@ class TestScreen(void: VoidUI) : Screen(void) {
         return Panel(
             width = 50.percent,
             height = 200.px,
-            child = BackgroundPanel(
-                    width = 400.px,
-                    height = 100.percent,
-                    child = Text("Hello World!")
+            child = Padding(
+                padding = EdgeInsets.all(20F),
+                child = Row(
+                    arrayOf(
+                        Text("Check out my  "),
+                        Link(
+                            label = "link  ",
+                            address = URI("http://localhost")
+                        ),
+                        Text("also this is the  "),
+                        Link(
+                            label = "Neptune Webiste",
+                            address = URI("https://neptuneclient.com/")
+                        ),
+                        Text(".")
+                    )
+                )
             )
         )
     }
@@ -53,7 +67,7 @@ fun main() {
     val renderer = voidUI.renderer as TestRenderer
     while (!GLFW.glfwWindowShouldClose(renderer.window)) {
         screen.render()
-        TestEvent("lululu").call(voidUI)
+        //TestEvent("lululu").call(voidUI)
     }
 
     voidUI.eventHandler.unregister("ok")

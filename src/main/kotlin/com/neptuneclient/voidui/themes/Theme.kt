@@ -20,6 +20,7 @@ open class Theme(
     smallHeading: Styles<TextStyleSheet>,
     text: Styles<TextStyleSheet>,
     smallText: Styles<TextStyleSheet>,
+    link: Styles<LinkStyleSheet>,
 
     image: Styles<ImageStyleSheet>
 ) {
@@ -39,6 +40,7 @@ open class Theme(
         SmallHeading::class to smallHeading,
         Text::class to text,
         SmallText::class to smallText,
+        Link::class to link,
 
         Image::class to image
     )

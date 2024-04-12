@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
+import com.neptuneclient.voidui.themes.styles.LinkStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.units.LengthUnit
@@ -10,6 +11,7 @@ import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
+import java.net.URI
 import java.nio.file.Path
 
 // TODO add docs to this file
@@ -99,6 +101,28 @@ class SmallHeading(label: String) : AbstractText(label)
 
 class Text(label: String) : AbstractText(label)
 class SmallText(label: String) : AbstractText(label)
+
+class Link(private val address: URI, private val label: String? = null) : Element<LinkStyleSheet>() {
+
+    private lateinit var font: Font
+
+    override fun init(screen: Screen, parent: Widget?) {
+        super.init(screen, parent)
+        font = Font(screen.void, this.toString(), styles.font, styles.size, styles.letterSpacing)
+    }
+
+    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+        val size = screen.void.renderer.getTextBounds(label ?: address.toString(), font)
+
+        this.offset = parentOffset
+        this.size = constraints.constrain(size)
+    }
+
+    override fun render(renderer: Renderer) {
+        renderer.text(offset.x, offset.y, label ?: address.toString(), font, styles.color)
+    }
+
+}
 
 class Image(private val path: Path, width: LengthUnit, height: LengthUnit) : Element<ImageStyleSheet>(width, height) {
 
