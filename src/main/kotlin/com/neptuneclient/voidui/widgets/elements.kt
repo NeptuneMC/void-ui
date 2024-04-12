@@ -34,15 +34,15 @@ sealed class AbstractPanel(private val child: Widget? = null, width: LengthUnit?
         }
 
         if (child == null) {
-            size = if (styles.border != null)
-                constraints.constrain(Size(styles.border!!.sides.horizontal, styles.border!!.sides.vertical))
+            size = if (styleSheet.border != null)
+                constraints.constrain(Size(styleSheet.border!!.sides.horizontal, styleSheet.border!!.sides.vertical))
             else
                 constraints.constrain(Size.zero)
             return
         }
 
-        if (styles.border != null) {
-            val border = styles.border!!
+        if (styleSheet.border != null) {
+            val border = styleSheet.border!!
             val innerConstraints = constraints.deflate(border.sides)
             child.layout(parentOffset + border.sides.topLeft, innerConstraints)
             val size = child.size + Size(border.sides.horizontal, border.sides.vertical)
@@ -59,9 +59,9 @@ sealed class AbstractPanel(private val child: Widget? = null, width: LengthUnit?
     }
 
     override fun render(renderer: Renderer) {
-        renderer.roundedRectangle(offset.x, offset.y, size.width, size.height, styles.radius.toFloat(), styles.color)
-        if (styles.border != null)
-            renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, styles.radius.toFloat(), styles.border!!.sides.top, styles.border!!.color)
+        renderer.roundedRectangle(offset.x, offset.y, size.width, size.height, styleSheet.radius.toFloat(), styleSheet.color)
+        if (styleSheet.border != null)
+            renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, styleSheet.radius.toFloat(), styleSheet.border!!.sides.top, styleSheet.border!!.color)
     }
 
 }
@@ -77,7 +77,7 @@ sealed class AbstractText(private val label: String) : Element<TextStyleSheet>()
 
     override fun init(screen: Screen, parent: Widget?) {
         super.init(screen, parent)
-        font = Font(screen.void, this.toString(), styles.font, styles.size, styles.letterSpacing)
+        font = Font(screen.void, this.toString(), styleSheet.font, styleSheet.size, styleSheet.letterSpacing)
     }
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
@@ -88,7 +88,7 @@ sealed class AbstractText(private val label: String) : Element<TextStyleSheet>()
     }
 
     override fun render(renderer: Renderer) {
-        renderer.text(offset.x, offset.y, label, font, styles.color)
+        renderer.text(offset.x, offset.y, label, font, styleSheet.color)
     }
 
 }
@@ -108,7 +108,7 @@ class Link(private val address: URI, private val label: String? = null) : Elemen
 
     override fun init(screen: Screen, parent: Widget?) {
         super.init(screen, parent)
-        font = Font(screen.void, this.toString(), styles.font, styles.size, styles.letterSpacing)
+        font = Font(screen.void, this.toString(), styleSheet.font, styleSheet.size, styleSheet.letterSpacing)
     }
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
@@ -119,7 +119,7 @@ class Link(private val address: URI, private val label: String? = null) : Elemen
     }
 
     override fun render(renderer: Renderer) {
-        renderer.text(offset.x, offset.y, label ?: address.toString(), font, styles.color)
+        renderer.text(offset.x, offset.y, label ?: address.toString(), font, styleSheet.color)
     }
 
 }
@@ -139,7 +139,7 @@ class Image(private val path: Path, width: LengthUnit, height: LengthUnit) : Ele
     }
 
     override fun render(renderer: Renderer) {
-        renderer.roundedImage(offset.x, offset.y, size.width, size.height, styles.borderRadius.toFloat(), image)
+        renderer.roundedImage(offset.x, offset.y, size.width, size.height, styleSheet.borderRadius.toFloat(), image)
     }
 
 }

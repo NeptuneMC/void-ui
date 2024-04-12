@@ -46,25 +46,20 @@ open class Theme(
     )
 
     /**
-     * Returns the style sheet of the given element.
+     * Returns the styles of the given element.
      *
      * @param element The element class.
-     * @param type The type of style sheet, e.g. [Styles.Type.NORMAL], [Styles.Type.HOVERED].
      *
-     * @return The style sheet of the given element.
+     * @return The styles of the given element.
      *
      * @throws IllegalArgumentException If the given element class has no style sheet in the registry map.
      */
-    fun <T : StyleSheet> getStyleSheet(element: KClass<out Element<T>>, type: Styles.Type): T {
+    fun <T : StyleSheet> getStyles(element: KClass<out Element<T>>): Styles<T> {
         for ((k, v) in styles) {
             if (k != element) continue
-            return when (type) {
-                Styles.Type.NORMAL -> v.normal
-                Styles.Type.HOVERED -> v.hovered
-                Styles.Type.ACTIVE -> v.active
-            } as T
+            return v as Styles<T>
         }
-        throw IllegalArgumentException("No stylesheet found for type: ${element.simpleName}")
+        throw IllegalArgumentException("No style sheet found for type: ${element.simpleName}")
     }
  
 }

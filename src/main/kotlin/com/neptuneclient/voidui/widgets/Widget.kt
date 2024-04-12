@@ -100,6 +100,19 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
     }
 
     /**
+     * Checks if the component is hovered by the mouse.
+     */
+    fun hovered(): Boolean {
+        if (!this::screen.isInitialized) return false
+
+        val mousePos = screen.void.renderer.mousePosition()
+        return mousePos.x >= offset.x &&
+                mousePos.y >= offset.y &&
+                mousePos.x < offset.x + size.width &&
+                mousePos.y < offset.y + size.height
+    }
+
+    /**
      * @see PixelsUnit
      */
     inline val Int.px

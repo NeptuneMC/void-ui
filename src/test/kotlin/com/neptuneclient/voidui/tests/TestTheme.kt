@@ -32,6 +32,9 @@ class TestTheme : Theme(
                 sides = EdgeInsets.all(1f),
                 color = Color(255, 255, 255, 40)
             )
+        ),
+        hovered = PanelStyleSheet(
+            color = Color.RED
         )
     ),
     accentPanel = Styles(

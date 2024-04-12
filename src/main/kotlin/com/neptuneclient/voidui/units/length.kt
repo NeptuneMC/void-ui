@@ -1,6 +1,5 @@
 package com.neptuneclient.voidui.units
 
-import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.widgets.Screen
 import com.neptuneclient.voidui.widgets.Text
 import kotlin.math.max
@@ -45,7 +44,7 @@ class PercentUnit(value: Float) : LengthUnit(value) {
  */
 class FontSizeUnit(value: Float) : LengthUnit(value) {
     override fun getPixels(screen: Screen, constrainedValue: Float): Float {
-        val textStyle = screen.void.theme.getStyleSheet(Text::class, Styles.Type.NORMAL)
-        return (max(0F, value) / 100F) * textStyle.size
+        val textStyle = screen.void.theme.getStyles(Text::class)
+        return (max(0F, value) / 100F) * textStyle.normal.size
     }
 }

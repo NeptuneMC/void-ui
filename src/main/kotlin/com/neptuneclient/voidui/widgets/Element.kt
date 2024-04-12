@@ -18,10 +18,16 @@ import com.neptuneclient.voidui.units.LengthUnit
  */
 sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUnit? = null) : Widget(width, height) {
 
+    private lateinit var styles: Styles<S>
+
     /**
      * The style sheet for this element.
      */
-    protected lateinit var styles: S
+    protected val styleSheet: S
+        get() = if (hovered())
+                styles.hovered
+            else
+                styles.normal
 
     /**
      * Sizes the component and pushes itself to the screen's element stack.
@@ -32,7 +38,7 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
     override fun init(screen: Screen, parent: Widget?) {
         this.screen = screen
         this.parent = parent
-        this.styles = screen.void.theme.getStyleSheet(this::class, Styles.Type.NORMAL)
+        this.styles = screen.void.theme.getStyles(this::class)
         screen.elementStack.push(this)
     }
     
@@ -50,5 +56,5 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
      * @param renderer The renderer defined in [VoidUI.renderer].
      */
     abstract fun render(renderer: Renderer)
-    
+
 }
