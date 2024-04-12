@@ -1,8 +1,5 @@
 package com.neptuneclient.voidui.widgets.objects
 
-import kotlin.math.max
-import kotlin.math.min
-
 /**
  * An immutable class which represents the constraints of an element.
  */

@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.rendering.ElementStack
+import com.neptuneclient.voidui.units.FontSizeUnit
 import com.neptuneclient.voidui.units.PercentUnit
 import com.neptuneclient.voidui.units.PixelsUnit
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
@@ -76,10 +77,22 @@ constructor(val void: VoidUI) {
         init()
     }
 
+    /**
+     * @see PixelsUnit
+     */
     inline val Int.px
         get() = PixelsUnit(this)
 
+    /**
+     * @see PercentUnit
+     */
     inline val Number.percent
-        get() = PercentUnit(this.toDouble())
+        get() = PercentUnit(this.toFloat())
+
+    /**
+     * @see FontSizeUnit
+     */
+    inline val Number.em
+        get() = FontSizeUnit(this.toFloat())
 
 }

@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.EventHandler
+import com.neptuneclient.voidui.units.FontSizeUnit
 import com.neptuneclient.voidui.units.PercentUnit
 import com.neptuneclient.voidui.units.PixelsUnit
 import com.neptuneclient.voidui.units.LengthUnit
@@ -68,14 +69,14 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
         offset = parentOffset
 
         val width = if (width != null)
-            this.width.value
+            this.width.getPixels(screen, constraints.maxWidth)
         else
-            constraints.maxWidth
+            constraints.minWidth
 
         val height = if (height != null)
-            this.height.value
+            this.height.getPixels(screen, constraints.maxHeight)
         else
-            constraints.maxHeight
+            constraints.minWidth
 
         size = constraints.constrain(Size(width, height))
     }
@@ -98,10 +99,22 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
         screen.init()
     }
 
+    /**
+     * @see PixelsUnit
+     */
     inline val Int.px
         get() = PixelsUnit(this)
 
+    /**
+     * @see PercentUnit
+     */
     inline val Number.percent
-        get() = PercentUnit(this.toDouble())
+        get() = PercentUnit(this.toFloat())
+
+    /**
+     * @see FontSizeUnit
+     */
+    inline val Number.em
+        get() = FontSizeUnit(this.toFloat())
 
 }
