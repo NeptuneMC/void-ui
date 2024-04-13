@@ -8,7 +8,7 @@ package com.neptuneclient.voidui.themes
  * @param hovered The styles for the elemenet when it is hovered.
  * @param active The style for the element when it is currently active, e.g. a button is pressed.
  */
-data class Styles<T : StyleSheet>(val normal: T, val hovered: T = normal, val active: T = normal) {
+data class Styles<T : StyleSheet>(val normal: T, val hovered: T = normal, val active: T = hovered) {
     
     enum class Type { NORMAL, HOVERED, ACTIVE }
     

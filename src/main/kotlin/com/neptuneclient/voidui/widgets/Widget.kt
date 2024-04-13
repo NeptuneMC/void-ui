@@ -16,6 +16,8 @@ import kotlin.properties.Delegates
  */
 abstract class Widget(protected val width: LengthUnit? = null, protected val height: LengthUnit? = null) {
 
+    protected var active = false
+
     /**
      * A shortcut to [VoidUI.eventHandler].
      */

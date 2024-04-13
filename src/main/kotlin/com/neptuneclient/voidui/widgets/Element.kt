@@ -1,6 +1,8 @@
 package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
+import com.neptuneclient.voidui.event.MouseClickedEvent
+import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.themes.StyleSheet
 import com.neptuneclient.voidui.themes.Styles
@@ -24,10 +26,14 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
      * The style sheet for this element.
      */
     protected val styleSheet: S
-        get() = if (hovered())
+        get() = if (active) {
+            styles.active
+        } else {
+            if (hovered())
                 styles.hovered
             else
                 styles.normal
+        }
 
     /**
      * Sizes the component and pushes itself to the screen's element stack.
@@ -40,6 +46,14 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
         this.parent = parent
         this.styles = screen.void.theme.getStyles(this::class)
         screen.elementStack.push(this)
+
+        eventHandler.register(MouseClickedEvent::class) {
+            if (hovered())
+                active = true
+        }
+        eventHandler.register(MouseReleasedEvent::class) {
+            active = false
+        }
     }
     
     /**

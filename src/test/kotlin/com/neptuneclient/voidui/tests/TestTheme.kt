@@ -35,6 +35,9 @@ class TestTheme : Theme(
         ),
         hovered = PanelStyleSheet(
             color = Color.RED
+        ),
+        active = PanelStyleSheet(
+            color = Color.BLUE
         )
     ),
     accentPanel = Styles(

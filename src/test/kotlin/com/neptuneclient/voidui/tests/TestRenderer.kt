@@ -35,7 +35,6 @@ class TestRenderer : Renderer {
     private var contentScaleX: Float = 0f
     private var contentScaleY: Float = 0f
 
-
     init {
         if (!GLFW.glfwInit()) {
             throw IllegalStateException("Failed to initialize GLFW!")
@@ -61,6 +60,11 @@ class TestRenderer : Renderer {
         GLFW.glfwSetWindowContentScaleCallback(window) { _, x, y ->
             contentScaleX = x
             contentScaleY = y
+        }
+
+        GLFW.glfwSetMouseButtonCallback(window) { _, button, action, _ ->
+            val (x, y) = mousePosition()
+            mouseEvent(button, action, x, y)
         }
 
         MemoryStack.stackPush().use { stack ->
