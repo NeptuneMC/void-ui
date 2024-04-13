@@ -31,23 +31,12 @@ class TestScreen(void: VoidUI) : Screen(void) {
     override fun build(): Widget {
         return Panel(
             width = 50.percent,
-            height = 200.px,
+            height = 50.percent,
             child = Padding(
                 padding = EdgeInsets.all(20F),
-                child = Row(
-                    arrayOf(
-                        Text("Check out my  "),
-                        Link(
-                            label = "link  ",
-                            address = URI("http://localhost")
-                        ),
-                        Text("also this is the  "),
-                        Link(
-                            label = "Neptune Webiste",
-                            address = URI("https://neptuneclient.com/")
-                        ),
-                        Text(".")
-                    )
+                child = Link(
+                    label = "YouTube",
+                    address = URI.create("https://youtube.com/")
                 )
             )
         )

@@ -2,7 +2,6 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
-import com.neptuneclient.voidui.themes.styles.LinkStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.units.LengthUnit
@@ -72,7 +71,7 @@ class AccentBackgroundPanel(child: Widget? = null) : AbstractPanel(child)
 class Panel(child: Widget? = null, width: LengthUnit? = null, height: LengthUnit? = null) : AbstractPanel(child, width, height)
 class AccentPanel(child: Widget? = null) : AbstractPanel(child)
 
-sealed class AbstractText(private val label: String) : Element<TextStyleSheet>() {
+sealed class AbstractText(private var label: String) : Element<TextStyleSheet>() {
 
     private lateinit var font: Font
 
@@ -83,6 +82,7 @@ sealed class AbstractText(private val label: String) : Element<TextStyleSheet>()
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         val size = screen.void.renderer.getTextBounds(label, font)
+        label = label.trim()
 
         this.offset = parentOffset
         this.size = constraints.constrain(size)
@@ -90,6 +90,10 @@ sealed class AbstractText(private val label: String) : Element<TextStyleSheet>()
 
     override fun render(renderer: Renderer) {
         renderer.text(offset.x, offset.y, label, font, styleSheet.color)
+        if (styleSheet.underline) {
+            val (w, h) = screen.void.renderer.getTextBounds(label, font)
+            renderer.rectangle(offset.x, offset.y + h, w, 1F, styleSheet.color)
+        }
     }
 
 }
@@ -103,7 +107,7 @@ class SmallHeading(label: String) : AbstractText(label)
 class Text(label: String) : AbstractText(label)
 class SmallText(label: String) : AbstractText(label)
 
-class Link(private val address: URI, private val label: String? = null) : Element<LinkStyleSheet>() {
+class Link(private val address: URI, private var label: String? = null) : Element<TextStyleSheet>() {
 
     private lateinit var font: Font
 
@@ -114,6 +118,7 @@ class Link(private val address: URI, private val label: String? = null) : Elemen
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         val size = screen.void.renderer.getTextBounds(label ?: address.toString(), font)
+        label = label?.trim()
 
         this.offset = parentOffset
         this.size = constraints.constrain(size)
@@ -121,6 +126,10 @@ class Link(private val address: URI, private val label: String? = null) : Elemen
 
     override fun render(renderer: Renderer) {
         renderer.text(offset.x, offset.y, label ?: address.toString(), font, styleSheet.color)
+        if (styleSheet.underline) {
+            val (w, h) = screen.void.renderer.getTextBounds(label ?: address.toString(), font)
+            renderer.rectangle(offset.x, offset.y + h, w, 1F, styleSheet.color)
+        }
     }
 
     override fun widgetClicked() {

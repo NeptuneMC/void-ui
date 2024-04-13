@@ -8,5 +8,6 @@ class TextStyleSheet(
     color: Color,
     val font: Path,
     val size: Int,
-    val letterSpacing: Int = 0
+    val letterSpacing: Int = 0,
+    val underline: Boolean = false
 ) : StyleSheet(color)

@@ -20,7 +20,7 @@ open class Theme(
     smallHeading: Styles<TextStyleSheet>,
     text: Styles<TextStyleSheet>,
     smallText: Styles<TextStyleSheet>,
-    link: Styles<LinkStyleSheet>,
+    link: Styles<TextStyleSheet>,
 
     image: Styles<ImageStyleSheet>
 ) {

@@ -4,7 +4,6 @@ import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.Theme
 import com.neptuneclient.voidui.themes.objects.Border
 import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
-import com.neptuneclient.voidui.themes.styles.LinkStyleSheet
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.themes.styles.TextStyleSheet
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
@@ -32,12 +31,6 @@ class TestTheme : Theme(
                 sides = EdgeInsets.all(1f),
                 color = Color(255, 255, 255, 40)
             )
-        ),
-        hovered = PanelStyleSheet(
-            color = Color.RED
-        ),
-        active = PanelStyleSheet(
-            color = Color.BLUE
         )
     ),
     accentPanel = Styles(
@@ -95,11 +88,23 @@ class TestTheme : Theme(
         )
     ),
     link = Styles(
-        normal = LinkStyleSheet(
+        normal = TextStyleSheet(
             color = Color(0x3C6DFC),
             font = Path.of("fonts/WorkSans-Regular.ttf"),
             size = 16
-        )
+        ),
+        hovered = TextStyleSheet(
+            color = Color(0x3C6DFC),
+            font = Path.of("fonts/WorkSans-Regular.ttf"),
+            size = 16,
+            underline = true
+        ),
+        active = TextStyleSheet(
+            color = Color(0x5F88FF),
+            font = Path.of("fonts/WorkSans-Regular.ttf"),
+            size = 16,
+            underline = true
+        ),
     ),
     image = Styles(
         normal = ImageStyleSheet(
