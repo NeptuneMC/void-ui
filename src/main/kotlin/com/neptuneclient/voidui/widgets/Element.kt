@@ -53,6 +53,8 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
         }
         eventHandler.register(MouseReleasedEvent::class) {
             active = false
+            if (hovered())
+                widgetClicked()
         }
     }
     

@@ -11,6 +11,7 @@ import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
+import java.awt.Desktop
 import java.net.URI
 import java.nio.file.Path
 
@@ -120,6 +121,10 @@ class Link(private val address: URI, private val label: String? = null) : Elemen
 
     override fun render(renderer: Renderer) {
         renderer.text(offset.x, offset.y, label ?: address.toString(), font, styleSheet.color)
+    }
+
+    override fun widgetClicked() {
+        Desktop.getDesktop().browse(address)
     }
 
 }

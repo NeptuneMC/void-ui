@@ -41,8 +41,3 @@ fun getBufferData(path: Path, bufferSize: UInt = 1024u): ByteBuffer {
     buffer.flip()
     return buffer.slice()
 }
-
-/**
- * Converts the string to a file path.
- */
-fun String.toPath() = Path.of(this)

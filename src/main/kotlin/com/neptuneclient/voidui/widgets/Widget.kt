@@ -2,6 +2,8 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.EventHandler
+import com.neptuneclient.voidui.event.MouseClickedEvent
+import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.units.FontSizeUnit
 import com.neptuneclient.voidui.units.PercentUnit
 import com.neptuneclient.voidui.units.PixelsUnit
@@ -21,7 +23,8 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
     /**
      * A shortcut to [VoidUI.eventHandler].
      */
-    protected lateinit var eventHandler: EventHandler
+    protected val eventHandler: EventHandler
+        get() = screen.void.eventHandler
 
     /**
      * The widget offset from screen's origin position.
@@ -54,9 +57,18 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
     internal open fun init(screen: Screen, parent: Widget?) {
         this.screen = screen
         this.parent = parent
-        this.eventHandler = screen.void.eventHandler
 
         root.init(screen, this)
+
+        eventHandler.register(MouseClickedEvent::class) {
+            if (hovered())
+                active = true
+        }
+        eventHandler.register(MouseReleasedEvent::class) {
+            active = false
+            if (hovered())
+                widgetClicked()
+        }
     }
     
     /**
@@ -89,6 +101,11 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
      * @return The child node in the widget tree.
      */
     abstract fun build(): Widget
+
+    /**
+     * Called if the mouse was clicked on the widget and then released on it again.
+     */
+    open fun widgetClicked() {}
 
     /**
      * Lets you declare a property which will trigger the widget to be rebuilt once it's value changes.
