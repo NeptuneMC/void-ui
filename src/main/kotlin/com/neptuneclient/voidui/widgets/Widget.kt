@@ -4,10 +4,7 @@ import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.EventHandler
 import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
-import com.neptuneclient.voidui.units.FontSizeUnit
-import com.neptuneclient.voidui.units.PercentUnit
-import com.neptuneclient.voidui.units.PixelsUnit
-import com.neptuneclient.voidui.units.LengthUnit
+import com.neptuneclient.voidui.units.*
 import com.neptuneclient.voidui.widgets.objects.BoxConstraints
 import com.neptuneclient.voidui.widgets.objects.Offset
 import com.neptuneclient.voidui.widgets.objects.Size
@@ -75,12 +72,17 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
      * This method is responsible for setting the [size] and the [offset] of the widget.
      * By default, this sets the components size to zero and its offset the same as its parent.
      *
+     * **When overwriting the layout method for a widget make sure to perform these steps to make the widget work properly:**
+     * - set [offset] for self
+     * - set [size] for self
+     * - set max constraints to self size
+     * - (layout children)
+     *
      * @param parentOffset The offset from the origin of the screen from the parent widget.
      * @param constraints The available space in which the widget can be sized.
      */
     open fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         root.layout(parentOffset, constraints)
-        offset = parentOffset
 
         val width = if (width != null)
             this.width.getPixels(screen, constraints.maxWidth)
@@ -92,6 +94,7 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
         else
             constraints.minWidth
 
+        offset = parentOffset
         size = constraints.constrain(Size(width, height))
     }
 
@@ -148,5 +151,17 @@ abstract class Widget(protected val width: LengthUnit? = null, protected val hei
      */
     inline val Number.em
         get() = FontSizeUnit(this.toFloat())
+
+    /**
+     * @see ViewWidthUnit
+     */
+    inline val Number.vw
+        get() = ViewWidthUnit(this.toFloat())
+
+    /**
+     * @see ViewHeightUnit
+     */
+    inline val Number.vh
+        get() = ViewHeightUnit(this.toFloat())
 
 }

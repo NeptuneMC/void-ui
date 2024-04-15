@@ -8,10 +8,10 @@ abstract class Constraints {
 }
 
 data class BoxConstraints(
-    val minWidth: Float = 0f,
-    val maxWidth: Float = Float.POSITIVE_INFINITY,
-    val minHeight: Float = 0f,
-    val maxHeight: Float = Float.POSITIVE_INFINITY,
+    var minWidth: Float = 0f,
+    var maxWidth: Float = Float.POSITIVE_INFINITY,
+    var minHeight: Float = 0f,
+    var maxHeight: Float = Float.POSITIVE_INFINITY,
 ) : Constraints() {
     companion object {
         fun tight(size: Size) = BoxConstraints(size.width, size.width, size.height, size.height)

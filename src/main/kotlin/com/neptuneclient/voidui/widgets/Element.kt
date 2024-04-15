@@ -8,9 +8,12 @@ import com.neptuneclient.voidui.themes.StyleSheet
 import com.neptuneclient.voidui.themes.Styles
 import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
 import com.neptuneclient.voidui.units.LengthUnit
+import com.neptuneclient.voidui.widgets.objects.BoxConstraints
+import com.neptuneclient.voidui.widgets.objects.Offset
+import com.neptuneclient.voidui.widgets.objects.Size
 
 /**
- * A custom type of widget which can not created by the user. Elements can have a [StyleSheet] attached to them, which
+ * A custom type of widget which can not be created by the user. Elements can have a [StyleSheet] attached to them, which
  * makes them able to change through themes. Elements can also be rendered to the screen.
  *
  * When initialized, elements will be pushed onto the element stack. The element stack is rendered each frame. This is to prevent the tree from being iterated for every
@@ -56,6 +59,21 @@ sealed class Element<S : StyleSheet>(width: LengthUnit? = null, height: LengthUn
             if (hovered())
                 widgetClicked()
         }
+    }
+
+    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+        val width = if (width != null)
+            this.width.getPixels(screen, constraints.maxWidth)
+        else
+            constraints.minWidth
+
+        val height = if (height != null)
+            this.height.getPixels(screen, constraints.maxHeight)
+        else
+            constraints.minWidth
+
+        offset = parentOffset
+        size = constraints.constrain(Size(width, height))
     }
     
     /**

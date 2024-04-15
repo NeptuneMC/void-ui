@@ -48,3 +48,23 @@ class FontSizeUnit(value: Float) : LengthUnit(value) {
         return (max(0F, value) / 100F) * textStyle.normal.size
     }
 }
+
+/**
+ * Represents 1% from the screen's width.
+ */
+class ViewWidthUnit(value: Float) : LengthUnit(value) {
+    override fun getPixels(screen: Screen, constrainedValue: Float): Float {
+        val value = max(0F, min(value, 100F))
+        return (value / 100F) * screen.size.width
+    }
+}
+
+/**
+ * Represents 1% from the screen's width.
+ */
+class ViewHeightUnit(value: Float) : LengthUnit(value) {
+    override fun getPixels(screen: Screen, constrainedValue: Float): Float {
+        val value = max(0F, min(value, 100F))
+        return (value / 100F) * screen.size.height
+    }
+}

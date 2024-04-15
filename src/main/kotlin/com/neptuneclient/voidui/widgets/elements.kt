@@ -29,6 +29,8 @@ sealed class AbstractPanel(private val child: Widget? = null, width: LengthUnit?
             offset = parentOffset
             size = constraints.constrain(Size(width.getPixels(screen, constraints.maxWidth), height.getPixels(screen, constraints.maxHeight)))
 
+            constraints.maxWidth = size.width
+            constraints.maxHeight = size.height
             child?.run { layout(offset, constraints) }
             return
         }

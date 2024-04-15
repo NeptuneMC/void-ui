@@ -9,7 +9,6 @@ import com.neptuneclient.voidui.widgets.*
 import com.neptuneclient.voidui.widgets.objects.EdgeInsets
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
-import java.net.URI
 
 class PaddingPanel(private val padding: EdgeInsets = EdgeInsets.zero, private val child: Widget) : Widget() {
 
@@ -30,14 +29,8 @@ class TestScreen(void: VoidUI) : Screen(void) {
 
     override fun build(): Widget {
         return Panel(
-            width = 50.percent,
-            height = 50.percent,
-            child = Padding(
-                padding = EdgeInsets.all(20F),
-                child = Link(
-                    label = "YouTube",
-                    address = URI.create("https://youtube.com/")
-                )
+            child = BackgroundPanel(
+                child = Text("Hello World!"),
             )
         )
     }
