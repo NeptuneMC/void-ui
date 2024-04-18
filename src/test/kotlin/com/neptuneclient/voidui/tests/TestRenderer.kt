@@ -183,16 +183,13 @@ class TestRenderer : Renderer {
         y: Float,
         width: Float,
         height: Float,
-        r0: Float,
-        r1: Float,
-        r2: Float,
-        r3: Float,
+        radius: CornerRadius,
         color: Color
     ) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)
-            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, r0, r1, r2, r3)
+            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, radius.topLeft, radius.topRight, radius.bottomRight, radius.bottomLeft)
             NanoVG.nvgFillColor(vg, it)
             NanoVG.nvgFill(vg)
             NanoVG.nvgClosePath(vg)
