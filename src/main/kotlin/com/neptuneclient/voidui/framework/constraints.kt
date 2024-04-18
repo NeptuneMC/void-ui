@@ -1,18 +1,13 @@
-package com.neptuneclient.voidui.widgets.objects
+package com.neptuneclient.voidui.framework
 
-/**
- * An immutable class which represents the constraints of an element.
- */
-abstract class Constraints {
-    abstract val isTight: Boolean
-}
+import com.neptuneclient.voidui.objects.EdgeInsets
 
 data class BoxConstraints(
-    var minWidth: Float = 0f,
-    var maxWidth: Float = Float.POSITIVE_INFINITY,
-    var minHeight: Float = 0f,
-    var maxHeight: Float = Float.POSITIVE_INFINITY,
-) : Constraints() {
+    val minWidth: Float = 0f,
+    val maxWidth: Float = Float.POSITIVE_INFINITY,
+    val minHeight: Float = 0f,
+    val maxHeight: Float = Float.POSITIVE_INFINITY,
+) {
     companion object {
         fun tight(size: Size) = BoxConstraints(size.width, size.width, size.height, size.height)
         fun tight(width: Float?, height: Float?) = BoxConstraints(
@@ -38,7 +33,7 @@ data class BoxConstraints(
         )
     }
 
-    override val isTight
+    val isTight
         get() = minWidth == maxWidth && minHeight == maxHeight
 
     val biggest get() = Size(maxWidth, maxHeight)

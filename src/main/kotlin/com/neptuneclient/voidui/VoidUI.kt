@@ -2,7 +2,6 @@ package com.neptuneclient.voidui
 
 import com.neptuneclient.voidui.event.EventHandler
 import com.neptuneclient.voidui.rendering.Renderer
-import com.neptuneclient.voidui.themes.Theme
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -18,7 +17,7 @@ class VoidUI
  *
  * @param theme The theme used to style UI elements.
  */
-constructor(val renderer: Renderer, var theme: Theme) {
+constructor(val renderer: Renderer, ) {
 
     /**
      * The event handler which handles all events in the instance.
@@ -27,6 +26,13 @@ constructor(val renderer: Renderer, var theme: Theme) {
 
     companion object {
         val LOGGER: Logger = LoggerFactory.getLogger("VoidUI")
+    }
+
+    /**
+     * Destroys the library and cleans everything up.
+     */
+    fun destroy() {
+        renderer.destroy()
     }
 
 }

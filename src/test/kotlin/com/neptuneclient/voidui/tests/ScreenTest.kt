@@ -5,39 +5,27 @@ package com.neptuneclient.voidui.tests
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
-import com.neptuneclient.voidui.widgets.*
-import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.framework.Screen
+import com.neptuneclient.voidui.framework.Size
+import com.neptuneclient.voidui.framework.Widget
+import com.neptuneclient.voidui.utils.image
+import com.neptuneclient.voidui.widgets.Image
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
 
-class PaddingPanel(private val padding: EdgeInsets = EdgeInsets.zero, private val child: Widget) : Widget() {
+class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
-        return Panel(
-            Padding(
-                child,
-                padding
-            )
+        return Image(
+            src = image("images/hampter.png"),
+            imageSize = Size(100f, 100f),
+            borderRadius = 10,
         )
     }
 
 }
 
-class TestScreen(void: VoidUI) : Screen(void) {
-
-    private var counter by state(5)
-
-    override fun build(): Widget {
-        return Panel(
-            child = BackgroundPanel(
-                child = Text("Hello World!"),
-            )
-        )
-    }
-
-}
-
-val voidUI = VoidUI(TestRenderer(), TestTheme())
+val voidUI = VoidUI(TestRenderer())
 
 fun main() {
     val screen = TestScreen(voidUI)
@@ -48,7 +36,8 @@ fun main() {
         screen.render()
     }
 
-    renderer.destroy()
+    screen.remove()
+    voidUI.destroy()
 }
 
 fun mouseEvent(button: Int, action: Int, x: Float, y: Float) {

@@ -1,10 +1,11 @@
 package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.framework.Offset
+import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
-import com.neptuneclient.voidui.widgets.objects.Offset
-import com.neptuneclient.voidui.widgets.objects.Size
+import com.neptuneclient.voidui.widgets.TextStyle
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor
@@ -93,7 +94,7 @@ class TestRenderer : Renderer {
         GLFW.glfwShowWindow(window)
     }
 
-    fun destroy() {
+    override fun destroy() {
         NanoVGGL3.nvgDelete(vg)
         GLFW.glfwDestroyWindow(window)
         GLFW.glfwTerminate()
@@ -133,8 +134,8 @@ class TestRenderer : Renderer {
         return Offset(x[0].toFloat(), y[0].toFloat())
     }
 
-    override fun registerFont(font: Font) {
-        NanoVG.nvgCreateFontMem(vg, font.identifier, font.data, false)
+    override fun registerFont(name: String, data: ByteBuffer) {
+        NanoVG.nvgCreateFontMem(vg, name, data, false)
     }
 
     override fun registerImage(path: Path, data: ByteBuffer): Int {
@@ -142,7 +143,8 @@ class TestRenderer : Renderer {
     }
 
     override fun unregisterImage(image: Image) {
-        NanoVG.nvgDeleteImage(vg, image.identifier)
+        if (image.id != null)
+            NanoVG.nvgDeleteImage(vg, image.id!!)
     }
 
     private fun Color.use(block: (NVGColor) -> Unit) {
@@ -220,7 +222,10 @@ class TestRenderer : Renderer {
     }
 
     override fun image(x: Float, y: Float, width: Float, height: Float, image: Image) {
-        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.identifier, 1.0F, NVGPaint.calloc())
+        if (image.id == null)
+            throw IllegalStateException("Image was not registered properly!")
+
+        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
         NanoVG.nvgBeginPath(vg)
         NanoVG.nvgRect(vg, x, y, width, height)
         NanoVG.nvgFillPaint(vg, paint)
@@ -230,7 +235,10 @@ class TestRenderer : Renderer {
     }
 
     override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image) {
-        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.identifier, 1.0F, NVGPaint.calloc())
+        if (image.id == null)
+            throw IllegalStateException("Image was not registered properly!")
+
+        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
         NanoVG.nvgBeginPath(vg)
         NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
         NanoVG.nvgFillPaint(vg, paint)
@@ -239,14 +247,15 @@ class TestRenderer : Renderer {
         paint.free()
     }
 
-    override fun text(x: Float, y: Float, text: String, font: Font, color: Color) {
+    override fun text(x: Float, y: Float, text: String, font: Font, style: TextStyle) {
+        val color = style.color
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)
             NanoVG.nvgFillColor(vg, it)
-            NanoVG.nvgFontFace(vg, font.identifier)
-            NanoVG.nvgFontSize(vg, font.size.toFloat())
-            NanoVG.nvgTextLetterSpacing(vg, font.letterSpacing.toFloat())
+            NanoVG.nvgFontFace(vg, font.name)
+            NanoVG.nvgFontSize(vg, style.size.toFloat())
+            NanoVG.nvgTextLetterSpacing(vg, style.letterSpacing)
 
             val bounds = BufferUtils.createFloatBuffer(4)
             NanoVG.nvgTextBounds(vg, x, y, text, bounds)
@@ -255,12 +264,12 @@ class TestRenderer : Renderer {
         }
     }
 
-    override fun getTextBounds(text: String, font: Font): Size {
+    override fun getTextBounds(text: String, font: Font, style: TextStyle): Size {
         val buffer: FloatBuffer = BufferUtils.createFloatBuffer(4)
 
-        NanoVG.nvgFontSize(vg, font.size.toFloat())
-        NanoVG.nvgFontFace(vg, font.identifier)
-        NanoVG.nvgTextLetterSpacing(vg, font.letterSpacing.toFloat())
+        NanoVG.nvgFontSize(vg, style.size.toFloat())
+        NanoVG.nvgFontFace(vg, font.name)
+        NanoVG.nvgTextLetterSpacing(vg, style.letterSpacing)
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)
         return Size(buffer[2] - buffer[0], buffer[3] - buffer[1])
     }

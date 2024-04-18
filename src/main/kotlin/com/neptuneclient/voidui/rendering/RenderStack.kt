@@ -1,23 +1,18 @@
 package com.neptuneclient.voidui.rendering
 
-import com.neptuneclient.voidui.widgets.Element
-import com.neptuneclient.voidui.widgets.Screen
+import com.neptuneclient.voidui.framework.LeafWidget
 
 /**
  * The element stack is responsible for rendering screens.
  *
  * @see Screen
  */
-class ElementStack
-/**
- * @param renderer The renderer which will render the element stack.
- */
-constructor(private val renderer: Renderer) {
+class RenderStack(private val renderer: Renderer) {
 
     /**
      * The list which stores the elements.
      */
-    private val stack = mutableListOf<Element<*>>()
+    private val stack = mutableListOf<LeafWidget>()
 
     /**
      * Render the whole stack.
@@ -33,7 +28,7 @@ constructor(private val renderer: Renderer) {
      *
      * @param element The new element on the stack.
      */
-    fun push(element: Element<*>) {
+    fun push(element: LeafWidget) {
         stack.add(element)
     }
 

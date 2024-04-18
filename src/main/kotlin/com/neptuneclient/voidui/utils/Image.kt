@@ -1,40 +1,25 @@
 package com.neptuneclient.voidui.utils
 
 import com.neptuneclient.voidui.VoidUI
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.file.Path
 import com.neptuneclient.voidui.rendering.Renderer
+import java.io.IOException
+import java.nio.file.Path
 
-/**
- * A class which holds values about an image memory in the renderer.
- *
- * @param void The singleton to the library.
- * @param path The file path to the image.
- */
-class Image(private val void: VoidUI, path: Path) {
+data class Image(val path: Path) {
 
-    /**
-     * The id for the image, this is assigned by [Renderer.unregisterImage].
-     */
-    val identifier: Int
+    var id: Int? = null
 
-    init {
-        val data: ByteBuffer = try {
-            getBufferData(path)
+    fun register(renderer: Renderer) {
+        try {
+            val data = getBufferData(path)
+            id = renderer.registerImage(path, data)
         } catch (e: IOException) {
-            VoidUI.LOGGER.error("Failed to load font data, this may cause a crash later!", e)
-            ByteBuffer.allocateDirect(0)
+            VoidUI.LOGGER.error("Failed to register image $path", e)
         }
-
-        identifier = void.renderer.registerImage(path, data)
     }
 
-    /**
-     * Used to unregister the image from the renderer.
-     */
-    fun delete() {
-        void.renderer.unregisterImage(this)
+    fun delete(renderer: Renderer) {
+        renderer.unregisterImage(this)
     }
 
 }

@@ -1,9 +1,10 @@
 package com.neptuneclient.voidui.rendering
 
+import com.neptuneclient.voidui.framework.Offset
+import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
-import com.neptuneclient.voidui.widgets.objects.Offset
-import com.neptuneclient.voidui.widgets.objects.Size
+import com.neptuneclient.voidui.widgets.TextStyle
 import java.awt.Color
 import java.nio.ByteBuffer
 import java.nio.file.Path
@@ -40,6 +41,11 @@ interface Renderer {
     fun endFrame()
 
     /**
+     * Destroys the renderer and cleans up everything.
+     */
+    fun destroy()
+
+    /**
      * Returns the current position of the mouse.
      */
     fun mousePosition(): Offset
@@ -50,7 +56,7 @@ interface Renderer {
      *
      * @param font The font object to register.
      */
-    fun registerFont(font: Font)
+    fun registerFont(name: String, data: ByteBuffer)
 
     /**
      * Registers an image to the renderer.
@@ -168,10 +174,10 @@ interface Renderer {
      * @param font font of the text
      * @param color color of the text
      */
-    fun text(x: Float, y: Float, text: String, font: Font, color: Color)
+    fun text(x: Float, y: Float, text: String, font: Font, style: TextStyle)
 
-    fun text(x: Int, y: Int, text: String, font: Font, color: Color) {
-        text(x.toFloat(), y.toFloat(), text, font, color)
+    fun text(x: Int, y: Int, text: String, font: Font, style: TextStyle) {
+        text(x.toFloat(), y.toFloat(), text, font, style)
     }
 
     /**
@@ -181,6 +187,6 @@ interface Renderer {
      * @param font font of the text
      * @return the width and height of the text
      */
-    fun getTextBounds(text: String, font: Font): Size
+    fun getTextBounds(text: String, font: Font, style: TextStyle): Size
 
 }

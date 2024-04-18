@@ -1,4 +1,6 @@
-package com.neptuneclient.voidui.widgets.objects
+package com.neptuneclient.voidui.objects
+
+import com.neptuneclient.voidui.framework.Offset
 
 data class EdgeInsets(
     val left: Float,
