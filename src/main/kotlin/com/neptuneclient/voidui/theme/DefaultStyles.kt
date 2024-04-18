@@ -4,6 +4,9 @@ import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.utils.Font
 import java.awt.Color
 
+/**
+ * Used in [Theme] to define default styles for some widgets.
+ */
 data class DefaultStyles(
     val regularText: TextStyle,
     val smallText: TextStyle = regularText,

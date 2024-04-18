@@ -4,9 +4,9 @@ import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius
+import com.neptuneclient.voidui.theme.TextStyle
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
-import com.neptuneclient.voidui.widgets.TextStyle
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor

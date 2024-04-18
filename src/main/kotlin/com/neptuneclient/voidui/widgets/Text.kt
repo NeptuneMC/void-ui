@@ -5,6 +5,14 @@ import com.neptuneclient.voidui.objects.TextAlign
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.theme.TextStyle
 
+/**
+ * A widget which renders text to the screen.
+ *
+ * @param label The text to be rendered.
+ * @param align The alignment of the text.
+ * @param textStyle A custom style object for the text.
+ * @param type The type of the text, e.g. Regular or Large.
+ */
 class Text(
     private val label: String = "",
     private val align: TextAlign = TextAlign.START,

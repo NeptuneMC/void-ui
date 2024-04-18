@@ -7,6 +7,9 @@ import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.rendering.Renderer
 import java.awt.Color
 
+/**
+ * A widget which just acts as a placeholder. It covers the whole size of its parent.
+ */
 class Placeholder : LeafWidget() {
 
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {

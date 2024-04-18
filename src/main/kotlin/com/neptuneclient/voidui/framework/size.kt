@@ -1,5 +1,11 @@
 package com.neptuneclient.voidui.framework
 
+/**
+ * Represents the size of a widget.
+ *
+ * @param width The width of the widget.
+ * @param height The width of the height.
+ */
 data class Size(val width: Float, val height: Float) {
     companion object {
         val zero = Size(0f, 0f)
@@ -13,6 +19,9 @@ data class Size(val width: Float, val height: Float) {
     operator fun div(other: Size) = Size(width / other.width, height / other.height)
 }
 
+/**
+ * Represents the offset of a widget from the screen origin.
+ */
 data class Offset(val x: Float, val y: Float) {
     companion object {
         val zero = Offset(0f, 0f)

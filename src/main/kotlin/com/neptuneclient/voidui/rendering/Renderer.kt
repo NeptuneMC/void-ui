@@ -3,9 +3,9 @@ package com.neptuneclient.voidui.rendering
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius
+import com.neptuneclient.voidui.theme.TextStyle
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
-import com.neptuneclient.voidui.widgets.TextStyle
 import java.awt.Color
 import java.nio.ByteBuffer
 import java.nio.file.Path
@@ -52,10 +52,10 @@ interface Renderer {
     fun mousePosition(): Offset
 
     /**
-     * Registers a font to the renderer. The [Font] class provides the render backend with all necessary resources
-     * to create the font.
+     * Registers a font to the renderer.
      *
-     * @param font The font object to register.
+     * @param name The identifier of the font.
+     * @param data The data of the font file in a byte buffer.
      */
     fun registerFont(name: String, data: ByteBuffer)
 
@@ -114,31 +114,33 @@ interface Renderer {
      * @param y y coordinate of the rectangle
      * @param width width of the rectangle
      * @param height height of the rectangle
+     * @param radius The radius of the rectangle.
      * @param color color of the rectangle
      */
-    fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, r0: Float, r1: Float, r2: Float, r3: Float, color: Color)
+    fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, color: Color)
 
-    fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, r0: Int, r1: Int, r2: Int, r3: Int, color: Color) {
-        roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), r0.toFloat(), r1.toFloat(), r2.toFloat(), r3.toFloat(), color)
+    fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, color: Color) {
+        roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, color)
     }
 
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
-        roundedRectangle(x, y, width, height, radius, radius, radius, radius, color)
+        roundedRectangle(x, y, width, height, CornerRadius.all(radius), color)
     }
 
     fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: Int, color: Color) {
-        roundedRectangle(x, y, width, height, radius, radius, radius, radius, color)
+        roundedRectangle(x, y, width, height, CornerRadius.all(radius.toFloat()), color)
     }
 
     /**
      * Renders a hollow rounded rectangle with the given dimensions, size, radius and color.
      *
-     * @param x x coordinate of the rectangle
-     * @param y y coordinate of the rectangle
-     * @param width width of the rectangle
-     * @param height height of the rectangle
-     * @param thickness thickness of the frame
-     * @param color color of the rectangle
+     * @param x x coordinate of the rectangle.
+     * @param y y coordinate of the rectangle.
+     * @param width width of the rectangle.
+     * @param height height of the rectangle.
+     * @param thickness thickness of the frame.
+     * @param radius The radius of the rectangle.
+     * @param color color of the rectangle.
      */
     fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, thickness: Float, color: Color)
 
@@ -154,12 +156,31 @@ interface Renderer {
         roundedRectangleFrame(x, y, width, height, CornerRadius.all(radius.toFloat()), thickness, color)
     }
 
+    /**
+     * Draws an image to the screen.
+     *
+     * @param x The x position of the image.
+     * @param y The y position of the image.
+     * @param width The width of the image.
+     * @param height The height of the image.
+     * @param image An image object which contains data about the image.
+     */
     fun image(x: Float, y: Float, width: Float, height: Float, image: Image)
 
     fun image(x: Int, y: Int, width: Int, height: Int, image: Image) {
         image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
     }
 
+    /**
+     * Draws an image with rounded edges to the screen.
+     *
+     * @param x The x position of the image.
+     * @param y The y position of the image.
+     * @param width The width of the image.
+     * @param height The height of the image.
+     * @param radius The radius of the image's corners.
+     * @param image An image object which contains data about the image.
+     */
     fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: Image)
 
     fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: Image) {
@@ -175,13 +196,13 @@ interface Renderer {
     }
 
     /**
-     * Renders a text with the given dimensions, size, font and color.
+     * Renders a text with the given dimensions, size and font.
      *
-     * @param x x coordinate of the text
-     * @param y y coordinate of the text
-     * @param text text to render
-     * @param font font of the text
-     * @param color color of the text
+     * @param x x coordinate of the text.
+     * @param y y coordinate of the text.
+     * @param text text to render.
+     * @param font font of the text.
+     * @param style style values for the text.
      */
     fun text(x: Float, y: Float, text: String, font: Font, style: TextStyle)
 
@@ -194,6 +215,8 @@ interface Renderer {
      *
      * @param text text to measure
      * @param font font of the text
+     * @param style style values for the text.
+     *
      * @return the width and height of the text
      */
     fun getTextBounds(text: String, font: Font, style: TextStyle): Size

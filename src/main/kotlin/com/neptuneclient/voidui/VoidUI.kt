@@ -16,7 +16,7 @@ class VoidUI
  * @param renderer The renderer used to draw all components in the screens. Void does not come with a renderer implementation
  * out of the box so the user has to create his own implementation.
  *
- * @param theme The theme used to style UI elements.
+ * @param theme The theme used to style UI.
  */
 constructor(val renderer: Renderer, val theme: Theme) {
 
