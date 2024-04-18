@@ -2,6 +2,7 @@ package com.neptuneclient.voidui
 
 import com.neptuneclient.voidui.event.EventHandler
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.theme.Theme
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -17,7 +18,7 @@ class VoidUI
  *
  * @param theme The theme used to style UI elements.
  */
-constructor(val renderer: Renderer, ) {
+constructor(val renderer: Renderer, val theme: Theme) {
 
     /**
      * The event handler which handles all events in the instance.

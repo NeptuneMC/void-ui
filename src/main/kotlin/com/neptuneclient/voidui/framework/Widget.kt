@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.framework
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.Event
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.theme.Theme
 import com.neptuneclient.voidui.widgets.Placeholder
 import kotlin.properties.Delegates
 import kotlin.reflect.KClass
@@ -50,6 +51,9 @@ abstract class Widget {
 }
 
 abstract class LeafWidget : Widget() {
+
+    protected val theme: Theme
+        get() = screen.voidUI.theme
 
     override fun init(screen: Screen, parent: Widget) {
         this.voidUI = screen.voidUI

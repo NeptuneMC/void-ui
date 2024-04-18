@@ -6,26 +6,20 @@ import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.framework.Screen
-import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.framework.Widget
-import com.neptuneclient.voidui.utils.image
-import com.neptuneclient.voidui.widgets.Image
+import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
 
 class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
-        return Image(
-            src = image("images/hampter.png"),
-            imageSize = Size(100f, 100f),
-            borderRadius = 10,
-        )
+        return Text("Test")
     }
 
 }
 
-val voidUI = VoidUI(TestRenderer())
+val voidUI = VoidUI(TestRenderer(), TestTheme())
 
 fun main() {
     val screen = TestScreen(voidUI)

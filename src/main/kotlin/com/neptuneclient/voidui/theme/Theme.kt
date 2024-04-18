@@ -1,5 +1,5 @@
 package com.neptuneclient.voidui.theme
 
-class Theme(
-
+abstract class Theme(
+    val defaultStyles: DefaultStyles
 )

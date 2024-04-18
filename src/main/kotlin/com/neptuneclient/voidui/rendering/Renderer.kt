@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.rendering
 
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
+import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.TextStyle
@@ -139,18 +140,18 @@ interface Renderer {
      * @param thickness thickness of the frame
      * @param color color of the rectangle
      */
-    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, r0: Float, r1: Float, r2: Float, r3: Float, thickness: Float, color: Color)
+    fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, thickness: Float, color: Color)
 
-    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, r0: Int, r1: Int, r2: Int, r3: Int, thickness: Int, color: Color) {
-        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), r0.toFloat(), r1.toFloat(), r2.toFloat(), r3.toFloat(), thickness.toFloat(), color)
+    fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, thickness: Int, color: Color) {
+        roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, thickness.toFloat(), color)
     }
 
     fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, radius: Float, thickness: Float, color: Color) {
-        roundedRectangleFrame(x, y, width, height, radius, radius, radius, radius, thickness, color)
+        roundedRectangleFrame(x, y, width, height, CornerRadius.all(radius), thickness, color)
     }
 
     fun roundedRectangleFrame(x: Int, y: Int, width: Int, height: Int, radius: Int, thickness: Int, color: Color) {
-        roundedRectangleFrame(x, y, width, height, radius, radius, radius, radius, thickness, color)
+        roundedRectangleFrame(x, y, width, height, CornerRadius.all(radius.toFloat()), thickness, color)
     }
 
     fun image(x: Float, y: Float, width: Float, height: Float, image: Image)
@@ -159,10 +160,18 @@ interface Renderer {
         image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
     }
 
-    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image)
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: Image)
+
+    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: Image) {
+        roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, image)
+    }
+
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image) {
+        roundedImage(x, y, width, height, CornerRadius.all(radius), image)
+    }
 
     fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: Int, image: Image) {
-        roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius.toFloat(), image)
+        roundedImage(x, y, width, height, CornerRadius.all(radius.toFloat()), image)
     }
 
     /**

@@ -3,18 +3,26 @@ package com.neptuneclient.voidui.widgets
 import com.neptuneclient.voidui.framework.*
 import com.neptuneclient.voidui.objects.TextAlign
 import com.neptuneclient.voidui.rendering.Renderer
-import com.neptuneclient.voidui.utils.Font
-import java.awt.Color
-import java.nio.file.Path
+import com.neptuneclient.voidui.theme.TextStyle
 
 class Text(
     private val label: String = "",
     private val align: TextAlign = TextAlign.START,
-    private val style: TextStyle = TextStyle(Font("name", Path.of("fonts/WorkSans-Regular.ttf")), Color.WHITE, 16, 0f),
+    private val textStyle: TextStyle? = null,
+    private val type: TextType = TextType.REGULAR
 ) : LeafWidget() {
+
+    private lateinit var style: TextStyle
 
     override fun init(screen: Screen, parent: Widget) {
         super.init(screen, parent)
+
+        style = textStyle ?: when (type) {
+            TextType.SMALL -> theme.defaultStyles.smallText
+            TextType.REGULAR -> theme.defaultStyles.regularText
+            TextType.MEDIUM -> theme.defaultStyles.mediumText
+            TextType.LARGE -> theme.defaultStyles.largeText
+        }
         style.font.register(screen.voidUI.renderer)
     }
 
@@ -34,4 +42,4 @@ class Text(
     }
 }
 
-data class TextStyle(val font: Font, val color: Color, val size: Int, val letterSpacing: Float)
+enum class TextType { SMALL, REGULAR, MEDIUM, LARGE }

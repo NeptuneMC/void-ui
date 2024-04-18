@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.tests
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
+import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.Image
 import com.neptuneclient.voidui.widgets.TextStyle
@@ -203,17 +204,14 @@ class TestRenderer : Renderer {
         y: Float,
         width: Float,
         height: Float,
-        r0: Float,
-        r1: Float,
-        r2: Float,
-        r3: Float,
+        radius: CornerRadius,
         thickness: Float,
         color: Color
     ) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
             NanoVG.nvgBeginPath(vg)
-            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, r0, r1, r2, r3)
+            NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, radius.topLeft, radius.topRight, radius.bottomRight, radius.bottomLeft)
             NanoVG.nvgStrokeColor(vg, it)
             NanoVG.nvgStrokeWidth(vg, thickness)
             NanoVG.nvgStroke(vg)
@@ -234,13 +232,13 @@ class TestRenderer : Renderer {
         paint.free()
     }
 
-    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image) {
+    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: Image) {
         if (image.id == null)
             throw IllegalStateException("Image was not registered properly!")
 
         val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
         NanoVG.nvgBeginPath(vg)
-        NanoVG.nvgRoundedRect(vg, x, y, width, height, radius)
+        NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, radius.topLeft, radius.topRight, radius.bottomRight, radius.bottomLeft)
         NanoVG.nvgFillPaint(vg, paint)
         NanoVG.nvgFill(vg)
         NanoVG.nvgClosePath(vg)

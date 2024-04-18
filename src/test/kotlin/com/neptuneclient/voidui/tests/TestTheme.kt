@@ -1,112 +1,24 @@
 package com.neptuneclient.voidui.tests
 
-/*import com.neptuneclient.voidui.themes.objects.Border
-import com.neptuneclient.voidui.themes.styles.ImageStyleSheet
-import com.neptuneclient.voidui.themes.styles.PanelStyleSheet
-import com.neptuneclient.voidui.themes.styles.TextStyleSheet
-import com.neptuneclient.voidui.widgets.objects.EdgeInsets
+import com.neptuneclient.voidui.objects.CornerRadius
+import com.neptuneclient.voidui.theme.DefaultStyles
+import com.neptuneclient.voidui.theme.ImageStyle
+import com.neptuneclient.voidui.theme.Theme
+import com.neptuneclient.voidui.utils.Font
+import com.neptuneclient.voidui.widgets.TextStyle
 import java.awt.Color
 import java.nio.file.Path
 
 class TestTheme : Theme(
-    backgroundPanel = Styles(
-        normal = PanelStyleSheet(
-            color = Color(0x101216),
-            radius = 10
-        )
-    ),
-    accentBackgroundPanel = Styles(
-        normal = PanelStyleSheet(
-            color = Color(26, 31, 41, 220),
-            radius = 10
-        )
-    ),
-    panel = Styles(
-        normal = PanelStyleSheet(
-            color = Color(0x272935),
-            radius = 10,
-            border = Border(
-                sides = EdgeInsets.all(1f),
-                color = Color(255, 255, 255, 40)
-            )
-        )
-    ),
-    accentPanel = Styles(
-        normal = PanelStyleSheet(
-            color = Color(0),
-            radius = 10,
-            border = Border(
-                sides = EdgeInsets.all(1f),
-                color = Color(255, 255, 255, 40)
-            )
-        )
-    ),
-    title = Styles(
-        normal = TextStyleSheet(
-            color = Color.WHITE,
-            font = Path.of("fonts/Jost-SemiBold.ttf"),
-            size = 32,
-            letterSpacing = 12
-        )
-    ),
-    smallTitle = Styles(
-        normal = TextStyleSheet(
-            color = Color.WHITE,
-            font = Path.of("fonts/Jost-SemiBold.ttf"),
-            size = 20,
-            letterSpacing = 8
-        )
-    ),
-    heading = Styles(
-        normal = TextStyleSheet(
-            color = Color.WHITE,
-            font = Path.of("fonts/WorkSans-SemiBold.ttf"),
-            size = 32
-        )
-    ),
-    smallHeading = Styles(
-        normal = TextStyleSheet(
-            color = Color.WHITE,
-            font = Path.of("fonts/WorkSans-SemiBold.ttf"),
-            size = 20
-        )
-    ),
-    text = Styles(
-        normal = TextStyleSheet(
-            color = Color.WHITE,
-            font = Path.of("fonts/WorkSans-Regular.ttf"),
-            size = 16
-        )
-    ),
-    smallText = Styles(
-        normal = TextStyleSheet(
-            color = Color(255, 255, 255, 150),
-            font = Path.of("fonts/WorkSans-Regular.ttf"),
-            size = 13
-        )
-    ),
-    link = Styles(
-        normal = TextStyleSheet(
-            color = Color(0x3C6DFC),
-            font = Path.of("fonts/WorkSans-Regular.ttf"),
-            size = 16
-        ),
-        hovered = TextStyleSheet(
-            color = Color(0x3C6DFC),
-            font = Path.of("fonts/WorkSans-Regular.ttf"),
+    defaultStyles = DefaultStyles(
+        regularText = TextStyle(
+            font = Font("WorkSans", Path.of("fonts/WorkSans-Regular.ttf")),
             size = 16,
-            underline = true
+            color = Color.WHITE,
+            letterSpacing = 0f
         ),
-        active = TextStyleSheet(
-            color = Color(0x5F88FF),
-            font = Path.of("fonts/WorkSans-Regular.ttf"),
-            size = 16,
-            underline = true
-        ),
-    ),
-    image = Styles(
-        normal = ImageStyleSheet(
-            borderRadius = 0
+        image = ImageStyle(
+            cornerRadius = CornerRadius.all(10f)
         )
     )
-)*/
+)
