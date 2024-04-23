@@ -1,8 +1,5 @@
 package com.neptuneclient.voidui.rendering
 
-import com.neptuneclient.voidui.framework.LeafWidget
-import com.neptuneclient.voidui.framework.Widget
-
 /**
  * The render stack is responsible for rendering screens.
  *
@@ -11,9 +8,9 @@ import com.neptuneclient.voidui.framework.Widget
 class RenderStack(private val renderer: Renderer) {
 
     /**
-     * The list which stores the renderable leaf widgets.
+     * The list which stores the render objects.
      */
-    private val stack = mutableListOf<LeafWidget>()
+    private val stack = mutableListOf<RenderObject>()
 
     /**
      * Render the whole stack.
@@ -25,12 +22,12 @@ class RenderStack(private val renderer: Renderer) {
     }
 
     /**
-     * Pushes a widget to the render stack.
+     * Pushes a render object to the render stack.
      *
-     * @param widget The new widget.
+     * @param renderObject The new render object.
      */
-    fun push(widget: LeafWidget) {
-        stack.add(widget)
+    fun push(renderObject: RenderObject) {
+        stack.add(renderObject)
     }
 
     /**

@@ -30,6 +30,7 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
 
         size = Size(width.toFloat(), height.toFloat())
         layout(offset, BoxConstraints.loose(size))
+        root.postLayoutInit()
     }
 
     /**

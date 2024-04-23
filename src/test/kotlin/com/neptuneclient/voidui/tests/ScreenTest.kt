@@ -14,7 +14,7 @@ import org.lwjgl.glfw.GLFW
 class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
-        return Text("Test")
+        return Text("Hello World!")
     }
 
 }

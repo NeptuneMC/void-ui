@@ -2,7 +2,7 @@ package com.neptuneclient.voidui.framework
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.Event
-import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.theme.Theme
 import com.neptuneclient.voidui.widgets.Placeholder
 import kotlin.properties.Delegates
@@ -73,6 +73,23 @@ abstract class Widget {
     }
 
     /**
+     * Initializes things which require the [offset] and [size] properties from the widget. This method is called
+     * after the [layout] method, so the offset and size are already set.
+     */
+    open fun postLayoutInit() {
+        val renderable = createRenderObject()
+        if (renderable != null)
+            screen.renderStack.push(renderable)
+
+        root.postLayoutInit()
+    }
+
+    /**
+     * Pushes a render object to the render stack.
+     */
+    open fun createRenderObject(): RenderObject? = null
+
+    /**
      * Cleans up code from the widget when it is removed from the tree.
      */
     open fun remove() {
@@ -81,7 +98,7 @@ abstract class Widget {
     }
 
     /**
-     * Defines a stateful variable, which rebuilds the widget once it changes it's value.
+     * Defines a stateful variable, which rebuilds the widget once it changes its value.
      */
     fun <T> stateOf(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->
         // redo ui
@@ -120,8 +137,6 @@ abstract class LeafWidget : Widget() {
     override fun init(screen: Screen, parent: Widget) {
         this.voidUI = screen.voidUI
         this.screen = screen
-
-        screen.renderStack.push(this)
     }
 
     /**
@@ -133,6 +148,16 @@ abstract class LeafWidget : Widget() {
     override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
         offset = parentOffset
         size = Size(constraints.minWidth, constraints.minHeight)
+    }
+
+    /**
+     * Initializes things which require the [offset] and [size] properties from the widget. This method is called
+     * after the [layout] method, so the offset and size are already set.
+     */
+    override fun postLayoutInit() {
+        val renderable = createRenderObject()
+        if (renderable != null)
+            screen.renderStack.push(renderable)
     }
 
     /**
@@ -148,12 +173,5 @@ abstract class LeafWidget : Widget() {
     override fun remove() {
         voidUI.eventHandler.unregister(this)
     }
-
-    /**
-     * Renders the widget to the screen.
-     *
-     * @param renderer The renderer of the library instance.
-     */
-    abstract fun render(renderer: Renderer)
 
 }

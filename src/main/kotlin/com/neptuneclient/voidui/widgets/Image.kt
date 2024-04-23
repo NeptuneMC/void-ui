@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.framework.*
 import com.neptuneclient.voidui.objects.CornerRadius
+import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.rendering.Renderer
 
 /**
@@ -31,15 +32,21 @@ class Image(
         size = constraints.constrain(imageSize ?: Size(constraints.maxWidth, constraints.maxHeight))
     }
 
-    override fun render(renderer: Renderer) {
-        if (!radius.isEmpty())
-            renderer.roundedImage(offset.x, offset.y, size.width, size.height, radius, src)
-        else
-            renderer.image(offset.x, offset.y, size.width, size.height, src)
+    override fun createRenderObject(): RenderObject? {
+        return ImageRenderObject(offset, size, src, radius)
     }
 
     override fun remove() {
         super.remove()
         src.delete(screen.voidUI.renderer)
+    }
+}
+
+private class ImageRenderObject(offset: Offset, size: Size, private val image: com.neptuneclient.voidui.utils.Image, private val radius: CornerRadius) : RenderObject(offset, size) {
+    override fun render(renderer: Renderer) {
+        if (!radius.isEmpty())
+            renderer.roundedImage(offset.x, offset.y, size.width, size.height, radius, image)
+        else
+            renderer.image(offset.x, offset.y, size.width, size.height, image)
     }
 }

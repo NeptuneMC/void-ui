@@ -2,6 +2,7 @@ package com.neptuneclient.voidui.widgets
 
 import com.neptuneclient.voidui.framework.*
 import com.neptuneclient.voidui.objects.TextAlign
+import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.theme.TextStyle
 
@@ -45,8 +46,14 @@ class Text(
         }
     }
 
+    override fun createRenderObject(): RenderObject? {
+        return TextRenderObject(offset, size, label, style)
+    }
+}
+
+private class TextRenderObject(offset: Offset, size: Size, val text: String, val style: TextStyle) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
-        renderer.text(offset.x, offset.y, label, style.font, style)
+        renderer.text(offset.x, offset.y, text, style.font, style)
     }
 }
 
