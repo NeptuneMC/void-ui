@@ -7,14 +7,21 @@ import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.framework.Screen
 import com.neptuneclient.voidui.framework.Widget
+import com.neptuneclient.voidui.objects.EdgeInsets
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
+import java.awt.Color
 
 class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
-        return Text("Hello World!")
+        return Container(
+            margin = EdgeInsets.all(100f),
+            padding = EdgeInsets.all(10f),
+            color = Color.RED,
+            child = Text("Hello World!"),
+        )
     }
 
 }
