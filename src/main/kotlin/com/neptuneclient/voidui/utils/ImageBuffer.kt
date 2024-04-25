@@ -8,7 +8,7 @@ import java.nio.file.Path
 /**
  * Holds values which define an image in the library.
  */
-data class Image(val path: Path) {
+data class ImageBuffer(val path: Path) {
 
     /**
      * The identifier of the image, if this is null, the image has not been initialized yet.

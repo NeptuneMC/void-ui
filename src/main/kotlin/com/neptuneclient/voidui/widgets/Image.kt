@@ -4,6 +4,7 @@ import com.neptuneclient.voidui.framework.*
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.rendering.Renderer
+import com.neptuneclient.voidui.utils.ImageBuffer
 
 /**
  * A widget which renders an image to the screen.
@@ -13,7 +14,7 @@ import com.neptuneclient.voidui.rendering.Renderer
  * @param cornerRadius A custom corner radius for the image, if this is not set, the default value from the theme will be used.
  */
 class Image(
-    private val src: com.neptuneclient.voidui.utils.Image,
+    private val src: ImageBuffer,
     private val imageSize: Size? = null,
     private val cornerRadius: CornerRadius? = null
 ) : LeafWidget() {
@@ -42,7 +43,7 @@ class Image(
     }
 }
 
-private class ImageRenderObject(offset: Offset, size: Size, private val image: com.neptuneclient.voidui.utils.Image, private val radius: CornerRadius) : RenderObject(offset, size) {
+private class ImageRenderObject(offset: Offset, size: Size, private val image: ImageBuffer, private val radius: CornerRadius) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
         if (!radius.isEmpty())
             renderer.roundedImage(offset.x, offset.y, size.width, size.height, radius, image)

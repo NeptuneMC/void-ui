@@ -6,7 +6,7 @@ import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.theme.TextStyle
 import com.neptuneclient.voidui.utils.Font
-import com.neptuneclient.voidui.utils.Image
+import com.neptuneclient.voidui.utils.ImageBuffer
 import org.lwjgl.BufferUtils
 import org.lwjgl.glfw.GLFW
 import org.lwjgl.nanovg.NVGColor
@@ -143,7 +143,7 @@ class TestRenderer : Renderer {
         return NanoVG.nvgCreateImageMem(vg, NanoVG.NVG_IMAGE_GENERATE_MIPMAPS, data)
     }
 
-    override fun unregisterImage(image: Image) {
+    override fun unregisterImage(image: ImageBuffer) {
         if (image.id != null)
             NanoVG.nvgDeleteImage(vg, image.id!!)
     }
@@ -216,7 +216,7 @@ class TestRenderer : Renderer {
         }
     }
 
-    override fun image(x: Float, y: Float, width: Float, height: Float, image: Image) {
+    override fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer) {
         if (image.id == null)
             throw IllegalStateException("Image was not registered properly!")
 
@@ -229,7 +229,7 @@ class TestRenderer : Renderer {
         paint.free()
     }
 
-    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: Image) {
+    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer) {
         if (image.id == null)
             throw IllegalStateException("Image was not registered properly!")
 

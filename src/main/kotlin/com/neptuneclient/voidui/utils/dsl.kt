@@ -10,4 +10,4 @@ fun path(path: String) = Path.of(path)
 /**
  * Creates an image from the given string path.
  */
-fun image(path: String) = Image(path(path))
+fun image(path: String) = ImageBuffer(path(path))

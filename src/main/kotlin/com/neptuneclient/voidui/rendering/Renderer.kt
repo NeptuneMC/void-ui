@@ -5,7 +5,7 @@ import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.theme.TextStyle
 import com.neptuneclient.voidui.utils.Font
-import com.neptuneclient.voidui.utils.Image
+import com.neptuneclient.voidui.utils.ImageBuffer
 import java.awt.Color
 import java.nio.ByteBuffer
 import java.nio.file.Path
@@ -74,7 +74,7 @@ interface Renderer {
      *
      * @param image The image to be deleted.
      */
-    fun unregisterImage(image: Image)
+    fun unregisterImage(image: ImageBuffer)
 
     /**
      * Renders a rectangle with the given dimensions, size, radius and color.
@@ -165,9 +165,9 @@ interface Renderer {
      * @param height The height of the image.
      * @param image An image object which contains data about the image.
      */
-    fun image(x: Float, y: Float, width: Float, height: Float, image: Image)
+    fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer)
 
-    fun image(x: Int, y: Int, width: Int, height: Int, image: Image) {
+    fun image(x: Int, y: Int, width: Int, height: Int, image: ImageBuffer) {
         image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
     }
 
@@ -181,17 +181,17 @@ interface Renderer {
      * @param radius The radius of the image's corners.
      * @param image An image object which contains data about the image.
      */
-    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: Image)
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer)
 
-    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: Image) {
+    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: ImageBuffer) {
         roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, image)
     }
 
-    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: Image) {
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: ImageBuffer) {
         roundedImage(x, y, width, height, CornerRadius.all(radius), image)
     }
 
-    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: Int, image: Image) {
+    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: Int, image: ImageBuffer) {
         roundedImage(x, y, width, height, CornerRadius.all(radius.toFloat()), image)
     }
 
