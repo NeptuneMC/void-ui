@@ -3,6 +3,8 @@ package com.neptuneclient.voidui.widgets
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.framework.Widget
+import com.neptuneclient.voidui.objects.Border
+import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.rendering.Renderer
 import java.awt.Color
@@ -12,22 +14,36 @@ import java.awt.Color
  *
  * @param child The child widget, which is inside the box.
  * @param color The background color of the box.
+ * @param cornerRadius The cornerRadius of the colored box.
+ * @param border A border for the box.
  */
 class ColoredBox(
     private val child: Widget,
-    private val color: Color
+    private val color: Color,
+    private val cornerRadius: CornerRadius = CornerRadius.zero,
+    private val border: Border = Border(0f, Color(0))
 ) : Widget() {
 
     override fun build() = child
 
     override fun createRenderObject(): RenderObject? {
-        return ColoredBoxRenderObject(offset, size, color)
+        return ColoredBoxRenderObject(offset, size, color, cornerRadius, border)
     }
 
 }
 
-private class ColoredBoxRenderObject(offset: Offset, size: Size, val color: Color) : RenderObject(offset, size) {
+private class ColoredBoxRenderObject(offset: Offset, size: Size, val color: Color, val cornerRadius: CornerRadius, val border: Border) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
-        renderer.rectangle(offset.x, offset.y, size.width, size.height, color)
+        if (cornerRadius.isEmpty())
+            renderer.rectangle(offset.x, offset.y, size.width, size.height, color)
+        else
+            renderer.roundedRectangle(offset.x, offset.y, size.width, size.height, cornerRadius, color)
+
+        if (border.width > 0f) {
+            if (cornerRadius.isEmpty())
+                renderer.rectangleFrame(offset.x, offset.y, size.width, size.height, border.width, border.color)
+            else
+                renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, cornerRadius, border.width, border.color)
+        }
     }
 }

@@ -12,6 +12,11 @@ data class CornerRadius(
 
     companion object {
         /**
+         * A corner radius object where all sides are zero.
+         */
+        val zero = CornerRadius.all(0f)
+
+        /**
          * Returns a corner radius object which is the same on all sides.
          */
         @JvmStatic

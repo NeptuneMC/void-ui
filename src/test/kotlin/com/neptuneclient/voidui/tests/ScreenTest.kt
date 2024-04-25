@@ -7,6 +7,8 @@ import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.framework.Screen
 import com.neptuneclient.voidui.framework.Widget
+import com.neptuneclient.voidui.objects.Border
+import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.objects.EdgeInsets
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
@@ -18,7 +20,9 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
     override fun build(): Widget {
         return Container(
             margin = EdgeInsets.all(100f),
-            padding = EdgeInsets.all(10f),
+            padding = EdgeInsets.all(30f),
+            cornerRadius = CornerRadius.all(10f),
+            border = Border(2f, Color.CYAN),
             color = Color.RED,
             child = Text("Hello World!"),
         )
