@@ -11,10 +11,14 @@ class Padding(
     private val child: Widget
 ) : Widget() {
 
-    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
-        child.layout(parentOffset + padding.topLeft, constraints.deflate(padding))
-        offset = parentOffset
+    override fun layout(constraints: BoxConstraints) {
+        child.layout(constraints.deflate(padding))
         size = constraints.constrain(Size(child.size.width + padding.horizontal, child.size.height + padding.vertical))
+    }
+
+    override fun postLayoutInit(parentOffset: Offset, parent: Widget) {
+        super.postLayoutInit(parentOffset + padding.topLeft, parent)  // pass in the child offset
+        offset = parentOffset                                                        // and set the correct offset for this widget
     }
 
     override fun build() = child

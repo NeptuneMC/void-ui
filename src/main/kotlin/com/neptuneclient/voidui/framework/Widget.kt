@@ -60,28 +60,30 @@ abstract class Widget {
     }
 
     /**
-     * This is responsible for setting [offset] and [size] of the widget.
+     * This is responsible for setting the [size] of the widget.
      *
-     * @param parentOffset The offset of the parent widget.
      * @param constraints The constraints of the widget's size.
      */
-    open fun layout(parentOffset: Offset, constraints: BoxConstraints) {
-        root.layout(parentOffset, constraints)
-
-        offset = parentOffset
+    open fun layout(constraints: BoxConstraints) {
+        root.layout(constraints)
         size = constraints.constrain(root.size)
     }
 
     /**
-     * Initializes things which require the [offset] and [size] properties from the widget. This method is called
-     * after the [layout] method, so the offset and size are already set.
+     * Initializes things which require the [size] property from the widget, for example its offset from the screen's initial position.
+     * This method is called after the [layout] method, so the size is already set.
+     *
+     * @param parentOffset The offset of the parent widget.
+     * @param parent The parent widget in the tree.
      */
-    open fun postLayoutInit() {
+    open fun postLayoutInit(parentOffset: Offset, parent: Widget) {
+        offset = parentOffset
+
         val renderable = createRenderObject()
         if (renderable != null)
             screen.renderStack.push(renderable)
 
-        root.postLayoutInit()
+        root.postLayoutInit(parentOffset, this)
     }
 
     /**
@@ -140,21 +142,24 @@ abstract class LeafWidget : Widget() {
     }
 
     /**
-     * This is responsible for setting [offset] and [size] of the widget.
+     * This is responsible for setting the [size] of the widget.
      *
-     * @param parentOffset The offset of the parent widget.
      * @param constraints The constraints of the widget's size.
      */
-    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
-        offset = parentOffset
+    override fun layout(constraints: BoxConstraints) {
         size = Size(constraints.minWidth, constraints.minHeight)
     }
 
     /**
-     * Initializes things which require the [offset] and [size] properties from the widget. This method is called
-     * after the [layout] method, so the offset and size are already set.
+     * Initializes things which require the [size] property from the widget, for example its offset from the screen's initial position.
+     * This method is called after the [layout] method, so the size is already set.
+     *
+     * @param parentOffset The offset of the parent widget.
+     * @param parent The parent widget in the tree.
      */
-    override fun postLayoutInit() {
+    override fun postLayoutInit(parentOffset: Offset, parent: Widget) {
+        offset = parentOffset
+
         val renderable = createRenderObject()
         if (renderable != null)
             screen.renderStack.push(renderable)

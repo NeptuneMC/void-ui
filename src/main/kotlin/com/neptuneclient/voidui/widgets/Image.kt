@@ -28,8 +28,7 @@ class Image(
         src.register(screen.voidUI.renderer)
     }
 
-    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
-        offset = parentOffset
+    override fun layout(constraints: BoxConstraints) {
         size = constraints.constrain(imageSize ?: Size(constraints.maxWidth, constraints.maxHeight))
     }
 

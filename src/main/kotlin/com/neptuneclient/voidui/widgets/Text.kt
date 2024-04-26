@@ -35,14 +35,17 @@ class Text(
         style.font.register(screen.voidUI.renderer)
     }
 
-    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
+    override fun layout(constraints: BoxConstraints) {
         val textMetrics = screen.voidUI.renderer.getTextBounds(label, style.font, style)
         size = constraints.constrain(textMetrics)
+    }
 
+    override fun postLayoutInit(parentOffset: Offset, parent: Widget) {
+        super.postLayoutInit(parentOffset, parent)
         offset = when (align) {
             TextAlign.START -> parentOffset
-            TextAlign.CENTER -> parentOffset + Offset((constraints.maxWidth - size.width) / 2F, 0F)
-            TextAlign.END -> parentOffset + Offset(constraints.maxWidth - size.width, 0F)
+            TextAlign.CENTER -> parentOffset + Offset((parent.size.width - size.width) / 2F, 0F)
+            TextAlign.END -> parentOffset + Offset(parent.size.width - size.width, 0F)
         }
     }
 

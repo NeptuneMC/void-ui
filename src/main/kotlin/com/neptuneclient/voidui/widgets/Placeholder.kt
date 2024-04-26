@@ -13,8 +13,7 @@ import java.awt.Color
  */
 class Placeholder : LeafWidget() {
 
-    override fun layout(parentOffset: Offset, constraints: BoxConstraints) {
-        offset = parentOffset
+    override fun layout(constraints: BoxConstraints) {
         size = Size(constraints.maxWidth, constraints.maxHeight)
     }
 
