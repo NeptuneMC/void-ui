@@ -22,6 +22,8 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
         return Container(
             margin = EdgeInsets.all(100f),
             border = Border(2f, Color.RED),
+            height = 600f,
+
             child = Stack(
                 children = arrayOf(
                     Image(

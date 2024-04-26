@@ -13,9 +13,11 @@ import java.awt.Color
  * @param child The child widget of the container.
  * @param color The background color of the container.
  * @param cornerRadius The corner radius of the background box.
- * @param border The border of the contianer.
+ * @param border The border of the container.
  * @param margin The margin between the parent and the border.
  * @param padding The padding between the border and the child.
+ * @param width The optional fixed width of the container.
+ * @param height The optional fixed height of the container.
  */
 class Container(
     private val child: Widget,
@@ -26,6 +28,9 @@ class Container(
 
     private val margin: EdgeInsets = EdgeInsets.zero,
     private val padding: EdgeInsets = EdgeInsets.zero,
+
+    private val width: Float? = null,
+    private val height: Float? = null,
 ) : Widget() {
 
     override fun build(): Widget {
@@ -33,9 +38,19 @@ class Container(
             padding = margin,
             child = ColoredBox(
                 color = color,
-                cornerRadius = cornerRadius,
                 border = border,
-                child = Padding(padding, child)
+                cornerRadius = cornerRadius,
+                child = if (width != null || height != null) {
+                    val w = width ?: 0f
+                    val h = height ?: 0f
+                    SizedBox(
+                        width = w,
+                        height = h,
+                        child = Padding(padding, child)
+                    )
+                } else {
+                    Padding(padding, child)
+                }
             )
         )
     }

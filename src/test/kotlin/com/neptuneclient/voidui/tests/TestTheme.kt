@@ -18,7 +18,7 @@ class TestTheme : Theme(
             letterSpacing = 0f
         ),
         image = ImageStyle(
-            cornerRadius = CornerRadius.all(10f)
+            cornerRadius = CornerRadius.zero
         )
     )
 )
