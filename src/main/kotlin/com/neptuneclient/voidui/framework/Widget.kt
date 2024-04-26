@@ -180,3 +180,54 @@ abstract class LeafWidget : Widget() {
     }
 
 }
+
+/**
+ * A special type of widget which contains multiple child widgets instead of just one.
+ */
+abstract class GroupWidget : Widget() {
+
+    /**
+     * The children of the group widget.
+     */
+    protected lateinit var roots: Array<Widget>
+
+    override fun init(screen: Screen, parent: Widget) {
+        this.voidUI = screen.voidUI
+        this.screen = screen
+
+        roots = buildGroup()
+        roots.forEach { it.init(screen, this) }
+    }
+
+    /**
+     * Since it is not clear how group widgets position their children, they need to define the layout themselves.
+     */
+    abstract override fun layout(constraints: BoxConstraints)
+
+    override fun postLayoutInit(parentOffset: Offset, parent: Widget) {
+        offset = parentOffset
+
+        val renderable = createRenderObject()
+        if (renderable != null)
+            screen.renderStack.push(renderable)
+
+        roots.forEach { it.postLayoutInit(parentOffset, this) }
+    }
+
+    override fun remove() {
+        roots.forEach { it.remove() }
+    }
+
+    /**
+     * Returns an array of widgets, which build the widget tree.
+     */
+    abstract fun buildGroup(): Array<Widget>
+
+    /**
+     * The build method from the widget is not called on group widgets.
+     */
+    override fun build(): Widget {
+        return Placeholder()
+    }
+
+}
