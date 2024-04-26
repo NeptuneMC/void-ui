@@ -91,6 +91,10 @@ interface Renderer {
         rectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), color)
     }
 
+    fun rectangle(offset: Offset, size: Size, color: Color) {
+        rectangle(offset.x, offset.y, size.width, size.height, color)
+    }
+
     /**
      * Renders a hollow rectangle with the given dimensions, size, radius and color.
      *
@@ -107,6 +111,10 @@ interface Renderer {
         rectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), thickness.toFloat(), color)
     }
 
+    fun rectangleFrame(offset: Offset, size: Size, thickness: Float, color: Color) {
+        rectangleFrame(offset.x, offset.y, size.width, size.height, thickness, color)
+    }
+
     /**
      * Renders a rounded rectangle with the given dimensions, size, radius and color.
      *
@@ -121,6 +129,10 @@ interface Renderer {
 
     fun roundedRectangle(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, color: Color) {
         roundedRectangle(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, color)
+    }
+
+    fun roundedRectangle(offset: Offset, size: Size, radius: CornerRadius, color: Color) {
+        roundedRectangle(offset.x, offset.y, size.width, size.height, radius, color)
     }
 
     fun roundedRectangle(x: Float, y: Float, width: Float, height: Float, radius: Float, color: Color) {
@@ -148,6 +160,10 @@ interface Renderer {
         roundedRectangleFrame(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, thickness.toFloat(), color)
     }
 
+    fun roundedRectangleFrame(offset: Offset, size: Size, radius: CornerRadius, thickness: Float, color: Color) {
+        roundedRectangleFrame(offset.x, offset.y, size.width, size.height, radius, thickness, color)
+    }
+
     fun roundedRectangleFrame(x: Float, y: Float, width: Float, height: Float, radius: Float, thickness: Float, color: Color) {
         roundedRectangleFrame(x, y, width, height, CornerRadius.all(radius), thickness, color)
     }
@@ -171,6 +187,10 @@ interface Renderer {
         image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
     }
 
+    fun image(offset: Offset, size: Size, image: ImageBuffer) {
+        image(offset.x, offset.y, size.width, size.height, image)
+    }
+
     /**
      * Draws an image with rounded edges to the screen.
      *
@@ -185,6 +205,10 @@ interface Renderer {
 
     fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: ImageBuffer) {
         roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, image)
+    }
+
+    fun roundedImage(offset: Offset, size: Size, radius: CornerRadius, image: ImageBuffer) {
+        roundedImage(offset.x, offset.y, size.width, size.height, radius, image)
     }
 
     fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: ImageBuffer) {
@@ -208,6 +232,10 @@ interface Renderer {
 
     fun text(x: Int, y: Int, text: String, font: Font, style: TextStyle) {
         text(x.toFloat(), y.toFloat(), text, font, style)
+    }
+
+    fun text(offset: Offset, text: String, font: Font, style: TextStyle) {
+        text(offset.x, offset.y, text, font, style)
     }
 
     /**

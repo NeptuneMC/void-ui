@@ -45,8 +45,8 @@ class Image(
 private class ImageRenderObject(offset: Offset, size: Size, private val image: ImageBuffer, private val radius: CornerRadius) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
         if (!radius.isEmpty())
-            renderer.roundedImage(offset.x, offset.y, size.width, size.height, radius, image)
+            renderer.roundedImage(offset, size, radius, image)
         else
-            renderer.image(offset.x, offset.y, size.width, size.height, image)
+            renderer.image(offset, size, image)
     }
 }

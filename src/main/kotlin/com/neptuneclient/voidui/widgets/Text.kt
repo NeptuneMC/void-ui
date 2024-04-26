@@ -56,7 +56,7 @@ class Text(
 
 private class TextRenderObject(offset: Offset, size: Size, val text: String, val style: TextStyle) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
-        renderer.text(offset.x, offset.y, text, style.font, style)
+        renderer.text(offset, text, style.font, style)
     }
 }
 

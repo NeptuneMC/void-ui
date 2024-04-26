@@ -35,15 +35,15 @@ class ColoredBox(
 private class ColoredBoxRenderObject(offset: Offset, size: Size, val color: Color, val cornerRadius: CornerRadius, val border: Border) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
         if (cornerRadius.isEmpty())
-            renderer.rectangle(offset.x, offset.y, size.width, size.height, color)
+            renderer.rectangle(offset, size, color)
         else
-            renderer.roundedRectangle(offset.x, offset.y, size.width, size.height, cornerRadius, color)
+            renderer.roundedRectangle(offset, size, cornerRadius, color)
 
         if (border.width > 0f) {
             if (cornerRadius.isEmpty())
-                renderer.rectangleFrame(offset.x, offset.y, size.width, size.height, border.width, border.color)
+                renderer.rectangleFrame(offset, size, border.width, border.color)
             else
-                renderer.roundedRectangleFrame(offset.x, offset.y, size.width, size.height, cornerRadius, border.width, border.color)
+                renderer.roundedRectangleFrame(offset, size, cornerRadius, border.width, border.color)
         }
     }
 }

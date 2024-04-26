@@ -25,7 +25,7 @@ class Placeholder : LeafWidget() {
 
 private class PlaceholderRenderObject(offset: Offset, size: Size) : RenderObject(offset, size) {
     override fun render(renderer: Renderer) {
-        renderer.rectangle(offset.x, offset.y, size.width, size.height, Color.WHITE)
-        renderer.rectangleFrame(offset.x, offset.y, size.width, size.height, 10.0F, Color.RED)
+        renderer.rectangle(offset, size, Color.WHITE)
+        renderer.rectangleFrame(offset, size, 10.0f, Color.RED)
     }
 }
