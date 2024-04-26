@@ -24,7 +24,8 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
             border = Border(2f, Color.RED),
             height = 600f,
 
-            child = Stack(
+            child = Column(
+                gap = 20f,
                 children = arrayOf(
                     Image(
                         src = image("images/hampter.png"),
