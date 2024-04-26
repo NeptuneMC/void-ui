@@ -148,6 +148,19 @@ class TestRenderer : Renderer {
             NanoVG.nvgDeleteImage(vg, image.id!!)
     }
 
+    override fun line(x: Float, y: Float, x2: Float, y2: Float, thickness: Float, color: Color) {
+        color.use {
+            NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)
+            NanoVG.nvgBeginPath(vg)
+            NanoVG.nvgMoveTo(vg, x, y)
+            NanoVG.nvgLineTo(vg, x2, y2)
+            NanoVG.nvgStrokeColor(vg, it)
+            NanoVG.nvgStrokeWidth(vg, thickness)
+            NanoVG.nvgStroke(vg)
+            NanoVG.nvgClosePath(vg)
+        }
+    }
+
     private fun Color.use(block: (NVGColor) -> Unit) {
         val nvgColor = NVGColor.calloc().use {
             NanoVG.nvgRGBAf(red / 255f, green / 255f, blue / 255f, alpha / 255f, it)

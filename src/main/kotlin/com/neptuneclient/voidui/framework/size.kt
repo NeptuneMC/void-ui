@@ -13,6 +13,11 @@ data class Size(val width: Float, val height: Float) {
 
     val isNotEmpty get() = width > 0 && height > 0
 
+    /**
+     * Converts the size object into an offset with the same values.
+     */
+    fun toOffset() = Offset(width, height)
+
     operator fun plus(other: Size) = Size(width + other.width, height + other.height)
     operator fun minus(other: Size) = Size(width - other.width, height - other.height)
     operator fun times(other: Size) = Size(width * other.width, height * other.height)
@@ -26,6 +31,11 @@ data class Offset(val x: Float, val y: Float) {
     companion object {
         val zero = Offset(0f, 0f)
     }
+
+    /**
+     * Converts the offset into a size with the same values.
+     */
+    fun toSize() = Size(x, y)
 
     operator fun plus(other: Offset) = Offset(x + other.x, y + other.y)
     operator fun minus(other: Offset) = Offset(x - other.x, y - other.y)

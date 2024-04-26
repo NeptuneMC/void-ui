@@ -77,6 +77,24 @@ interface Renderer {
     fun unregisterImage(image: ImageBuffer)
 
     /**
+     * Draws a line from one point to another.
+     *
+     * @param x The x position of the first point.
+     * @param y The y position of the first point.
+     * @param x2 The x position of the second point.
+     * @param y2 The y position of the second point.
+     */
+    fun line(x: Float, y: Float, x2: Float, y2: Float, thickness: Float, color: Color)
+
+    fun line(x: Int, y: Int, x2: Int, y2: Int, thickness: Int, color: Color) {
+        line(x.toFloat(), y.toFloat(), x2.toFloat(), y2.toFloat(), thickness.toFloat(), color)
+    }
+
+    fun line(offset: Offset, offset2: Offset, thickness: Float, color: Color) {
+        line(offset.x, offset.y, offset2.x, offset2.y, thickness, color)
+    }
+
+    /**
      * Renders a rectangle with the given dimensions, size, radius and color.
      *
      * @param x x coordinate of the rectangle
