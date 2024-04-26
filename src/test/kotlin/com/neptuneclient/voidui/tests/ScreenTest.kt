@@ -5,40 +5,40 @@ package com.neptuneclient.voidui.tests
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
+import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Screen
-import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.framework.Widget
 import com.neptuneclient.voidui.objects.Border
+import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.objects.EdgeInsets
-import com.neptuneclient.voidui.utils.image
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
 import java.awt.Color
 
+fun EpicButton(label: String): Widget {
+    return Container(
+        color = Color(140, 60, 255),
+        cornerRadius = CornerRadius.all(10f),
+        border = Border(1f, Color(255, 255, 255, 100)),
+
+        child = Padding(
+            padding = EdgeInsets.symmetric(10f, 50f),
+            child = Text(label)
+        )
+    )
+}
+
 class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
-        return Container(
-            margin = EdgeInsets.all(100f),
-            border = Border(2f, Color.RED),
-            height = 600f,
-
+        return Positioned(
+            position = Offset(300f, 300f),
             child = Column(
                 gap = 20f,
                 children = arrayOf(
-                    Image(
-                        src = image("images/hampter.png"),
-                        imageSize = Size(
-                            width = 200f,
-                            height = 200f
-                        )
-                    ),
-                    Container(
-                        color = Color.GREEN,
-                        padding = EdgeInsets.symmetric(horizontal = 120f),
-                        child = Text("Hello World!")
-                    )
+                    EpicButton("Singleplayer"),
+                    EpicButton("Multiplayer")
                 )
             )
         )
