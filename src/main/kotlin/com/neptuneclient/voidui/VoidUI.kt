@@ -15,10 +15,10 @@ class VoidUI
 /**
  * @param renderer The renderer used to draw all components in the screens. Void does not come with a renderer implementation
  * out of the box so the user has to create his own implementation.
- *
  * @param theme The theme used to style UI.
+ * @param settings A settings object which can modify the behaviour of the engine. The default settings can be viewed at [Settings].
  */
-constructor(val renderer: Renderer, val theme: Theme) {
+constructor(val renderer: Renderer, val theme: Theme, val settings: Settings = Settings()) {
 
     /**
      * The event handler which handles all events in the instance.

@@ -2,6 +2,8 @@ package com.neptuneclient.voidui.framework
 
 import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.rendering.RenderStack
+import com.neptuneclient.voidui.widgets.Align
+import com.neptuneclient.voidui.widgets.Alignment
 
 /**
  * A screen which can render widgets.
@@ -25,7 +27,10 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
      * **Needs to be called by the user.**
      */
     fun init() {
-        root = build()
+        root = if (voidUI.settings.centeredScreen)
+            Align(build(), Alignment.center)
+        else
+            build()
         root.init(this, this)
 
         size = Size(width.toFloat(), height.toFloat())
