@@ -41,11 +41,9 @@ class Container(
                 border = border,
                 cornerRadius = cornerRadius,
                 child = if (width != null || height != null) {
-                    val w = width ?: 0f
-                    val h = height ?: 0f
                     SizedBox(
-                        width = w,
-                        height = h,
+                        width = width,
+                        height = height,
                         child = Padding(padding, child)
                     )
                 } else {

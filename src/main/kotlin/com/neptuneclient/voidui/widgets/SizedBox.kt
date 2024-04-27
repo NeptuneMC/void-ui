@@ -3,7 +3,6 @@ package com.neptuneclient.voidui.widgets
 import com.neptuneclient.voidui.framework.BoxConstraints
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.framework.Widget
-import kotlin.math.max
 
 /**
  * A widget which has a fixed size.
@@ -14,14 +13,20 @@ import kotlin.math.max
  */
 class SizedBox(
     private val child: Widget,
-    private val width: Float = 0f,
-    private val height: Float = 0f,
+    private val width: Float? = null,
+    private val height: Float? = null,
 ) : Widget() {
 
     override fun layout(constraints: BoxConstraints) {
-        child.layout(constraints)
+        val childConstraints = BoxConstraints(
+            constraints.minWidth,
+            width ?: constraints.maxWidth,
+            constraints.minHeight,
+            height ?: constraints.maxHeight
+        )
+        child.layout(childConstraints)
 
-        val s = Size(max(width, child.size.width), max(height, child.size.height))
+        val s = Size(width ?: child.size.width, height ?: child.size.height)
         size = constraints.constrain(s)
     }
 
