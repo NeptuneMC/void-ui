@@ -16,7 +16,7 @@ class Column(private val children: Array<Widget>, private val gap: Float = 0f) :
         var h = gap * (children.size - 1)
         children.forEach {
             it.layout(constraints)
-            w = max(h, it.size.width)
+            w = max(w, it.size.width)
             h += it.size.height
         }
         size = constraints.constrain(Size(w, h))
