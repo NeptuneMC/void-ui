@@ -27,10 +27,11 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
      * **Needs to be called by the user.**
      */
     fun init() {
+        val template = voidUI.template.build(this.build())
         root = if (voidUI.settings.centeredScreen)
-            Align(build(), Alignment.center)
+            Align(template, Alignment.center)
         else
-            build()
+            template
         root.init(this, this)
 
         size = Size(width.toFloat(), height.toFloat())

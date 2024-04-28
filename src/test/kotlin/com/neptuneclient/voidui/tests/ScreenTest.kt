@@ -7,10 +7,12 @@ import com.neptuneclient.voidui.VoidUI
 import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.event.MouseReleasedEvent
 import com.neptuneclient.voidui.framework.Screen
+import com.neptuneclient.voidui.framework.Template
 import com.neptuneclient.voidui.framework.Widget
 import com.neptuneclient.voidui.objects.Border
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.objects.EdgeInsets
+import com.neptuneclient.voidui.utils.image
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
@@ -51,7 +53,17 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
 }
 
-val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(debugWidgetSize = true))
+private val template = Template { slot ->
+    Stack(
+        children = arrayOf(
+            Image(
+                src = image("images/hampter.png")
+            ),
+            Center(slot)
+        )
+    )
+}
+val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false), template)
 
 fun main() {
     val screen = TestScreen(voidUI)
