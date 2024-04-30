@@ -12,6 +12,7 @@ import com.neptuneclient.voidui.framework.Widget
 import com.neptuneclient.voidui.objects.Border
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.objects.EdgeInsets
+import com.neptuneclient.voidui.objects.TextAlign
 import com.neptuneclient.voidui.utils.image
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
@@ -20,7 +21,7 @@ import java.awt.Color
 
 fun EpicButton(label: String): Widget {
     return Container(
-        color = Color(140, 60, 255),
+        color = Color(69, 99, 255),
         cornerRadius = CornerRadius.all(10f),
         border = Border(1f, Color(255, 255, 255, 100)),
         width = 240f,
@@ -37,13 +38,21 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
         return Container(
-            color = Color(16, 14, 20),
+            color = Color(14, 15, 20),
             cornerRadius = CornerRadius.all(10f),
             padding = EdgeInsets.all(20f),
 
             child = Column(
                 gap = 20f,
+                crossAxisAlignment = CrossAxisAlignment.STRETCH,
                 children = arrayOf(
+                    Container(
+                        color = Color.RED,
+                        child = Text(
+                            label = "Neptune popo main menu",
+                            align = TextAlign.CENTER
+                        )
+                    ),
                     EpicButton("Singleplayer"),
                     EpicButton("Multiplayer")
                 )
