@@ -95,4 +95,4 @@ appreciate all support by the community.
 ---
 **Proper documentation will be there eventually**
 
-[Top of the page](#voidui)
+[Top of the page](https://github.com/NeptuneMC/void-ui)
