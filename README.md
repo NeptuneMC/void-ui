@@ -3,71 +3,96 @@
 # VoidUI
 ⚠️ Work In Progress ⚠️
 
-A declarative and themable UI library with easy integration into Minecraft.
-It is used in Neptune client and will be used to create extensions for Neptune in the future.
-The way we are designing VoidUI is that we want a developer experience similar to [Flutter](https://flutter.dev/) but
-with pure Kotlin so the UI can be integrated easily with a Minecraft Java mod.\
-The code snipped below shows how an implementation of VoidUI could look like:
+A declarative and themeable UI framework designed to create reactive user interfaces
+in Minecraft easily. The main intention of the project is to be used in Neptune client
+as well as a developer tool for the Neptune Add-On API in the future.
 
+VoidUI tries to mimic the DSL of [Flutter](https://flutter.dev/) in some ways, but
+it adds its own _flavour_ in some places.
+
+### Usage
+Unlike Flutter, VoidUI is structured into screens, which contain widgets. This is
+done to make the integration into Minecraft more accessible, since Minecraft is
+structured into screens and UI components as well. It also does not offer a way
+to display these screens by default but more on that in the
+[Integration](#integration) section.
+
+All of your code in VoidUI is written in Kotlin. An implementation of a basic
+screen could look like this:
 ```kotlin
-class UICounter : ReactiveComponent {
+class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
-  // define a variable which rebuilds the component on change
-  var count by state(0)
+    // build the screen
+    override fun build(): Widget {
+        return Container(
+            color = Color.WHITE,
+            cornerRadius = CornerRadius.all(10f),
+            padding = EdgeInsets.all(20f),
 
-  override fun build(): Component {
-    return Column(
-      width = 215.px,
-      gap = 3.rem,
-      children = arrayOf(
-        Column(
-          gap = 1.rem,
-          children = arrayOf(
-            Title("Counter"),
-            Text("Click the button below to count up."),
-          )
-        ),
-        ColorizedText(
-          text = mapOf(
-            "Current Counter: " to Color.WHITE,
-            "$count" to Color.PRIMARY
-          )
-        ),
-        Button(
-          label = "Count Up",
-          onClick = { event ->
-            count++
-          }
+            child = Column(
+                gap = 20f,
+                crossAxisAlignment = CrossAxisAlignment.STRETCH,
+                children = arrayOf(
+                    Button("Singleplayer"),
+                    Button("Multiplayer")
+                )
+            )
         )
-      )
-    )
-  }
+    }
 
 }
 ```
 
-This is what the above code could look like:\
-![ui](readme/ui-example.png)
+As you can see when creating an instance of this screen, you need to pass in an object
+of the ``VoidUI`` class. To do that, you need to first have a renderer implemented
+(see [Integration](#integration) again for that) and a theme. It could look something
+like this:
+```kotlin
+val voidUI = VoidUI(
+  renderer = MyRendererImpl(),
+  theme = MyTheme(),
+  
+  // these are optional arguments
+  settings = Settings(/*assign custom settings in the constructor*/),
+  template = Template { slot ->
+    /*build a custom widget tree, that wraps every screen you create*/
+    slot
+  }
+)
+```
 
-### Structure
-The UI components in Void are seperated into three categories:
+### Integration
+When using VoidUI outside of Neptune client, you will need to integrate the library
+into your project first. This means that events and methods from the library need
+to be called or implemented in your codebase so, that VoidUI can perform actions
+such as rendering, or detecting mouse clicks.
 
-- **Elements**\
-  Elements are the core components of Void, which are sometimes reactive,
-  like a dropdown menu or a checkbox, and sometimes static, like a heading
-  or an image. They can not be created by the user of the library.
-- **Static Components**\
-  Components are small trees of other components and elements, which can be useful
-  if the user needs to reuse parts of the ui multiple times. Static components
-  can not have state and can't change on certain events.
-- **Reactive Components**\
-  Reactive components are like static components, but they can change their state
-  and display something else based on an event. Reactive components are similar
-  to how components work in JavaScript frameworks like React.
+While this offers a great variety of use cases for VoidUI, it can be a bit
+overwhelming when doing it for the first time, so this is a list of all the things
+you need to do, before you will be able to use all features of the library:
 
-**Screens**\
-There are also screens in Void which are like static components but wrap their
-children with a centered layout which covers the whole display. Screens can also
-be displayed to the user.\
-The way Void is structured with separating components and screens is part of what
-makes it easy to integrate into Minecraft.
+- **Implement a renderer**\
+  The library does not offer a way to render things to the screen by default,
+  so you will have to implement all the methods for rendering by yourself.
+  Alternatively you can look at the [example mod]() for a renderer which works for Minecraft.
+
+- **Create a theme**\
+  The theme is what tells VoidUI how to style certain components of the UI.
+  Again you can check out the example when you feel lost or don't want to write all
+  these settings on your own.
+
+- **Call extern events**\
+  VoidUI uses an event system to handle actions like mouse clicks or keyboard presses.
+  Because it does not implement handlers for this by default events like
+  ``MouseClickedEvent`` and ``KeyPressedEvent`` need to be called by the user at
+  the appropriate location in the code base.
+
+### Contribution
+If you find a bug while using VoidUI or you think it is missing a key feature,
+please feel free to open a pull request and contribute to the project. We
+appreciate all support by the community.
+
+---
+**Proper documentation will be there eventually**
+
+[Top of the page](#voidui)
