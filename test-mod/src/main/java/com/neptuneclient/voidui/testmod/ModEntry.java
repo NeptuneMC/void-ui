@@ -18,26 +18,8 @@ public class ModEntry implements ClientModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("TestMod");
 
-    public static VoidUI voidUI;
-
     @Override
     public void onInitializeClient() {
-        ClientLifecycleEvents.CLIENT_STARTED.register((mc) -> {
-            voidUI = new VoidUI(new RendererImpl(), new TestTheme());
-        });
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(literal("examplemod").executes(context -> {
-                try {
-                    MinecraftClient.getInstance().submit(() -> {
-                        MinecraftClient.getInstance().setScreen(new ScreenBridge(new TestScreen()));
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return 1;
-            }));
-        });
         LOGGER.info("VoidUI is best!");
     }
 
