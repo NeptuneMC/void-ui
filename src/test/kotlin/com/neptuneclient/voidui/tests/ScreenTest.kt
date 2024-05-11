@@ -34,28 +34,39 @@ fun EpicButton(label: String): Widget {
     )
 }
 
+fun Menu(): Widget {
+    return Container(
+        color = Color(14, 15, 20),
+        cornerRadius = CornerRadius.all(10f),
+        padding = EdgeInsets.all(20f),
+
+        child = Column(
+            gap = 20f,
+            crossAxisAlignment = CrossAxisAlignment.STRETCH,
+            children = arrayOf(
+                Container(
+                    color = Color.RED,
+                    child = Text(
+                        label = "Neptune popo main menu",
+                        align = TextAlign.CENTER
+                    )
+                ),
+                EpicButton("Singleplayer"),
+                EpicButton("Multiplayer")
+            )
+        )
+    )
+}
+
 class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
 
     override fun build(): Widget {
         return Container(
-            color = Color(14, 15, 20),
-            cornerRadius = CornerRadius.all(10f),
-            padding = EdgeInsets.all(20f),
-
-            child = Column(
-                gap = 20f,
-                crossAxisAlignment = CrossAxisAlignment.STRETCH,
-                children = arrayOf(
-                    Container(
-                        color = Color.RED,
-                        child = Text(
-                            label = "Neptune popo main menu",
-                            align = TextAlign.CENTER
-                        )
-                    ),
-                    EpicButton("Singleplayer"),
-                    EpicButton("Multiplayer")
-                )
+            margin = EdgeInsets.all(10f),
+            child = Image(
+                src = image("images/hampter.png"),
+                fit = ImageFit.COVER,
+                cornerRadius = CornerRadius.all(10f)
             )
         )
     }
@@ -66,13 +77,14 @@ private val template = Template { slot ->
     Stack(
         children = arrayOf(
             Image(
-                src = image("images/hampter.png")
+                src = image("images/hampter2.png"),
+                fit = ImageFit.STRETCH
             ),
             Center(slot)
         )
     )
 }
-val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false), template)
+val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false), /*template*/)
 
 fun main() {
     val screen = TestScreen(voidUI)

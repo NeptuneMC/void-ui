@@ -237,11 +237,11 @@ class TestRenderer : Renderer {
         }
     }
 
-    override fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer) {
+    override fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer, imageOffset: Offset) {
         if (image.id == null)
             throw IllegalStateException("Image was not registered properly!")
 
-        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
+        val paint = NanoVG.nvgImagePattern(vg, x + imageOffset.x, y + imageOffset.y, image.size.width, image.size.height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
         NanoVG.nvgBeginPath(vg)
         NanoVG.nvgRect(vg, x, y, width, height)
         NanoVG.nvgFillPaint(vg, paint)
@@ -250,11 +250,11 @@ class TestRenderer : Renderer {
         paint.free()
     }
 
-    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer) {
+    override fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer, imageOffset: Offset) {
         if (image.id == null)
             throw IllegalStateException("Image was not registered properly!")
 
-        val paint = NanoVG.nvgImagePattern(vg, x, y, width, height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
+        val paint = NanoVG.nvgImagePattern(vg, x + imageOffset.x, y + imageOffset.y, image.size.width, image.size.height, 0f, image.id!!, 1.0F, NVGPaint.calloc())
         NanoVG.nvgBeginPath(vg)
         NanoVG.nvgRoundedRectVarying(vg, x, y, width, height, radius.topLeft, radius.topRight, radius.bottomRight, radius.bottomLeft)
         NanoVG.nvgFillPaint(vg, paint)

@@ -221,15 +221,16 @@ interface Renderer {
      * @param width The width of the image.
      * @param height The height of the image.
      * @param image An image object which contains data about the image.
+     * @param imageOffset The offset at which the image will be placed relative to [x] and [y].
      */
-    fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer)
+    fun image(x: Float, y: Float, width: Float, height: Float, image: ImageBuffer, imageOffset: Offset = Offset.zero)
 
-    fun image(x: Int, y: Int, width: Int, height: Int, image: ImageBuffer) {
-        image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image)
+    fun image(x: Int, y: Int, width: Int, height: Int, image: ImageBuffer, imageOffset: Offset = Offset.zero) {
+        image(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), image, imageOffset)
     }
 
-    fun image(offset: Offset, size: Size, image: ImageBuffer) {
-        image(offset.x, offset.y, size.width, size.height, image)
+    fun image(offset: Offset, size: Size, image: ImageBuffer, imageOffset: Offset = Offset.zero) {
+        image(offset.x, offset.y, size.width, size.height, image, imageOffset)
     }
 
     /**
@@ -241,19 +242,20 @@ interface Renderer {
      * @param height The height of the image.
      * @param radius The radius of the image's corners.
      * @param image An image object which contains data about the image.
+     * @param imageOffset The offset at which the image will be placed relative to [x] and [y].
      */
-    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer)
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: CornerRadius, image: ImageBuffer, imageOffset: Offset = Offset.zero)
 
-    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: ImageBuffer) {
-        roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, image)
+    fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: CornerRadius, image: ImageBuffer, imageOffset: Offset = Offset.zero) {
+        roundedImage(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat(), radius, image, imageOffset)
     }
 
-    fun roundedImage(offset: Offset, size: Size, radius: CornerRadius, image: ImageBuffer) {
-        roundedImage(offset.x, offset.y, size.width, size.height, radius, image)
+    fun roundedImage(offset: Offset, size: Size, radius: CornerRadius, image: ImageBuffer, imageOffset: Offset = Offset.zero) {
+        roundedImage(offset.x, offset.y, size.width, size.height, radius, image, imageOffset)
     }
 
-    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: ImageBuffer) {
-        roundedImage(x, y, width, height, CornerRadius.all(radius), image)
+    fun roundedImage(x: Float, y: Float, width: Float, height: Float, radius: Float, image: ImageBuffer, imageOffset: Offset = Offset.zero) {
+        roundedImage(x, y, width, height, CornerRadius.all(radius), image, imageOffset)
     }
 
     fun roundedImage(x: Int, y: Int, width: Int, height: Int, radius: Int, image: ImageBuffer) {
