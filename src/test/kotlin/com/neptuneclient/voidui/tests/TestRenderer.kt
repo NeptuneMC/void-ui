@@ -148,6 +148,14 @@ class TestRenderer : Renderer {
             NanoVG.nvgDeleteImage(vg, image.id!!)
     }
 
+    override fun scissor(x: Float, y: Float, width: Float, height: Float) {
+        NanoVG.nvgScissor(vg, x, y, width, height)
+    }
+
+    override fun disableScissor() {
+        NanoVG.nvgResetScissor(vg)
+    }
+
     override fun line(x: Float, y: Float, x2: Float, y2: Float, thickness: Float, color: Color) {
         color.use {
             NanoVG.nvgRGBAf(color.red / 255f, color.green / 255f, color.blue / 255f, color.alpha / 255f, it)

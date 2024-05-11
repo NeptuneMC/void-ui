@@ -77,6 +77,29 @@ interface Renderer {
     fun unregisterImage(image: ImageBuffer)
 
     /**
+     * Select a scissor box.
+     *
+     * @param x The x position of the scissor box.
+     * @param y The y position of the scissor box.
+     * @param width The width of the scissor box.
+     * @param height The height of the scissor box.
+     */
+    fun scissor(x: Float, y: Float, width: Float, height: Float)
+
+    fun scissor(x: Int, y: Int, width: Int, height: Int) {
+        scissor(x.toFloat(), y.toFloat(), width.toFloat(), height.toFloat())
+    }
+
+    fun scissor(offset: Offset, size: Size) {
+        scissor(offset.x, offset.y, size.width, size.height)
+    }
+
+    /**
+     * Deselects the scissors box.
+     */
+    fun disableScissor()
+
+    /**
      * Draws a line from one point to another.
      *
      * @param x The x position of the first point.
