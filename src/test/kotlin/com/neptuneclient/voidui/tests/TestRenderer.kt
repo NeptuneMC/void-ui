@@ -289,4 +289,21 @@ class TestRenderer : Renderer {
         NanoVG.nvgTextBounds(vg, 0f, 0f, text, buffer)
         return Size(buffer[2] - buffer[0], buffer[3] - buffer[1])
     }
+
+    override fun compileShaderProgram(vertexSource: String, fragmentSource: String): Int {
+        return 0
+    }
+
+    override fun deleteShaderProgram(program: Int) {
+    }
+
+    override fun useShaderProgram(program: Int) {
+    }
+
+    override fun setUniform(program: Int, name: String, value: Number) {
+    }
+
+    override fun setUniform(program: Int, name: String, value: Array<out Number>) {
+    }
+
 }

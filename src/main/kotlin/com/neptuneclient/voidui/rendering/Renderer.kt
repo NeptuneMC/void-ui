@@ -3,6 +3,7 @@ package com.neptuneclient.voidui.rendering
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius
+import com.neptuneclient.voidui.shaders.ShaderProgram
 import com.neptuneclient.voidui.theme.TextStyle
 import com.neptuneclient.voidui.utils.Font
 import com.neptuneclient.voidui.utils.ImageBuffer
@@ -291,5 +292,28 @@ interface Renderer {
      * @return the width and height of the text
      */
     fun getTextBounds(text: String, font: Font, style: TextStyle): Size
+
+    /**
+     * Compiles a shader program from the provided vertex and fragment shader.
+     *
+     * @param vertexSource The source code of the vertex shader.
+     * @param fragmentSource The source code of the fragment shader.
+     *
+     * @return The pointer to the shader program.
+     */
+    fun compileShaderProgram(vertexSource: String, fragmentSource: String): Int
+
+    /**
+     * Deletes the given shader program.
+     *
+     * @param program The pointer to the shader program.
+     */
+    fun deleteShaderProgram(program: Int)
+
+    fun useShaderProgram(program: Int)
+
+    fun setUniform(program: Int, name: String, value: Number)
+
+    fun setUniform(program: Int, name: String, value: Array<out Number>)
 
 }

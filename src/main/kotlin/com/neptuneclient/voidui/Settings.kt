@@ -5,6 +5,10 @@ package com.neptuneclient.voidui
  */
 data class Settings(
     /**
+     * Whether shaders can be used by the developer to implement custom rendering behaviour.
+     */
+    val useShaders: Boolean = false,
+    /**
      * Decides whether the widgets in a screen should be centered on the screen automatically.
      * When this option off the widgets will be placed in the top left corner of the screen.
      */

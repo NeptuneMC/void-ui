@@ -13,7 +13,10 @@ import com.neptuneclient.voidui.objects.Border
 import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.objects.EdgeInsets
 import com.neptuneclient.voidui.objects.TextAlign
+import com.neptuneclient.voidui.shaders.ShaderProgram
+import com.neptuneclient.voidui.shaders.vec3
 import com.neptuneclient.voidui.utils.image
+import com.neptuneclient.voidui.utils.path
 import com.neptuneclient.voidui.widgets.*
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.lwjgl.glfw.GLFW
@@ -63,10 +66,23 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
     override fun build(): Widget {
         return Container(
             margin = EdgeInsets.all(10f),
-            child = Image(
-                src = image("images/hampter.png"),
-                fit = ImageFit.COVER,
-                cornerRadius = CornerRadius.all(10f)
+            child = Stack(
+                children = arrayOf(
+                    ShaderBox(
+                        src = ShaderProgram(path("shaders/vertex.vert"), path("shaders/test.frag")),
+                        uniforms = mapOf(
+                            "testColor" to vec3(1.0f, 0.5f, 0.0f)
+                        )
+                    ),
+                    Center(
+                        Container(
+                            padding = EdgeInsets.all(20f),
+                            color = Color(20, 24, 35),
+                            cornerRadius = CornerRadius.all(10f),
+                            child = Text("Hello World")
+                        )
+                    )
+                )
             )
         )
     }
@@ -84,7 +100,7 @@ private val template = Template { slot ->
         )
     )
 }
-val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false), /*template*/)
+val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false, useShaders = true), /*template*/)
 
 fun main() {
     val screen = TestScreen(voidUI)
