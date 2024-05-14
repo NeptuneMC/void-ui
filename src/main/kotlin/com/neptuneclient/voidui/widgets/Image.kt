@@ -5,6 +5,7 @@ import com.neptuneclient.voidui.objects.CornerRadius
 import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.utils.ImageBuffer
+import kotlin.math.min
 
 /**
  * A widget which renders an image to the screen.
@@ -37,6 +38,7 @@ class Image(
 
     override fun layout(constraints: BoxConstraints) {
         if (imageSize != null) {
+            src.size = imageSize
             size = constraints.constrain(imageSize)
             return
         }
@@ -81,12 +83,30 @@ class Image(
                 val overflow = src.size.height - size.height
                 Offset(0f, -overflow / 2f)
             }
+        } else if (fit == ImageFit.CONTAIN) {
+            imageOffset = if (src.size.width > src.size.height) {
+                val overflow = size.height - src.size.height
+                Offset(0f, overflow / 2f)
+            } else {
+                val overflow = size.width - src.size.width
+                Offset(overflow / 2f, 0f)
+            }
         }
         super.postLayoutInit(parentOffset, parent)
     }
 
     override fun createRenderObject(): RenderObject? {
-        return ImageRenderObject(offset, size, src, radius, imageOffset)
+        val s = Size(
+            width = min(src.size.width, size.width),
+            height = min(src.size.height, size.height)
+        )
+        return ImageRenderObject(
+            if (fit == ImageFit.CONTAIN) offset + imageOffset else offset,
+            s,
+            src,
+            radius,
+            if (fit == ImageFit.COVER) imageOffset else Offset.zero
+        )
     }
 
     override fun remove() {
