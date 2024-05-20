@@ -14,7 +14,7 @@ import java.awt.Color
 class Placeholder : LeafWidget() {
 
     override fun layout(constraints: BoxConstraints) {
-        size = Size(constraints.maxWidth, constraints.maxHeight)
+        size = constraints.biggest
     }
 
     override fun createRenderObject(): RenderObject? {

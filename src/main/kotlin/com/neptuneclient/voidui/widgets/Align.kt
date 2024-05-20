@@ -19,7 +19,7 @@ class Align(
 
     override fun layout(constraints: BoxConstraints) {
         child.layout(constraints)
-        size = Size(constraints.maxWidth, constraints.maxHeight)
+        size = constraints.biggest
     }
 
     override fun postLayoutInit(parentOffset: Offset, parent: Widget) {

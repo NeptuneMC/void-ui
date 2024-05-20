@@ -22,7 +22,7 @@ class ShaderBox(
     }
 
     override fun layout(constraints: BoxConstraints) {
-        val s = boxSize ?: Size(constraints.maxWidth, constraints.maxHeight)
+        val s = boxSize ?: constraints.biggest
         size = constraints.constrain(s)
     }
 

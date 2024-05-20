@@ -147,7 +147,7 @@ abstract class LeafWidget : Widget() {
      * @param constraints The constraints of the widget's size.
      */
     override fun layout(constraints: BoxConstraints) {
-        size = Size(constraints.minWidth, constraints.minHeight)
+        size = constraints.smallest
     }
 
     /**
