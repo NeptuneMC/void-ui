@@ -13,7 +13,7 @@ import java.awt.Color
 
 class MainMenu(voidUI: VoidUI) : Screen(voidUI) {
 
-    private var counter by stateOf(0)
+    private var counter by state(0)
 
     init {
         registerEventAction(MouseClickedEvent::class) {

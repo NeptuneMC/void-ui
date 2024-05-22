@@ -115,7 +115,7 @@ abstract class Widget {
     /**
      * Defines a stateful variable, which rebuilds the widget once it changes its value.
      */
-    fun <T> stateOf(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->
+    fun <T> state(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->
         // temp
         screen.remove()
         screen.init()
