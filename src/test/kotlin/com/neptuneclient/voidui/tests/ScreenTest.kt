@@ -103,7 +103,7 @@ private val template = Template { slot ->
 val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false, useShaders = true), /*template*/)
 
 fun main() {
-    val screen = TestScreen(voidUI)
+    val screen = MainMenu(voidUI)
     screen.init()
 
     if (voidUI.renderer is TestRenderer) {
