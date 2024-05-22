@@ -100,6 +100,19 @@ abstract class Widget {
     }
 
     /**
+     * Checks if the component is hovered by the mouse.
+     */
+    fun hovered(): Boolean {
+        if (!this::screen.isInitialized) return false
+
+        val mousePos = voidUI.renderer.mousePosition()
+        return mousePos.x >= offset.x &&
+                mousePos.y >= offset.y &&
+                mousePos.x < offset.x + size.width &&
+                mousePos.y < offset.y + size.height
+    }
+
+    /**
      * Defines a stateful variable, which rebuilds the widget once it changes its value.
      */
     fun <T> stateOf(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->

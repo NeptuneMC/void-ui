@@ -85,7 +85,9 @@ you need to do, before you will be able to use all features of the library:
   VoidUI uses an event system to handle actions like mouse clicks or keyboard presses.
   Because it does not implement handlers for this by default events like
   ``MouseClickedEvent`` and ``KeyPressedEvent`` need to be called by the user at
-  the appropriate location in the code base.
+  the appropriate location in the code base. Check out
+  [events.kt](src/main/kotlin/com/neptuneclient/voidui/event/events/events.kt)
+  to see a list of all events you need to implement.
 
 ### Contribution
 If you find a bug while using VoidUI or you think it is missing a key feature,

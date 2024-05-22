@@ -15,7 +15,7 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
     /**
      * The render stack used to render the screen.
      */
-    val renderStack = RenderStack(voidUI.renderer)
+    val renderStack = RenderStack(voidUI)
 
     init {
         this.voidUI = voidUI

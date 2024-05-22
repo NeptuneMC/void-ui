@@ -4,8 +4,8 @@ package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.Settings
 import com.neptuneclient.voidui.VoidUI
-import com.neptuneclient.voidui.event.MouseClickedEvent
-import com.neptuneclient.voidui.event.MouseReleasedEvent
+import com.neptuneclient.voidui.event.events.MouseClickedEvent
+import com.neptuneclient.voidui.event.events.MouseReleasedEvent
 import com.neptuneclient.voidui.framework.Screen
 import com.neptuneclient.voidui.framework.Template
 import com.neptuneclient.voidui.framework.Widget

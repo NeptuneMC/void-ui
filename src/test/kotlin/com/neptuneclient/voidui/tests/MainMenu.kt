@@ -1,7 +1,7 @@
 package com.neptuneclient.voidui.tests
 
 import com.neptuneclient.voidui.VoidUI
-import com.neptuneclient.voidui.event.MouseClickedEvent
+import com.neptuneclient.voidui.event.events.MouseClickedEvent
 import com.neptuneclient.voidui.framework.Screen
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.framework.Widget

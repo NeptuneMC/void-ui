@@ -1,6 +1,5 @@
 package com.neptuneclient.voidui.tests
 
-import com.neptuneclient.voidui.event.MouseClickedEvent
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
 import com.neptuneclient.voidui.objects.CornerRadius

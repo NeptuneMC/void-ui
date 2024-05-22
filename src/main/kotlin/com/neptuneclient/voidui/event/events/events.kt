@@ -1,4 +1,6 @@
-package com.neptuneclient.voidui.event
+package com.neptuneclient.voidui.event.events
+
+import com.neptuneclient.voidui.event.Event
 
 /**
  * Fired once a mouse button is pressed down.

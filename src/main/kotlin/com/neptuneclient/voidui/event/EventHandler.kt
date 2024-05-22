@@ -1,5 +1,6 @@
 package com.neptuneclient.voidui.event
 
+import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.reflect.KClass
 
 /**
@@ -12,7 +13,7 @@ class EventHandler {
      *
      * See [ActionRegistry] for more info.
      */
-    private val actions = mutableListOf<ActionRegistry>()
+    private val actions = CopyOnWriteArrayList<ActionRegistry>()
 
     /**
      * Register a new action.
