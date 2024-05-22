@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory
  */
 class VoidUI(
     val renderer: Renderer,
-    val theme: Theme,
+    var theme: Theme,
     val settings: Settings = Settings(),
     val template: Template = Template { it }
 ) {

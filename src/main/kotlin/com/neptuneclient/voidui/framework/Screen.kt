@@ -18,7 +18,7 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
     val renderStack = RenderStack(voidUI.renderer)
 
     init {
-        super.voidUI = voidUI
+        this.voidUI = voidUI
     }
 
     /**
@@ -27,6 +27,8 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
      * **Needs to be called by the user.**
      */
     fun init() {
+        screen = this
+
         val template = voidUI.template.build(this.build())
         root = if (voidUI.settings.centeredScreen)
             Align(template, Alignment.center)

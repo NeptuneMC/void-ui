@@ -106,9 +106,14 @@ fun main() {
     val screen = TestScreen(voidUI)
     screen.init()
 
-    val renderer = voidUI.renderer as TestRenderer
-    while (!GLFW.glfwWindowShouldClose(renderer.window)) {
-        screen.render()
+    if (voidUI.renderer is TestRenderer) {
+        val renderer = voidUI.renderer as TestRenderer
+        while (!GLFW.glfwWindowShouldClose(renderer.window)) {
+            screen.render()
+        }
+    } else {
+        while (true)
+            screen.render()
     }
 
     screen.remove()
