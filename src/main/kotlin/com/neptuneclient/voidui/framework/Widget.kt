@@ -35,8 +35,10 @@ abstract class Widget {
 
     /**
      * The child widget defined in [build].
+     *
+     * For [LeafWidget] this property will always be null.
      */
-    protected lateinit var root: Widget
+    protected var root: Widget? = null
 
     /**
      * Builds the widgets children tree.
@@ -56,7 +58,7 @@ abstract class Widget {
         this.screen = screen
 
         root = build()
-        root.init(screen, this)
+        root!!.init(screen, this)
     }
 
     /**
@@ -65,8 +67,8 @@ abstract class Widget {
      * @param constraints The constraints of the widget's size.
      */
     open fun layout(constraints: BoxConstraints) {
-        root.layout(constraints)
-        size = constraints.constrain(root.size)
+        root!!.layout(constraints)
+        size = constraints.constrain(root!!.size)
     }
 
     /**
@@ -83,7 +85,7 @@ abstract class Widget {
         if (renderable != null)
             screen.renderStack.push(renderable)
 
-        root.postLayoutInit(parentOffset, this)
+        root!!.postLayoutInit(parentOffset, this)
     }
 
     /**
@@ -95,7 +97,7 @@ abstract class Widget {
      * Cleans up code from the widget when it is removed from the tree.
      */
     open fun remove() {
-        root.remove()
+        root!!.remove()
         voidUI.eventHandler.unregister(this)
     }
 

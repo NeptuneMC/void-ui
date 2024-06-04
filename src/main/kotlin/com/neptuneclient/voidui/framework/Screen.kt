@@ -34,11 +34,11 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
             Align(template, Alignment.center)
         else
             template
-        root.init(this, this)
+        root!!.init(this, this)
 
         size = Size(width.toFloat(), height.toFloat())
         layout(BoxConstraints.loose(size))
-        root.postLayoutInit(offset, this)
+        root!!.postLayoutInit(offset, this)
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class Screen(voidUI: VoidUI) : Widget() {
      * **Needs to be called by the user.**
      */
     override fun remove() {
-        root.remove()
+        root!!.remove()
         renderStack.clear()
     }
 
