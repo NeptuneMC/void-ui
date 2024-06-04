@@ -100,7 +100,7 @@ private val template = Template { slot ->
         )
     )
 }
-val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = false, useShaders = true), /*template*/)
+val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = true, useShaders = true), /*template*/)
 
 fun main() {
     val screen = MainMenu(voidUI)
