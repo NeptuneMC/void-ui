@@ -1,5 +1,6 @@
 package com.neptuneclient.voidui.tests
 
+import com.neptuneclient.voidui.event.events.MouseMovementEvent
 import com.neptuneclient.voidui.rendering.Renderer
 import com.neptuneclient.voidui.framework.Offset
 import com.neptuneclient.voidui.framework.Size
@@ -67,6 +68,10 @@ class TestRenderer : Renderer {
         GLFW.glfwSetMouseButtonCallback(window) { _, button, action, _ ->
             val (x, y) = mousePosition()
             mouseEvent(button, action, x, y)
+        }
+
+        GLFW.glfwSetCursorPosCallback(window) { _, x, y ->
+            MouseMovementEvent(x.toFloat(), y.toFloat()).call(voidUI)
         }
 
         MemoryStack.stackPush().use { stack ->
