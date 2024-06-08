@@ -15,6 +15,7 @@ import com.neptuneclient.voidui.objects.EdgeInsets
 import com.neptuneclient.voidui.objects.TextAlign
 import com.neptuneclient.voidui.shaders.ShaderProgram
 import com.neptuneclient.voidui.shaders.vec3
+import com.neptuneclient.voidui.ui.Panel
 import com.neptuneclient.voidui.utils.image
 import com.neptuneclient.voidui.utils.path
 import com.neptuneclient.voidui.widgets.*
@@ -74,14 +75,12 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
                             "testColor" to vec3(1.0f, 0.5f, 0.0f)
                         )
                     ),
-                    Center(
-                        Container(
+                    /*Center(
+                        Panel(
                             padding = EdgeInsets.all(20f),
-                            color = Color(20, 24, 35),
-                            cornerRadius = CornerRadius.all(10f),
                             child = Text("Hello World")
                         )
-                    )
+                    )*/
                 )
             )
         )
@@ -103,7 +102,7 @@ private val template = Template { slot ->
 val voidUI = VoidUI(TestRenderer(), TestTheme(), Settings(centeredScreen = true, useShaders = true), /*template*/)
 
 fun main() {
-    val screen = MainMenu(voidUI)
+    val screen = TestScreen(voidUI)
     screen.init()
 
     if (voidUI.renderer is TestRenderer) {

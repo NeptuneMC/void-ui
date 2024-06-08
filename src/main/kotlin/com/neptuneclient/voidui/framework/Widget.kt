@@ -5,7 +5,6 @@ import com.neptuneclient.voidui.event.Event
 import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.theme.Theme
 import com.neptuneclient.voidui.widgets.Placeholder
-import kotlin.properties.Delegates
 import kotlin.reflect.KClass
 
 /**
@@ -117,7 +116,7 @@ abstract class Widget {
     /**
      * Defines a stateful variable, which rebuilds the widget once it changes its value.
      */
-    fun <T> state(initialValue: T) = Delegates.observable(initialValue) { _, _, _ ->
+    fun <T> state(initialValue: T) = State(initialValue) {
         // temp
         screen.remove()
         screen.init()

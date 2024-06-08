@@ -23,3 +23,13 @@ class MouseClickedEvent(val button: Int, val x: Float, val y: Float) : Event()
  * @param y The y position of the mouse.
  */
 class MouseReleasedEvent(val button: Int, val x: Float, val y: Float) : Event()
+
+/**
+ * Called whenever the mouse is moved.
+ *
+ * **This event needs to be called when implementing the library.**
+ *
+ * @param x The x position of the mouse.
+ * @param y The y position of the mouse.
+ */
+class MouseMovementEvent(val x: Float, val y: Float) : Event()
