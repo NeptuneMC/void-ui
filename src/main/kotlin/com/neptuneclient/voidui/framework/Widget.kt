@@ -5,7 +5,6 @@ import com.neptuneclient.voidui.event.Event
 import com.neptuneclient.voidui.rendering.RenderObject
 import com.neptuneclient.voidui.theme.Theme
 import com.neptuneclient.voidui.widgets.Placeholder
-import kotlin.properties.Delegates
 import kotlin.reflect.KClass
 
 /**

@@ -8,22 +8,37 @@ abstract class StyledWidget<T : StyleSheet> : Widget() {
 
     private lateinit var styles: Styles<T>
 
-    protected lateinit var stylesheet: T
+    private var stylesheetState: T? by state(null)
+
+    protected val stylesheet: T
+        get() = stylesheetState!!
 
     override fun init(screen: Screen, parent: Widget) {
-        this.voidUI = screen.voidUI
-        this.screen = screen
-        styles = voidUI.theme.getStyles(this::class)
-        stylesheet = styles.regular
+        try {
+            this.voidUI = screen.voidUI
+            this.screen = screen
+            styles = voidUI.theme.getStyles(this::class)
+            checkStylesheetUpdate()
 
-        root = build()
-        root!!.init(screen, this)
+            root = build()
+            root!!.init(screen, this)
+        } catch (t: Throwable) {
+            t.printStackTrace()
+        }
 
         registerEventAction(MouseMovementEvent::class) {
-            if (stylesheet != styles.hovered && hovered())
-                stylesheet = styles.hovered
-            else if (!hovered())
-                stylesheet = styles.regular
+            //println("${hovered()} && ${stylesheetState == styles.hovered}")
+            checkStylesheetUpdate()
+        }
+    }
+
+    private fun checkStylesheetUpdate() {
+        if (stylesheetState != styles.hovered && hovered()) {
+            //println("hovered")
+            stylesheetState = styles.hovered
+        } else if (!hovered() && stylesheetState != styles.regular) {
+            //println("regular")
+            stylesheetState = styles.regular
         }
     }
 
