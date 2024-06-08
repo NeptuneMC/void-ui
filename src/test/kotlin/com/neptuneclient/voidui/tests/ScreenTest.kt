@@ -75,12 +75,12 @@ class TestScreen(voidUI: VoidUI) : Screen(voidUI) {
                             "testColor" to vec3(1.0f, 0.5f, 0.0f)
                         )
                     ),
-                    Center(
+                    /*Center(
                         Panel(
                             padding = EdgeInsets.all(20f),
                             child = Text("Hello World")
                         )
-                    )
+                    )*/
                 )
             )
         )
